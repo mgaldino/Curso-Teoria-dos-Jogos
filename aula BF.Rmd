@@ -1,0 +1,44 @@
+---
+title: "Baron & Farejon"
+author: "Manoel Galdino"
+date: "2023-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+O modelo de Baron & Ferejohn (1989a) é um modelo canônico para negociações em legislaturas, com variações abrangendo estudos sobre regras de votação legislativas (Baron & Ferejohn, 1989a), os poderes de comissões (Baron and Ferejohn 1989b), Programas Pork-Barrel Baron 1991a, formação de governos em contextos multipartidários (Baron 1989, 1991b; Baron and Ferejohn1989a), próprias eleições multipartidárias (em vez de apenas bipartidárias)  (Austen-Smith and Banks 1988; Baron 1991b), e negociações entre casas legislativas (Diermeier and Myerson 1994; Ansolabehere, Snyder, and Ting 2003).
+
+Por esse motivo, é importante entender o modelo de BJ. Aqui apresentamos uma versão simplifcada, sem todas as complicações da um modelo de jogos repetidos. Suponha que um governo parlamentaris pretende formar uma governo de coalizão, distribuindo cargos entre os partidos aliados no congresso. Suponha que tenhamos três partidos, A (que controla $40\%$ dos deputados), B (que controla $35\%$) e C ($25\%$). Suponha que o partido com mais cadeiras pode fazer uma proposta e que ela deve ser aceita por uma maioria, ou então  o portfólio é distribuído proporcionalmente ao número de cadeiras (uma variação de jogo do ultimato com três jogadores e regra da maioria, e com um mínimo pra cada jogador). Qual deve ser a proposta de alocação de cargos no governo feita por A, variando entre $0\%$ e $100\%$? Se essa é a rodada final, A sabe que se propuser $35\% + \delta$, com $\delta > 0$, para B, e nada para C, B irá aceitar, formando maioria. Sabe também que se propuser $25\% + \delta$ para C e nada para B, C aceitará, formando maioria. Portanto, A forma governo com o menor partido, que é mais barato.
+Se na rodada anterior for a vez de B, e antecipando (por indução para trás) que na última rodada ele aceitará nada e C receberá $25\% + \delta$, poderá propor exatamente isso a C e nada para A, formando maioria. No modelo, agentes preferem formar o governo mais cedo que mais tarde, de modo que receber x no presente é mais valioso que x em uma rodada futura*.
+Na rodada ainda anterior, se for a vez de C, ele sabe que na última rodada A ganhará $75\% - \delta$ e na penúltima rodada B ganhará também $75\% - \delta$. Portanto, nenhuma proposta que dê menos do que $75\% - \delta$ será aceita por A ou B e, portanto, em equilíbrio C sempre faz parte do governo, recebe $25\% + \delta$ dos cargos (pense em termos de orçamento) e o governo é formado por A ou B a depender de quem é escolhido para fazer a primeira proposta.
+
+Variações. Suponha que estamos em um sistema presidencialista e apenas o presidente do executivo pode propor como será a distribuição de cargos. Assuma também que, se os demais partidos não aceitarem a proposta, o portfólio será distribuído integralmente para o partido do presidente. Qual a proposta de equilibrio?
+
+Embora possa parecer irreal, esse modelo era, implicitamente, o que analistas que previam crise de paralisia no Brasil após a manutenção do sistema presidencialista com eleições proporcionais de lista aberta para o legislativo na Constituinte de 88. 
+
+"Linz argues that presidentialism induces a winner-takes-all approach to politics because electoral victory confers absolute control of
+executive power for a set period of time" (Mainwaring, 1990)
+
+Suponha o seguinte modelo alternativo. Apenas o presidente pode propor uma distribuição de portfólio. Porém, se uma maioria não for formada, um impeachment ocorre, o jogo acaba e ninguém ganha nada. Qual o equilíbrio se o presidente for do partido A, B ou C?
+
+É fácil ver que o equilíbrio é o mesmo de antes.
+
+Suponha agora que, após o impeachment, o partido do vice-presidente pode propor e, se não for aceito, o jogo acaba com as mesmas consequências que antes. Qual o equilíbrio? Raciocine por indução para trás e assuma que o impeachment ocorreu.
+Nada muda!
+
+Por fim, suponha que novas eleições ocorrem e um dos três partidos podem ganhar a eleição e o jogo recomeça. Nada muda.
+
+A variação chave para o jogo de BF é a alternativa: ganhar zero. Se o jogo for mesmo do tipo wiiner takes all, temos mesmo instabilidade.
+
+Mas não é verdade que a alternativa é ganharem zero. Qualquer que seja a alternativa para o partido mais barato é o que deve ser oferecido (mais $\delta$) para que um governo seja formado. É por isso que governos de coalizão são formados e o partido do presidente tende a ficar com uma parcela muito maior de cargos do que a representação que possui no Congresso. É também uma razão pela qual partidos com chance de ganhar a presidência estão dispostos a sacrificar cadeiras no legislivo em troca de aumentar a chance de ganhar o executivo.
+
+
+Mainwaring, S. (1990). Presidentialism in Latin America. Latin American Research Review, 25(1), 157-179. doi:10.1017/S0023879100023256
+
+Baron, David P. and John A. Ferejohn. 1989a. "Bargaining in Legislatures."
+American Political Science Review 89: 1181-1206.

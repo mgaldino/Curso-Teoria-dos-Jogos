@@ -1,0 +1,89 @@
+---
+title: "Aula DP"
+author: "Manoel Galdino"
+date: "2023-01-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dilema do Prisioneiro
+
+
+
+```{r results = "asis"}
+library(knitr)
+# Define Variables
+M=1
+R=20
+P=10
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,M), pair(S,R), pair(R,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Coopera","Não coopera")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+## Dilema da Ação Coletiva
+
+O Dilema do Prisioneiro é muito utilizado como base para pensar problemas de ação coletiva. A cooperação produz resultados socialmente melhores, porém a estratégia dominante individualmente é não cooperar.
+
+A partir do conhecimento da lógica do Dilema do Prisioneiro, podemos aplicá-la para outras situações de ação coletiva.
+
+# Plano cruzado
+
+Nosanos 80, o Brasil se viu às voltas com a hyperinflação e o país adotou o Plano Cruzado, durante a presidência de Sarney para debelar a inflação. O plano tinha muitas medidas, mas a principal delas era o congelamento de preços, ou seja, ninguém podia aumentar os preços sem autorização governamental. Após sucesso inicial em reduzir a inflação, o plano fracassou e os preços voltaram a subir. Parte do diagnósitco do Plano Cruzado é que havia uma conflito distributivo entre trabalhadores e empresários que resultava na espiral inflacionária. Podemos modelar essa situação como um Dilema do Prisioneiro.
+
+Suponha, para simplificar, que temos apenas dois jogadores, empresários e sindicatos. O resultado da cooperação é o congelamento de preços e salários, acabando com a inflação. Isso é vantajoso para ambos os jogadores, pois preserva o poder de compra de salários e aumentam os lucros pela maior demanda gerada. Por outro lado, saláriso congelados e preços subindo significarão superlucros para empresários e redução do salário real para trabalhadores e, de outro lado, aumentos de salários com preços congelados significam aumento do salário real e redução do lucro.
+
+
+```{r results = "asis"}
+# Define Variables
+M=1
+R=20
+P=10
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,M), pair(S,R), pair(R,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Coopera","Não coopera")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+# Happy hour
+Situações prosaicas do dia a dia também apresentam situações análogas ao Dilema do Prisioneiro.
+
+É comumque colegas de trabalho ou de faculdade decidam sair para o "happy hour" após o expediente ou término de aulas. E também é comum que ao final a conta seja dividida igualmente entre os presentes. E inevitavelmente alguém irá reclamar de que bebeu ou comeu pouco e está pagando mais do que deveria.
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# Dilema da Segurança
+
+both countries are better off if both disarm than if both arm, but
+each is individually better off if it is the only one to arm.
+
+# Cuidar da casa
+
+A limpeza de uma casa é algo que benefícia a todos os membros da casa. No entanto, limpar a casa é custoso e limpar apenas a sujeira que você causou tem pouco impacto sobre a limpeza geral da casa, especialmente quando a casa é grande. Assim, temos uma situação similar em que, embora todos prefiram uma casa suja a uma limpa, o equilíbrio é ninguém limpar a casa. Historicamente, sabemos que os cuidados da casa foram relegados para a mulher pelos homens. O patriarcado, aqui, impôe o custo da geração do bem comum às mulheres. Também sabemos que em países como o Brasil, nas classes mais ricas e mesmo na chamada classe média (que vive acima da média, na verdade), o racismo permitiu que mulheres brancas não passagem o custo da produção do bem comum, sendo este repassado a mulheres negras, inicialmente escravizadas, e posteriormente empregadas domésticas. E para reduzir o custo que tinham de pagar, as empregadas domésticas tinham pouco ou nenhum direito trabalhista até recentemente, com a PEC das domésticas. É fácil ver como a PEC, ao aumentar o custo do trabalho doméstico, desestrutura um equilíbrio que envolve a manutenção de uma sociedade patriarcal e racista. Se você altera o equilíbrio racial, mas não o patriarcal, você transfere parte do custo do bem comun das empregadas domésticas (em sua maioria negras) para as patroas (em sua maioria brancas), em particular naquelas classes que não eram ricas o suficiente para arcar com o custo mais elevado das empregadas domésticas. se o equilíbrio patriarcal for alterado, o homem, em geral poupado do trabalho doméstico, terá de passar a pagar o custo desse bem comum.
+
+
+# Referências
+
+Kollock, P. (1998). Social dilemmas: The anatomy of cooperation. Annual review of sociology, 183-214.
+
+Roxborough, I. (1992). Inflação e pacto social no Brasil e no México. Lua Nova: Revista de Cultura e Política, 197-224.

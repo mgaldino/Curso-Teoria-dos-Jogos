@@ -1,0 +1,53 @@
+---
+title: "Forma extensiva"
+author: "Manoel Galdino"
+date: "2022-11-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Forma extensiva, árvore de decisão e planejando o futuro
+
+# https://github.com/yukiyanai/rgamer
+
+Uma das questões que mais têm chamado a atenção de analistas no Brasil é o papel do Centrão, desde seu surgimento na Assembleia Nacional Constituinte. Aqui, seguiremos a descrição feita em Freitas, Moura e Mediros (2009) para resumir o que os polítics enfrentavam e como traduzir os deilmes deles em teoria dos jogos. 
+
+Recordermos que uma das questões chave do desenho do texto constitucional de 88 foi definir quando e como se controlaria o texto final que seria submetido à plenário. O Regimento Interno aprovado inicialmente para a Assembleia Nacional Constituinte propunha uma elaboção da Carta Magna "de baixo para cima", ou seja, a nova Constituição seria escrita do zero (sem partir de um texto de referência) e todos os Constituintes participariam do processo, por meio das comissões temáticas (e suas subcomissões). Elas submeteriam seus textos à Comissão de Sistematização, formada por poucos deputados e senadores, que teria o papel de consolidar e redigir o texto final que seria submetido à plenário.
+
+De forma sintética, todos os constituintes teriam poder de propor textos constitucionais, que precisariam ser aprovados nas comissões temáticas, mas que, para permanecer no texto final, precisariam ser aprovadas na Comissão de Sistematização. Por fim, no plenário, um voto final seria dado sobre todo o texto Constitucional. O conflito básico da Constituinte, portanto, era que a esquerda, minoritária no plenário era majoritária nas comissões temáticas e, obviamente, gostaria de aprovar um texto mais esquerdista possível. Já o Centrão, majoritário no plenário e minoritário nas comissões temáticas, gostaria de um texto mais de direita. Ambos, contudo, preferiam aprovar um texto mais de esquerda ou mais de direita a não aprovar texto nenhum, desde que não fosse excesivamente nos pólos ideológicos.
+
+Como poderíamos representar a situação da Assembleia Nacional Constituinte de uma maneira que nos permita analisar o que poderíamos esperar dos cmportamentos dos atores envolvidos? Podemos notar que existe uma sequência de ações disponível para cada ator político. Esse cenário, portanto, pode ser descrito com o que chamamos em Teoria dos Jogos de forma extensiva. 
+
+A forma extensiva é uma especificação da teoria dos jogos em que os movimentos ou ações dos jogadores são sequenciais (acontecem no tempo). Tipicamente a forma extensiva é apresentada por meio de uma árvore de decisão, em que cada nó é uma decisão de um jogador. A forma extensiva, em um jogo de informação completa, é definida por:
+1. Um conjunto finito de (n) jogadores
+2. Uma árvore do jogo em que há um ponto de partida (árovre enraizada)
+3. Em cada nó, há o payoff de todos os jogadores
+4. A descrição completa do jogo acima é de conhecimento comun dos jogadores.
+
+
+Referências
+
+Freitas, R., Moura, S., & Medeiros, D. (2009). Procurando o Centrão: direita e esquerda na Assembléia Nacional Constituinte 1987-88. A Constituição de, 101-135. In: Rezende, Maria Alice et al. (orgs). A Constituição de 1988: passado e futuro. São Paulo: Hucitec/Anpocs, 2009.
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(DiagrammeR)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
