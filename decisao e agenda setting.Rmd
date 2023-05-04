@@ -1,0 +1,41 @@
+---
+title: "Aula decisão e agenda setting"
+author: "Manoel Galdino"
+date: "2022-11-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Votos em comitês - evidência experimental
+
+Após os resultado teóricos de que, na ausência de um equilíbrio, processos de tomadas de decisão em múltiplas dimensões poderiam resultar em quaquer decisão (caos), estudos experimentais foram realizados para testar a previsão da teoria. O Trabalho canônico é o de Fiorina & Plott (1978), em que desenharam um experimento com cinco participantes. No experimento de série 1, o status quo começa à esquerda do espaço político (bi-dimensional) e o "core" fica àdireita, no ponto ideal do jogador A. A regra de emenda é aberta e quando uma nova proposta é aprovada, se torna o novo status quo. O experimento termina quando alguém propõe encerrar o processo e uma maioria aprova. Na série 3, não há "core". Pela teoria da escolha social, esperar-se-ia que deveria haver instabilidade. No entanto, os estudos experimentais mostraram que há estabilidade.
+
+Estudos subsequentes têm chamado a atençao para componentes pro-sociais dos seres humanso como possível explicação para a estabilidade das decisões, mesmo quando não há core nos pontos ideais. O presente estudo visa justamente testar essa hipótese de que é o comportamento pró-social que explica a estabilidade de decisões emajoritárias em comitês. 
+
+Desenho experimental. 
+Participantes irão tomar decisões sequencialmente, como em Wilson (2008).
+Na condição 1, o core comporta payoffs igualitários.
+Na condição 2, o core comporta payoffs desiguais.
+Na condição 3, o core compora payoffs igualitários entre pessoas do in-group.
+Na condição 4, o core coporta payoffs igualitários entre pessoas de grupos distintos.
+Na condição 5, o core comporta payoffs desiguais entre pessoas do in-group
+Na condição 6, o core comporta payoffs desiguais entre pessoas de grupos distintos.
+
+Fiorina, Morris P., and Charles R. Plott. "Committee decisions under majority rule: An experimental study." American Political Science Review 72.2 (1978): 575-598.
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

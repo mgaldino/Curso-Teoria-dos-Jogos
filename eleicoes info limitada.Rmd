@@ -1,0 +1,18 @@
+---
+title: "Eleições com informação limitada"
+author: "Manoel Galdino"
+date: "2023-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+Uma das críticas aos resultados de modelos espaciais de eleição é que os modelos assumem muita capacidade cognitiva e de aquisição de informação por parte dos eleitores e políticos. McKELVEY & Odershook (xxxx), e uma literatura subsequente procurou relaxar as suposições do modelo para investigar se algo mudaria no equilíbrio previsto. Em particular, se a democracia seria capaz de produzir escolhas bem informadas de eleitores mesmo que eles pouco se informassem sobre política.
+
+O modelo consiste no seguinte:
+Existem dois tipos de jogadores principais: eleitores e candidatos. E os eleitores são divididos em dois tipos: informados e não-informados. A estratégias disponíveis para os candidatos são posições de políticas públicas que eles podem adotar e que se localizam no espaço político unidimensional. As estratégias dos candidatos são votar em um candidato ou outro. Eleitores possuem preferência de pico único. E é um modelo de uma única eleição. Candidatos não sabem qual a função de utilidade específica de cada eleitor nem a posição do ponto ideal deles. E os eleitores sabem seu próprio ponto ideal (sua política preferida) e como se localizam no espectro político, mas não sabem as posições dos candidatos.
+
+Para os eleitores não-informados, a única fonte de informação sobre os candidatos são apoios de grupos de interesses (digamos, sindicato e associação de empresários) e o resultado de uma pesquisa de intenção de voto.
