@@ -1,0 +1,116 @@
+---
+title: "Lista de exercícios 3"
+author: "Manoel Galdino"
+date: "2023-04-14"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Escreva as informações que especificam um jogo na forma normal (Número de jogadores, estratégias e funções de utilidade) e a matriz de payoff dos seguintes jogos apresentados em aula: Dilema do Prisioneiro, Bach e Stravinsky, Jogo do Chicken e Stag Hunt.
+
+2. Para os jogos da questão anterior, responda às seguintes perguntas:
+a) Existe alguma estratégia estritamente dominada para algum (ou ambos) jogador(es)? Se sim, qual.
+b) existe um equilírio de estratégia estritamente dominante? Se sim, qual?
+c) Existe algum equilíbrio de Eliminação Iterativa de Estratégias Estritamente Dominadas? Se sim, qual? Ele é ótimo de Pareto?
+
+3. Considere o seguinte jogo representado na forma normal:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(2,3), pair(3,1), pair(3,1), pair(1,0), pair(1,2), pair(2,1))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro","Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe alguma estratégia estritamente dominada para algum (ou ambos) jogador(es)? Se sim, qual?
+b) existe um equilírio de estratégia estritamente dominante? Se sim, qual?
+c) Existe algum equilíbrio de Eliminação Iterativa de Estratégias Estritamente Dominadas (EIEED)? Se sim, qual? Ele é ótimo de pareto?
+
+4. Para esta questão, considere que uma estratégia A é fracamente dominada por B se B é fracamente preferida à A, ou seja, $u(A) >= u(B)$, independentemente das estratégias dos demais jogadores. Veja que isso implica que uma estratégia estritamente dominada é fracamente dominada, mas o contrário não é necessariamente verdade. Considere então o seguinte jogo. 
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(2,3), pair(3,1), pair(3,1), pair(1,1), pair(1,2), pair(2,1))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro","Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Identifique, para a jogadora 2, a estratégia fracamente dominada.
+
+5. Nesta questão, iremos considerar a Eliminação Iterativa de Estratégias Fracamente Dominadas (EIEFD), definida de maneira similar à EIEED em classe (em vez de eliminar apenas estratégias estritamente dominadas, eliminamos as estratégias fracamente dominadas). Considere o seguinte jogo representado na forma normal:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(1,1), pair(2,3), pair(1,3), pair(1,3), pair(2,4), pair(2,2))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro","Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Mostre que EIEFD pode levar a resultados diferentes usando ordens de eliminação de estratégias distintas. Dica: Implemente a EIEFD por uma estratégia fracamente dominada e depois repita o procedimento começando pela eliminação de outra estratégia fracamente dominada e compare os resultados.
+b) A apicação de EIEED em diferentes ordens, diferentemente de EIEFD, gera sempre o mesmo resultado. Como você interpreta essa diferença em termos das previsões de cada tipo de solução de um jogo? 
+
+6. Em um pênalti no jogo de futebol, suponha que os jogadores podem chutar na esquerda, no centro ou no canto direito (desconsidere a altura da bola). Similarmente, o goleiro pode escolher umas das três opções para tentar agarrar a bola. Suponha também que batedores e goleiros devem escolher simultaneamente aonde a bola irá. Se o goleiro pular na mesma direção da bola, o goleiro ganha e o batedor perde. Se pular em uma direção diferente, o batedor ganha. Modele esse jogo como um jogo na forma normal (isto é, escreva o número de jogadores, estratégias e funções de utilidade dos jogadores) e a matriz de payoff.
+
+7. Três jogadoras vivem em um bairro e podem contribuir para custear uma iluminação de um poste. O valor da iluminação é $3$ unidades monetárias para cada jogadora e o valor de ficarem sem iluminação é $0$. A associação do Bairro pede que cada jogadora contribua $1$ unidade monetária cada (ou nada). Se pelo menos duas jogadoras contribuírem, a iluminação é instalada. Se uma ou nenhuma pessoa contribuir, a iluminação não é instalada e quem deu o dinheiro não terá ele de volta. Escreva a forma normal do jogo.
+
+8. Em uma rede social, suponha que temos apenas três pessoas que se seguem (e não podem bloquear umas às outras) e podem fazer uma postagem sensacionalista ou não. Uma postagem sensacionalista atrai mais engajamento e mais seguidores do que a não-sensacionalista. Elas gostam de ganhar mais seguidores e não se importam se sua postagem é sensacionalista. Porém, se elas vêem em sua linha do tempo postagem sensacionalista de outras pessoas, acham isso ruim. Assim, suas preferências podem ser representadas pelos seguintes payoffs. Se uma jogadora posta algo sensacionalista, ganha $3$ e se posta algo não sensacionalista, ganha $1$. Se ela nao vir nenhuma mensagem sensancionalista alheia em sua linha do tempo, nem ganha nem perde nada (ganha zero). Se ela vir uma postagem alheia, perde 2 e se vir duas postagens alheias, perde 4. Todas têm as mesmas preferências. Suponha que devem decidir simultaneamente se irão postar algo sensacionalista ou não (rodada única).
+
+a) escreva o jogo na formal normal e a matriz de payoff. Dica: para escrever a matriz de payoff, faça duas matrizes de payoff usuais (2x2 estratégias e dois jogadores, porém com três payoffs em cada célula, o primeiro payoff da jogadora 1, o segundo da jogadora 2 e o terceiro da jogadora 3). Na primeira matriz, calcule os payofss supondo que a terceira jogadora joga a primeira estratégia, e na outra matriz, que ela joga a segunda estratégia. Assim, você representará todas as combinações de estratégias.
+
+b) existe um equilírio de estratégia estritamente dominante? Se sim, qual?
+c) Existe algum equilíbrio de Eliminação Iterativa de Estratégias Estritamente Dominadas (EIEED)? Se sim, qual? Ele é ótimo de pareto?
+d) Você acha que esse jogo simplificado captura algo relevante das redes sociais? Explique sua resposta. 
+
+
+9. Há dois bares em uma cidade, cujas proprietárias são A e B, que podem cobrar 2 reais, 4 reais ou 5 reais por bebida. Todos os dias, há 6.000 turistas e 4.000 moradores locais que decidem qual bar visitar. (Cada pessoa pode ir apenas a um bar e cada pessoa deve ir a pelo menos um bar, onde cada pessoa consome exatamente uma bebida.) Como os turistas não têm ideia sobre os bares, eles escolhem aleatoriamente sem levar em consideração os preços. No entanto, os moradores locais sempre vão ao bar mais barato (e escolhem aleatoriamente se os preços forem os mesmos).
+
+a) escreva o jogo na forma normal (Número de jogadores, estratégias e funções de utilidade). Suponha que quando um cliente aleatoriza, se dividem igualmente entre os dois bares.
+b) escreve a matriz de payoff (para simplificar, apresente os números em milhares de reais)
+c) Aplicando a eliminação iterativa de estratégias estritamente dominadas, existe algum equilíbrio para o jogo? Se sim, qual é ele?
+d) Suponha que as donas, A e B, decidam cobrar os preços de equilíbrio. Alguém pode melhorar mudando de estratégia? Justifique sua resposta.
+e) Suponha que, por um erro de impŕessão, a proprietária A anunciou um preço de 2 reais, enquanto B anunciou o preço de 4 reais. Se B sabe que foi um erro de impressão de A e A sabe que B sabe disso, qual deve ser o novo equilíbrio?
+f) no caso anterior, suponha que B descobriu que A acredita em numerologia e jamais cobrará 4 reais, podendo essa estratégia ser eliminada do jogo do ponto de vista de B. Qual o novo equilíbrio?
+
+
+10. Considere o seguinte cenário de leilão. Duas pessoas, jogadora 1 e jogadora 2, estão competindo para obter um objeto de valor. Cada jogadora faz um lance em um envelope lacrado sem saber o lance da outra jogadora. Os lances devem ser em múltiplos de 100 reais e o valor máximo do lance é de 500 reais. O objeto tem um valor de 400 reais para a jogadora 1 e 300 reais para a jogadora 2. A licitante com o lance mais alto ganha o objeto. Em caso de empate, a jogadora 1 fica com o objeto. O vencedor do objeto paga o valor do seu lance. Se ela não ganhar o objeto, seu payoff é zero.
+
+a) Escreva a forma estratégica do jogo (número de jogadores, estratégias e função utilidade) deste jogo. Dica para a função utilidade: o payoff de cada jogadora é dado pelo valor do objeto para ela menos o valor do lance se ela ganha o leilão. Designe o valor do lance por $a_1$ para a jogadora 1 e $a_2$ para a jogadora 2. E a jogadora $1$ ganha o leilão se $a_1 >= a_2$, e similarmente para a jogadora 2.
+b) Escreva a matriz de payoff.
+c) Há um equilíbrio de estratégia estritamente dominante para este jogo? Explique.
+d) Quais estratégias sobrevivem à eliminação iterativa de estratégias estritamente dominadas? Explique seu raciocínio.
+
+
+

@@ -1,0 +1,56 @@
+---
+title: "Lista de exercício 2 - solução"
+author: "Manoel Galdino"
+date: "2023-03-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Considere a relação binária "ser melhor que ou igual a" em um jogo de futebol. Essa relação satisfaz o axioma da transitividade? Justifique sua resposta.
+
+E se "ser melhor que ou igual" no futebol for definido apenas pelo número de pontos obtidos pelas equipes em um campeonato. Essa relação satisfaz o axioma da transitividade? 
+
+Resposta: Não satisfaz, pois é comum que o time A seja melhor que o time B, o time B melhor que C, mas C melhor que A. Uma razão para isso é que o estilo de jogo de um time "encaixa" melhor contra um, mas não contra outro. Isso também pode ser observado pelo fato de que um time A ganha de B, B ganha de C e C ganha de A.
+
+Já se o critério de melhor for pelo número de pontos obtidos, então a relação é transitiva, pois se A tem mais pontos que B (e porntanto é melhor que B por esse critério) e B tem mais ponto que C, então A tem mais ponto que C.
+
+2. Considere a relação binária "ser mais caro do que" em um mercado de produtos. Essa relação satisfaz o axioma da completude? Justifique sua resposta.
+
+Resposta: A relação "ser mais caro do que" em um mercado de produtos não satisfaz o axioma da completude, pois para alguns produtos, pode é possível que dois produtos tenham preços iguais, o que tornaria a relação "ser mais caro do que" incompleta. Em outras palavras, não consigo comparar e dizer qual é mais caro. 
+
+3. Na questão anterior, se você respondeu negativamente, como você modificaria a relação para que ela satisfizesse o axioma da completude.
+
+Resposta: Para a relação ser completa, precisaria defini-la como "ser tão ou mais caro que".
+
+4. Considere a relação binária "ser paralelo a" em um plano euclidiano. Essa relação satisfaz o axioma da transitividade? Dica: pense em retas paralelas.
+
+Resposta: A relação "ser paralelo a" em um plano euclidiano satisfaz o axioma da transitividade, pois se duas retas são paralelas a uma terceira reta, então elas são paralelas entre si. Essa propriedade é transitiva, pois se a reta A é paralela à reta B e a reta B é paralela à reta C, então a reta A é paralela à reta C.
+
+5. No poema Quadrilha, de Carlos Drumond de Andrade, podemos imaginar que temos uma relação binária "amar". Desconsiderando por um momento J. Pinto Fernandez, você diria que com as informações disponíveis no poema podemos rankear todos os demais personagens na relação "amar"? E se incluírmos J. Pinto Fernandez, sua resposta muda? Justifique sua resposta.
+
+Resposta: Não, a relação "amar" não é transitiva com ou sem J. Pinto Fernandez. Quando o poema diz, por exemplo, que "João amava Teresa que amava Raimundo", não podemos dizer que João ama Raimundo. A inclusão de J. Pinto Fernandez não muda em nada a intransitividade da relação "amar".
+
+6. Crie uma relação binária diferente das apresentadas em sala de aula e nos exercícios acima, que satisfaça o axiomada da completude e transitividade.
+
+Resposta: Existem inúmeras possibilidades. Uma delas seria a relação "ser tão ou mais alto que". Pois assim, se A é mais alto que B, e B mais alto que C, A é mais alto que C.
+
+
+7. Considere a relação binária ">=". Para mostrar que essa relação implica a relação ">", basta mostrar o seguinte. Sejam $x$ e $y$ dois números pertencentes ao conjunto X. Então, dizemos que $x > y$ se e somente se $x >= y$ e $não y >= x$. Note que se eu digo A é verdade **se e somente se** B é verdade, isso é o mesmo que dizer que $A$ implica $B$ e $B$ implica $A$. De maneira similar, mostre que é possível derivar a relação "=" da relação ">=".
+
+Resposta: Se $ x >= y$ e $y >= x$, então segue-se que $x = y$. Portanto, é possível usar a relação "=" a partir da relação "$>=$".
+
+8. Da relação de preferência $\succcurlyeq$, mostre que é possível derivar a relação de preferência estrita $\succ$ e de indiferença $\sim$.
+
+Resposta: De maneira análoga ao exerício anterior, temos: Sejam $x$ e $y$ alternativas do conjunto $X$. Então, dizemos que $x \succ y$ se e somente se $x \succcurlyeq y$ e $não y\succcurlyeq x$. Similarmente, se $x \succcurlyeq y$ e $y \succcurlyeq x$, então segue-se que $x \sim y$.
+
+9. Considere o seguinte exemplo: o agente A prefere estritamente café com 7 gramas de açúcar a café sem açúcar, mas é indiferente entre café com 7 gramas de açúcar e café com 6,9 gramas de açúcar, entre café com 6,9 gramas de açúcar e café com 6,8 gramas de açúcar, e assim por diante, até ser indiferente entre café com 0,1 gramas de açúcar e café sem açúcar. O agente A é racional no sentido da Teoria dos Jogos? Justifique sua resposta.
+
+Resposta: O agente não é racional, pois a preferência dele não é transitiva. 
+
+10. suponha que uma pessoa A prefira a cor vermelha à cor verde e prefira a cor verde à cor azul. No entanto, quando confrontada com um tom específico de verde-azulado, A pode ser indiferente entre esse tom e a cor verde. Isso pode levar a uma violação da transitividade, pois A prefere vermelho a verde e verde a azul, mas é indiferente entre verde-azulado e verde. Forneça um outro exemplo, similar a esse, utilizando outro sentido que não a visão.
+
+Resposta. audição: suponha que uma pessoa C prefira um som agudo a um som médio, e um médio um som grave. No entanto, quando confrontada com um som específico, como um som médio-grave, C pode ser indiferente entre esse som e o som grave. Se refinarmos o suficiente essa distinção, isso pode levar a uma violação da transitividade.

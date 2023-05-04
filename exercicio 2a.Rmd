@@ -1,0 +1,48 @@
+---
+title: "Lista de exercício 2"
+author: "Manoel Galdino"
+date: "2023-03-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Considere a relação binária "ser melhor que ou igual a" em um jogo de futebol. Essa relação satisfaz o axioma da transitividade? Justifique sua resposta.
+E se "ser melhor que ou igual" no futebol for definido apenas pelo número de pontos obtidos pelas equipes em um campeonato. Essa relação satisfaz o axioma da transitividade? 
+
+2. Considere a relação binária "ser mais caro do que" em um mercado de produtos. Essa relação satisfaz o axioma da completude? Justifique sua resposta.
+
+3. Na questão anterior, se você respondeu negativamente, como você modificaria a relação para que ela satisfizesse o axioma da completude.
+
+4. Considere a relação binária "ser paralelo a" em um plano euclidiano. Essa relação satisfaz o axioma da transitividade? Dica: pense em retas paralelas.
+
+5. No poema Quadrilha, de Carlos Drumond de Andrade, podemos imaginar que temos uma relação binária "amar". Desconsiderando por um momento J. Pinto Fernandez, você diria que com as informações disponíveis no poema podemos rankear todos os demais personagens na relação "amar"? E se incluírmos J. Pinto Fernandez, sua resposta muda? Justifique sua resposta.
+
+6. Crie uma relação binária diferente das apresentadas em sala de aula e nos exercícios acima, que satisfaça o axiomada da completude e transitividade.
+
+7. Considere a relação binária ">=". Para mostrar que essa relação implica a relação ">", basta mostrar o seguinte. Sejam $x$ e $y$ dois números pertencentes ao conjunto X. Então, dizemos que $x > y$ se e somente se $x >= y$ e $não y >= x$. Note que se eu digo A é verdade *se e somente se* B é verdade, isso é o mesmo que dizer que $A$ implica $B$ e $B$ implica $A$. De maneira similar, mostre que é possível derivar a relação "=" da relação ">=".
+
+8. Da relação de preferência $\succcurlyeq$, mostre que é possível derivar a relação de preferência estrita $\succ$ e de indiferença $\sim$.
+
+9. Considere o seguinte exemplo: o agente A prefere estritamente café com 7 gramas de açúcar a café sem açúcar, mas é indiferente entre café com 7 gramas de açúcar e café com 6,9 gramas de açúcar, entre café com 6,9 gramas de açúcar e café com 6,8 gramas de açúcar, e assim por diante, até ser indiferente entre café com 0,1 gramas de açúcar e café sem açúcar. O agente A é racional no sentido da Teoria dos Jogos? Justifique sua resposta.
+
+10. suponha que uma pessoa A prefira a cor vermelha à cor verde e prefira a cor verde à cor azul. No entanto, quando confrontada com um tom específico de verde-azulado, A pode ser indiferente entre esse tom e a cor verde. Isso pode levar a uma violação da transitividade, pois A prefere vermelho a verde e verde a azul, mas é indiferente entre verde-azulado e verde. Forneça um outro exemplo, similar a esse, utilizando outro sentido que não a visão.
+
+11. Serena e Martín foram brincar de par ou ímpar. Suponha que uma vitória no jogo vale um ponto, empate zero e derrota -1. 
+
+a) Como você descreveria as estratégias disponíveis para cada jogador?
+b) E os payoffs?
+c) represente o jogo na forma normal
+
+
+12.Serena, Martín e Nina foram brincar de zerinho ou um. Suponha que uma vitória no jogo vale um ponto, empate zero e derrota -1.
+
+a) Como você descreveria as estratégias disponíveis para cada jogador?
+b) E os payoffs?
+c) represente o jogo na forma normal
+
+
+

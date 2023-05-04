@@ -1,0 +1,36 @@
+---
+title: "Lista de exercícios 4"
+author: "Manoel Galdino"
+date: "2023-04-18"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Para os jogos especificados nos exercícios 1, 3, 4 , 5, 6, 7, 8 , 9 e 10 da lista 3, verifique se existe equilíbrio de Nash (em estratégias puras) e aponte qual é ou quais são os equilíbrios de Nash, se houver mais de um.
+
+Exercícios bônus (não cairão na prova e são opcionais)
+
+2. Jogo do Ultimato. Considere o seguinte jogo com duas jogadoras (1 e 2). A jogadora 1 recebe 10 reais e deve decidir como dividir o dinheiro entre ela e a jogadora 2, entre números inteiros de 0 a 10 reais. Uma vez que ela decida uma divisão, faz uma oferta para a jogadora 2, que deve decidir se aceita ou não. Caso ela aceite, o jogo acaba com a divisão proposta. Caso ela rejeite, o jogo acaba com as jogadoras levando nada. Suponha que a preferência das jogadores pode ser captada pela seguinte função de utilidade: $u_i(s_1, s_2) = s_i$ se a proposta for aceita e $0$ se não for aceita. Veja que a jogadora 1 possui muitas estratégias (132 no total, verifique esse número), dada pelas combinações de propostas possíveis cuja soma é $\le 10$. Já a jogadora 2 pode apenas escolher entre aceitar a proposta (sim) ou rejitá-la (não). Logo, se a jogadora 1 propõe uma divisão 7 reais para ela e 3 reais para a jogadora 2 e esta aceita, então $u_1((7,3), sim) = 7$ e $u_2((7,3), "sim") = 3$.
+
+a) Nesse jogo, explique porque a proposta (10, 0) é um equilíbrio de Nash. Explique também porque ele é um equilíbrio instável (não robusto a pequenas variações no pyaoff de 2), considerando a alternativa para a jogadora 2.
+b) Se o menor número possível for 1 real (em vez de zero) e o máximo 9 reais, qual o equilíbrio de Nash?
+c) Se voce fosse a jogadora 2 e recebesse a oferta do equilíbrio de Nash do jogo da letra b, aceitaria ou não? Justifique sua resposta.
+c) Se você fosse a jogadora 1, faria uma oferta diferente da oferta de equilíbrio de Nash? Se sim, qual? Justifique sua resposta.
+
+3. Jogo do ditador. Considere o seguinte jogo, uma variação do jogo do ultimato. A jogadora 1 recebe 10 reais e deve decidir quanto dividir entre ela e a jogadora 2. Uma vez feita a decisão de divisão, o jogo acaba, com a divisão proposta pela jogadora 1 (ditadora).
+
+a) Quais as estratégias da jogadora 1 e 2?
+b) Como você escreveria a função de utilidade das jogadoras?
+c) Qual o equilíbrio de Nash desse jogo?
+d) Se você fosse a jogadora 1, faria uma oferta diferente da oferta de equilíbrio de Nash? Se sim, qual? Justifique sua resposta.
+e) Em estudos experimentais (Oosterbeek et. al., 2004), a oferta média das jogadoras 1 no jogo do ultimato é de 40% do total (no caso do nosso jogo, 4 reais). Já estudos experimentais do jogo do ditador (Engel, 2011), a oferta média é de 28%, que no nosso caso seria aproximadamente 3 reais. Uma das explicações sugeridas para a oferta de 40% no jogo do ultimato é medo de que a outra pessoa não seja racional (ou não tenha preferências tais como a sugerida pela função utilidade do exercício 2) e, por isso, dariam uma oferta mais elevada do que a do equilíbrio de Nash para evitar o risco de acabarem sem nada. Nesse caso, a jogadora 1 teria preferências como a da função utilidade do exercício 2, mas não saberia se a jogadora 2 também teria uma função utilidade assim. Como você interpreta essa explicação diante dos resultados experimentais do jogo do ditador?
+
+Referências
+
+Engel, C. (2011). Dictator games: A meta study. Experimental economics, 14, 583-610.
+
+Oosterbeek, H., Sloof, R., & Van De Kuilen, G. (2004). Cultural differences in ultimatum game experiments: Evidence from a meta-analysis. Experimental economics, 7, 171-188.
