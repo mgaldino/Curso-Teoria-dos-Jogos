@@ -1,40 +1,116 @@
 ---
-title: "Programa Teoria dos Jogos"
 author: "Manoel Galdino"
-date: "2022-11-11"
-output: html_document
+title: "Teoria dos Jogos - FLP0464"
+
+fontfamily: mathpazo
+fontsize: 12pt
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(timeDate)
+library(tibble)
+library(dplyr)
 ```
 
-## R Markdown
+# Dados do Curso
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+E-mail: mgaldino@usp.br
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Site do curso: https://github.com/mgaldino/Curso-Teoria-dos-Jogos
 
-###
+Sala do professor: 2081
 
-Marxismo Analíticos
+Horários para receber estudantes: Quartas, 14h-15h. Quintas, 13h-14h.
+
+
+# Objetivos
+
+Teoria dos jogos oferece uma abordagem para analisar comportamentos racionais em situações de interdependência entre agentes. O que siginfica que quase todo fenômeno social pode ser modelado como um jogo. O objetivo do curso é fornecer uma introdução crítica à teoria dos jogos com aplicações em ciência política e relações internacionais, de forma que o curso difere nesse aspecto de outros oferecidos em departamentos de economia, por exemplo.
+
+O curso está organizado em torno de alguns grandes temas. Em primeiro lugar, queremos que estudantes aprendam os principais conceitos de equilíbrio (Nash, etc.). Em segundo lugar, que se familiarizem com as principais aplicações de modelos formais na  ciência política e relações internacionais. Alguns exemplos de aplicações incluem o modelo de barganha em legislatura de Baron & Ferejohn, modelos de agregação de informação com eleitores desinformados, e modelos formais de cooperação internacional.  E por último, que se familiarizem com a literatura experimental que testa as previsões e suposições da teoria dos jogos, com ênfase para os modelos de ciência política, mas cobrindo também alguns exemplos da ciência comportamental, como estudos sobre o jogo do ultimato.
+
+
+# Justificativa
+
+A teoria dos jogos introduz uma forma de pensar em termos de incentivos, racionalidade e equilíbrio que é importante para todos cientista social. Embora não seja a única forma de analisar a realidade social, sem dúvida é uma das mais importantes. Assim, uma introdução à teoria dos jogos deve permitir às estudantes matriculadas no curso esse "óculos analítico". 
+
+O curso também se justifica por apresentar como a matemática aplicada pode ser utilizada de maneira produtiva em ciências sociais e treinar alunos e alunas a estudarem matemática, que é um pouco diferente de como se estuda outros temas em ciências sociais.
+
+Por fim, ao abordar experimentos de laboratório, o curso apresentará a técnica experimental como ferramenta para testar teorias e hipóteses.
+
+# Agenda preliminar
+
+### Aulas 1 e 2 - (16/03) Introdução à Teoria dos Jogos. Racionalidade, escolha racional e individualismo metodológico.
+
+
+### Aula 2 e 3 - (23/03 e 30/03) Jogos na forma estatégica e conceitos de equilíbrio (Estratégia dominante, Nash)
+
+
+### Aula 4 e 5 - (13/04 e 20/04) Jogos na forma extensiva e Equilíbrio Perfeito de Subjogo
+
+
+### Aula 6 - (27/04) Aplicações em Ciência Política e Relações Internacionais
+
+
+### Aula 7 e 8 - (04/05 e 11/05) Jogos de soma zero com preferência espacial
+
+
+### Aula 9 e 10 - (18/05 e 25/05) Aplicações e testes experimentais 
+
+
+### Aula 11 - (01/06) Tópicos especiais I (Jogos Dinâmicos)  
+
+
+### Aula 12 - (15/06) Tópicos especiais II (jogos de informação incompleta) 
+
+
+### Aula 13 -(22/06) Tópicos especiais III - marxismo analítico  
+
+
+### Aula 14 - (29/06) Prova Final
+
+
+### Substitutiva (06/07)
+
+
+### Recuperação (13/07)
+
+
+# Avaliação
+
+### Exercícios - 30% da nota
+
+Quase semanalmente haverá uma lista de exercício, a ser entregue na semana seguinte. Os exercícios não precisam estar corretos, mas deverão ser entregues demonstrando esforço em tentar resolver as questões. 
+
+A nota dos exercícios será computada contabilizando quantas listas cada aluno entregou -- demonstrando esforço. Se todas as listas foram entregues, a nota é 10. Se 90%, a nota é 9 e assim por diante.
+
+### Prova - 70% da nota
+
+Ao final do curso, haerá uma prova final, que será integralmente composta de uma selação dos exercícios feitos em casa. Isso significa que se todos os exercícios forem feitos, não haverá surpresa na prova.
+
+Caso alguém não possa comparecer, haverá uma prova substitutiva na semana seguinte. Contudo, essa prova  poderá ter questões que não estavam nas listas de exercício, de forma que é recomendável que todo esforço seja feito para que ela não seja necessária.
+
+A nota final do curso é o resultado de uma média aritimética simples entre os exercícios e a prova, com pesos 30% e 70%, respectivamente.
+
+# Biliografia
+
+Os textos indicados aqui são os livros de bibliografia básica. Como não há bons livros de teoria dos jogos para ciências sociais ou ciência política em português, iremos consultar também material em inglês. Sempre que possível, disponibilizarei também minhas notas de aulas no repositório do curso na internet (github), disponível em: https://github.com/mgaldino/Curso-Teoria-dos-Jogos
+
+Amâncio, J. O. Onuki, Janina. (2015). Capacitação em Negociações Internacionais. Global South Press.
+
+Amâncio, J. O. (2021). Negociações Internacionais: Conceitos, Técnicas e Casos. Edusp.
 
 Elster, J. (2003). Marxism, functionalism, and game theory. Debates in contemporary political philosophy, 22.
 
+Fiani, R. (2015). Teoria dos jogos: para cursos de administração e economia. Elsevier Brasil.
 
-Varoufakis, Y. (2008). Game theory: Can it unify the social sciences?. Organization Studies, 29(8-9), 1255-1277.
+Heap, S. P. H., Heap, S. H., & Varoufakis, Y. (2004). Game theory: a critical text. Psychology Press.
+
+Niou, E., & Ordeshook, P. C. (2015). Strategy and politics: an introduction to game theory. Routledge.
+
+Tadelis, S. (2013). Game theory: an introduction. Princeton university press. 
 
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
