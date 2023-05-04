@@ -1,0 +1,303 @@
+---
+title: "Aula 4"
+author: "Manoel Galdino"
+date: "2023-04-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 4
+
+Conceitos de solução de um jogo
+
+Para fazer previsões sobre um jogo, precisamos fazer suposições sobre o comportamento e crenças dos jogadores. Estamos em busca do que chamamos de um conceito de solução.
+
+Essas soluções nós vamos chamar de equilíbrio.
+
+# Avaliando conceitos de solução
+
+## Existência
+A existência de um equilíbrio diz respeito à frequência com que ele existe em diferentes tipos de jogos. Quanto mais frequente um tipo de equilíbrio para diferentes tipos de jogos, melhor o conceito de solução.
+
+## Unicidade
+
+Unicidade diz respeito à quanto nosso conceito de equilíbrio retringe os comportamentos previstos. Se tudo pode acontecer, se tudo é um equilíbrio, o conceito é pouco útil.
+
+# Invariância
+
+Nosso conceito de equilíbrio deve ser robusto à pequenas mudanças. Se você muda o jogo só um pouco e a previsão muda, então teremos pouca confiança sobre a previsão dada por uma solução qualquer. 
+Por pequenas mudanças, estamos entendendo variações nos payoffs dos jogadores apenas. Mudanças no número de jogadores e no conjunto de estratégias disponíveis não são pequenas mudanças, pois alteram radicalmente a estrutura de um jogo.
+
+# Pareto optimalidade
+Por fim, queremos avaliar os resultados do nosso conceito de solução, em particular, suas propriedades distributivas. E um critério para isso é o "ótimo de Pareto".
+
+Formalmente, dizemos que um perfil de estratégia $s \in S$ domina no sentido de pareto o perfil de estratégia $s^\prime \in S$ se $v_i(s) >= v_i(s^\prime)$ para todo $i$ e $v_i(s) > v_i(s^\prime)$ para pelo menos um $i$. Nesse caso, diremos também que $s^\prime \in S$ é dominada no sentido de pareto por $s$. Por fim, dizemos que um perfil de estratégia é ótimo no sentido de Pareto se não é dominado no sentido de Pareto por nenhuma outra estratégia.
+
+
+# Vamos agora introduzir alguns conceitos de solução informalmente e discutir em alguns jogos, para depois formalizá-los
+
+# Dominância
+Vamos introduzir algumas notações.
+Se eu tenho dois jogadores, e os dois jogadores possuem apenas duas estratégias cada (como no DP, Bach-Stravinski, Chichken e Stag Hunt), nós dedignamos o payoff do jogador $i$ decorrente de um dado perfil de estratégias $s = (s_1, s_2)$ de $v_i(s)$. Por exemplo, se $s_1 = "desvia" e s_2 = "desvia"$ no jogo do chicken, então o payoff do jogador $1$, $v_1(s) = 0$. Se um jogo qualquer com $n$ jogadores, pode ser conveniente ordenar os perfis de estratégias associados a um dado payoff da seguinte maneira: $s = (s_1, s_2, ..., s_{i-1}, s_i, s_{i+1}, ..., s_n)$ para um payoff $v_1(s) = 0$.
+
+Em breve será útil se referir às estratégias de todos os jogadores que não $i$. Para isso, diremos que $s_{-i} = (s_1, s_2, ..., s_{i-1}, s_{i+1}, ..., s_n)$. Notem que pulamos $s_i$, a estratégia do jogador i.
+
+Exercício: Se $s_1 \in S_1$, o conjunto de estratégias do jogador $1$, e $s_2 \in S_2$, então escrevemos que um perfil de estratégia específico $s = (s_1, s_2) \in S_1 * S_2$, isto é pertence ao conjunto dado pelo produto cartesiano dos conjuntos $S_1 e S_2$. Escreva o produto cartesiano ao qual $(s_1, s_2, ..., s_{i-1}, s_{i+1}, ..., s_n)$ pertence.
+
+Resposta: $S_1 * S_2 * ... * S_{i-1} * S_{i+1} * ... * S_n)$
+
+Para simplificar a notação iremos usar o seguinte atalho: Vamos definir $S_{-i} \equiv S_1 * S_2 * ... * S_{i-1} * S_{i+1} * ... * S_n)$ como o conjunto de **todas** as estratégias de todos os jogadores que não o jogador $i$. E, finalmente, agora podemos definir $s_{-i} \in S_{-i}$ como um perfil particular de estratégias possíveis para todos os jogadores que não $i$. Portanto, podemos reescrever o payoff do jogador $i$ em função de um particular perfil de estrateǵia $s$ como $v_i(s_i, s_{-i})$, em que $s = (s_i, s_{-i})$.
+
+# Estratégia dominante
+
+Dizemos que uma estrateǵia $s^\prime_i \in S_i$ é estritamente dominada por outra estratégia  $s_i \in S_i$ se $s^\prime_i$ é estritamente pior do que  $s_i$ não importa o que os outros jogadores façam (isto é, para quaisquer estratégias que os demais jogadores escolham). Mais formalmente, $s^\prime_i \in S_i$ é estritamente dominada por outra estratégia  $s_i \in S_i$ se para qualquer combinação de estratégias dos outros jogadores $s_{-i} \in S_{-i}$, $v_i(s_i, s_{-i}) > v_i(s^\prime_i, s_{-i})$ para todo $s_{-i} \in S_{-i}$.
+
+Proposição: Um jogador racional jamais jogará um estratégia estritamente dominada.
+
+Exemplo de um jogo, 4.1.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(2,3), pair(1,0), pair(5,0), pair(4,3))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Do ponto de vista do jogador 1, Alto é uma estratégia dominante. Se 2 jogar esquerda, alto é a melhor resposta. E se 2 jogar direita, alto é a melhor resposta. Vejam que para o jogador 2, não há estratégia dominante. Nos termos de nossa definição Baixo é dominado por Alto e um jogador racional jamais deveria jogar Baixo.
+
+Exemplo 4.2.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(8,3), pair(4,2), pair(3,7),
+               pair(0,4), pair(1,5), pair(0,1),
+               pair(4,4), pair(5,3), pair(2,0))
+payoff.mat <- matrix(all_pairs, nrow=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Médio", "Baixo"), c("Esquerda", "Centro", "Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Nesse exemplo, "Baixo" é dominado por "Médio". Portanto, um jogador racional jamais deveria jogar "Baixo".
+
+
+# Equilíbrio de estratégia dominante.
+
+Estratégia dominante. Definição informal: $s_i$ é um estratégia estritamente dominante para $i$ se todas as outras estratégias forem estritamente dominadas por ela. Mais formalmente, temos $v_i(s_i, s_{-i}) > v_i(s^\prime_i, s_{-i})$ para toda $s^\prime_i \in S_i$,  $s^\prime_i \neq s_i$ e toda $S_{-i} \in S_{-i}$.
+
+Se, como no DP, todo jogador tem uma estratégia desse tipo (isto é, uma estratégia dominante), então nossa previsão do jogo é que todos os jogadores jogarão essa estratégia dominante.
+
+Mais formalmente, dizemos que um perfil de estratégia $s^D \in S$ é um **equilíbrio de estratégia dominante estrita** se $s^D_i \in S_i$ é um perfril de estratégia dominante para todo $i \in N$.
+
+Portanto, temos agora uma definição formal da nossa previsão no DP. É um equilíbrio de estratégia estritamente dominante, dado por (Confessar, Confessar), e que rende o pyaoff 5 anos de prisão, 5 anos de prisão.
+
+Note que o equilíbrio é o conjunto e estratégias, e não o conjunto de payoff. É um erro comum entre estudantes (eu mesmo cometia esse erro quando estava aprendendo Teoria dos Jogos) descrever os payoffs como equilíbrio, e não as estratégias. Nosso equilíbrio sempre se refere ao que jogadores irão fazer, e não ao que irá acontecer com eles.
+
+# Eliminação Iterativa de Estratégias Estritamente Dominadas (IESDS em inglês, EIEED em PT)
+
+Racionalidade + Conhecimento comum
+
+Se um jogador racional nunca irá jogar uma estratégia estritamente dominada e isso é de conhecimento comum, então é razoável supor que todos sabem que essa estratégia nunca será jogada, e todos sabem que todos sabem e assim por diante até infinito. Podemos, portanto, eliminá-la do jogo.
+
+Consideremos o jogo do exemplo 4.2. A estratégia "Baixo" para o jogador 1 é estritamente dominada por "Médio". Portanto, podemos eliminá-la do jogo, e ter uma nova matriz de payoff:
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(8,3), pair(4,2),
+               pair(0,4), pair(1,5),
+               pair(4,4), pair(5,3))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Médio"), c("Esquerda", "Centro", "Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+```
+Na nova matriz de payoff, "Esquerda" é estritamente dominada por "centro" para o jogador 2. Podemos, portanto, eliminar "Esquerda" do jogo, resultando na seguinte nova matriz de payoff.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c( pair(0,4), pair(1,5),
+               pair(4,4), pair(5,3))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("Alto","Médio"), c("Centro", "Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+```
+
+Agora, Alto é estritamente dominada por Médio para o jogador 1. Novamente, podemos eliminar essa estratégiado jogo.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c( pair(1,5), pair(5,3))
+payoff.mat <- matrix(all_pairs, nrow=1, ncol=2)
+dimnames(payoff.mat) <- c(list(c("Médio"), c("Centro", "Direita")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+```
+
+Por fim, "Direita" é estritamente dominada por "Centro" para o jogador 2, de modo que o equilíbrio do jogo é ("Médio", "Centro"), com payoffs (1,5).
+
+Vejam que esse equilíbrio é inferior ao par de estratégias ("Alto", "Esquerda"). Ou seja, é um equilíbrio que é Pareto inferior.
+
+Notem que o equilíbrio depende dos seguintes passos: 1. O jogador "1" é racional e elimina a estratégia "Baixo". No passo 2. o jogador "2" é racional e sabe que "1" é racional, portanto sabendo que "baixo" nuncaserá jogada, elimina de suas estratégias a jogada "Esquerda". No terceiro passo, o jogador 1, racional, sabe que dois é racional e sabe que 1 é racional e, portanto, eliminou a estratégia "Esquerda". Por isso ele pode eliminar "Alto" do jogo. No quarto passo, o jogador 2 sabe que 1 fez a primeira eliminação, que 1 sabe que 2 elimnou "Esquerda", e 2 sabe, com isso, que 1 elimina "Alto". Pode, portanto, eliminar "Direita".
+
+Ou seja, aqui a iteração os jogadores sabem que eles sabem que eles sabem... não precisa ir até o infinito. Três níveis de sabe que sabe que sabe é suficiente para o equilíbri do jogo. 
+
+Como vimos, para um equilíbrio de estratégia dominante, bastavamos supor racionalidade dos agentes. Contudo, para um equilíbrio de EIEED, é necessário supor também conhecimento comum da racionalidade dos jogadores.
+
+Note que o equilíbrio de EIEED (que nós não definimos formalmente) é o que resta após a eliminação sucessiva de estratégias estritamente dominadas. Quando não há mais estratégias dominadas para exluir, o que restar é a previsão do jogo.
+
+Considere o jogo Bach-Stravinski. 
+Não há estratégias estritamente dominadas. Portanto, o equilíbrio do jogo é que quaisquer pares de estratégias são possíveis. Nesse caso, há múltiplos equilíbrios e esse conceito de solução não faz previsões útgeis para nós.
+
+## Racionalização (Rationalizability ou Racionalizabilidade) de estratégias
+
+Considere novamente o jogo do DP
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M=2
+R=10
+P=5
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,M), pair(S,R), pair(R,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Coopera","Não coopera")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Para facilitar a exposição, vou mudar os payoffs um pouco, mas o jogo ficará igual. Aqui, quanto maior o número, melhor para o jogador. Como os payoffs representam apenas preferências ordinais, não mudamos a essência do jogo.
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M=2
+R=0
+P=1
+S=3
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,M), pair(S,R), pair(R,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Silencia","Confessa")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+O equilíbrio é que ambos os jogadores escolhem confessar. Uma forma de ver isso é dizer que, qualquer que seja a crença do jogador $i$ sobre o jogador $j$, $i \neq j$, confessar gera um payoff melhor do que silenciar. Como escolher o que é melhor para si é nossa definição de racionalidade, um agente racional deve escolher confessar.
+Em outras palavras, nossa previsão do jogo dependeu apenas da suposição de que os agentes são racionais.
+
+Considere agora uma variante do DP, como abaixo.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M=3
+R=0
+P=1
+S=2
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,2), pair(S,R), pair(R,3), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Silencia","Confessa")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Se o jogador 1 acredita que 2 irá escolher "silenciar", então ele deve silenciar. E se acreditar que o outro jogador irá escolher Confessar, deve escolher confessar. Portanto, ambas as estratégias sãos racionais, a depender da crença do jogador 1 sobre o que o jogador 2 irá fazer. A suposição de racionalidade não restringe a previsão do que o jogador 1 deve fazer. Para que a gente possa restringir a previsão, precisamos fazer alguma suposição adicional. Por exemplo, que 1 acredita que 2 é racional. Se 2 for racional, o que 2 deve fazer? Um agente racional escolhe o que é melhor para si. Do ponto de vista de 2, isso significa confessar, pois essa é a melhor resposta para qualquer comportamento de 1. Portanto, supor racionalidade de 2 implica acreditar que 2 escolherá confessar. Mas se 2 irá confessar, a única ação racional para 1 é confessar.
+
+Em resumo até agora: Na variante do DP apresentada, apenas supor racionalidade de 1 não restringe suas ações, mas restringe a de 2. Adicionar a suposição de que 2 sabe ou acredita que 1 é racional é suficiente para restringir a ação de 1 e gerar uma única previsão para o jogo.
+
+Agora, considerem uma nova variante do DP:
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,2), pair(1,1), pair(3,0), pair(0,3), pair(1,0), pair(2,2))
+payoff.mat <- matrix(all_pairs, nrow=3, ncol=2)
+dimnames(payoff.mat) <- c(list(c("S", "X", "C"), c("S", "C")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Eu adicionei uma nova ação para o jogador 1, que chamei de "X". O ponto é que, embora a história perca seu sentido com uma nova ação "X", para o restante das ações ainda guardar alguma similaridade com o original. Se preferirem, podem imaginar que é um outro jogo, não relacionado com o DP.
+
+Para o jogador 1, escolher "S" é racional, se ele acreditar que o outro jogador irá escolher "S". Igualmente, "C" também é racional se o outro jogador escolher "C". Porém, "X" não é racional. Para 2, S e C também são racionais, dado que ela acredite que 1 escolher S ou C e X, respectivamente. Portanto, se o jogador 1 assumir que 2 é racional, isso não ajuda 2 a decidire entre S ou C, já que ambas são consistentes com sua racionalidade e a do outro jogador.
+
+Diferentemente do jogo anterior, a suposição de ambos sã oracionais e que 1 sabe que 2 é racional não geou uma previsão única para o jogo.
+
+O que acontece se adicionarmos um passo na cadeia de raciocínio e 1 supor que não apenas 2 é racional, mas que 2 acredita que 1 é racional. Então, dois acredita que 1 jamais jogará "X", e portanto não achará mais jogar "S" uma boa estratégia e jogará apenas "C". Mas, se 1 sabe disso, então deverá escolher "C" como sua resposta. Logo, ambos estão escolhendo C, C.
+
+Em resumo, C,C é o equilíbrio do jogo desde que assumamos que: 1. é racional, 2 é racional, 1 sabe que 2 é racional, 2 sabe que 1 é racional e 1 sabe que 2 sabe que 1 é racional.
+
+Nos três jogos (DP, primeira variante e segunda variante), mostramos como, crescendo a suposição de racionalidade dos jogadores uns dos outros, restaram ações consistentes com essa suposições era C,C. É possível mostrar que isso é verdadeiro supondo maiores níveis de racionalidade (mais passos). Mais ainda, posso estender os passos indefinidamente. E nós dizemos que estratégias que possuem essa propriedade são racionalizáveis.
+
+# Melhor resposta
+
+Nós estamos trabalhando com a ideia de melhor resposta, um conceito central para a teoria dos jogos, de modo que vale a pena defini-lo formalmente.
+
+Definição 4.1: Melhor resposta: A estratégia $s_i \in Si$ é a melhor resposta do jogador $i$ às estratégias de seus oponentes $s_{-i} \in S_{-i}$ se
+
+$v_i(s_i, s_{-i}) >= v_i(s^\prime_i, s_{-i})$ para todo $s^\prime_i \in S_i$
+
+Em palavras: a utilidade (ou payoff) do jogador $i$ resultante da sua estratégia e das estratégias dos oponentes é pelo menos tão boa quanto qualquer outra estratégia que $i$ possa vir a adotar.
+
+
+Considere o jogo da bandeira, do reality show Survivor. Se é sua vez de jogar existem, digamos 20 bandeira, não importa o que você faça, irá perder o jogo se o outro time for racional. Portanto, sua melhor estratégia pode ser tanto 1, 2 ou 3 bandeiras. Esse exemplo mostra que a melhor estratégia pode 1: ser múltiplas ações; 2. serem igualmente ruins e não fazer diferença nenhuma e resultar todas no mesmo payoff.
+# Equilíbrio de Nash
+
+Um perfil de estratégias é um equilíbrio de Nash se cada jogador está escolhendo a melhor resposta para o que acredita que os demais jogadores farão. Ou seja, todo mundo está simultaneamente escolhendo a melhor resposta uns para os outros.

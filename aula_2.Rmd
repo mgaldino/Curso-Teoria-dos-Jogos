@@ -1,0 +1,207 @@
+---
+title: "Aula 2"
+author: "Manoel Galdino"
+date: "2023-03-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 2
+
+## Biliografia da aula 1:
+Tadelis, cap. 2 e 3.
+Fiani, cap. 2.
+Niou & Ordershook, cap. 3.
+
+
+## Jogos
+
+Jogos estáticos de Informação Completa (como o DP) envolvem considerações estratégicas sobre o que os outros jogadores irão fazer.
+
+Um jogo de informação completa é caracterizado pelas seguintes quatro informações serem de $conhecimento comum$:
+1. todas as possíveis ações de todos os jogadores,
+2. todos os possíves resultados,
+3. Como a combinação de cada ação de todos os jogadores afetam qual resultado irá acontecer e,
+materialize, and
+4. As preferências de cada e todos jogador sobre os resultados.
+
+Vejam que o DP satisfaz esse requerimento.
+
+# Conhecimento Comum.
+
+Definição 2. Um evento $E$ é conhecimento comum se todo mundo sabe $E$, todo mundo sabe que todos sabem $E$, todo mundo sabe que todo mundo sabe que todos sabem $E$ e assim por diante, até infinito.
+
+Um exemplo simples em que podemos assumir que um evento é conhecimento comum. Suponha que duas pessoas saiam da sala e, andando na rua, começa a chover e eles correm para não se molhar. É razoável assumir que é conhecimento comum que está chovendo para essas duas pessoas. Nós iremos discutir em sala de aula como na prática funciona essa suposição e como experimentos têm levado a relaxamento dessa suposição e outros tipos de modelo.
+
+
+# Estratégias
+
+O "reality show" no limite é uma adaptação do equivalente americano chamado "Survivor". Nesse jogo, dois times (azul e vermelho) competem para ganhar os desafios. Como recompensa, só um membro do outro time é eliminado, além de ganharem outros benefícios (dormir em uma cama, mais comida etc.). Em uma das disputas, um jogo foi apresentado no programa que é útil para os nossos propósitos.
+
+# https://www.youtube.com/watch?v=aonCsvi0LKc
+
+Conforme pode ser visto no vídeo, havia 21 bandeiras fincadas na areia. O time vermelho começa jogando e pode escolher 1, 2, ou 3 bandeiras (um time não pode escolher pegar 4 ou mais bandeiras, ou nenhuma bandeira). Em seguida, é a vez do time azul, que têm as mesmas opções. Quem pegar a última bandeira ganha o jogo.
+
+A solução do jogo é por indução para trás. Imagine que é sua vez de jogar e tem uma bandeira. Pegue a bandeira e ganhe o jogo. Se tiver duas, pegue as duas. Se tiver três, pegue as três. Se tiver quatro, não há o que você possa fazer para evitar que o time adversário esteja na situação anterior de ter uma, duas ou três e ganhe o jogo. Portanto, quem chegar na sua vez com quatro bandeiras, perde o jogo. O que acontece se você chegar com cinco? Você pega uma, deixa o outro time com quatro, e você ganha o jogo. Similarmente se na sua vez houver 6 ou 7 bandeiras, você pega duas ou três bandeiras respectivamente e deixa o outro time com quatro. Por outro lado, se na sua vez tiverem 8 bandeiras, não importa quantas bandeiras pegue, deixará o time adversário com 5, 6 ou 7 e eles deixarão você com quatro. Por raciocínio similar, você deve evitar ficar com 12, 16 e 20 bandeiras e, se possível, deve deixar sempre o outro time com 20, 16, 12, 8 e 4 bandeiras para escolher.
+
+Portanto, quem começa o jogo, se jogar corretamente, vence a partida. Nós iremos analisar com calma esse jogo na aula de jogos na forma extensiva, em que desenharemos a árvore do jogo. Por agora, o que quero destacar é o seguinte. Se, em vez do jogo ser sequencial, como vimos no vídeo, o jogo fosse jogado por meio de uma instrução, em que você deve especificar como deve ser jogado, a instrução vencedora seria assim:
+
+Se o time vermelho começa jogando, então poderia adotar o seguinte plano de ação. 
+Pegue uma bandeira e o outro time ficará com 20. Se eles pegarem uma, pegue três em seguida. Se pegarem duas, pegue duas em seguida. Se pegarem três, pegue uma em seguida. Adote essa regra em cada rodada após o primeiro movimento.
+
+Uma outra forma de dizer o plano de ação é que deve começar por uma bandeira, e em seguida a jogada $y$ é dada por $4 - x$ bandeiras, em que $x$ é quanto o outro time pegou na rodada anterior.
+
+O time azul não tem saída, mas, caso o outro time erre (como aconteceu no jogo), sua instrução poderia ser:
+Se houver 20, 16, 12, 8 ou 4 bandeiras, escolha qualquer número. Porém, se o número de bandeiras for diferente desses números, escolha tantas bandeiras quanto forem necessárias para sobrarem 20, 16, 12, 8 ou 4.
+
+Uma vez que o jogo é analisado e uma plano de ação é definido, tantgo faz quem pega as bandeiras. Até um robô com as instruções poderia fazer um serviço. Tal plano de ação, que define o que fazer em cada contigência, é o que chamamos de estratégia em teoria dos jogos.
+
+Pensemos em outro exemplo, como o jogo infantil pedra, tesoura e papel. Imagine que você quer jogar esse jogo, mas irá jogar por intermédio de um amigo, e você deve passar instruções sobre como jogar. Então, uma estratégia, pode ser: "jogue pedra", e outra poderia ser "jogue papel". A noção de estratégia é distinta de uma ação ou movimento em um jogo, embora isso não fique tão claro em jogos na forma normal ou estratégica. A razão é que, em muitos casos (como no Dilema do Prisioneiro, ou no jogo de pedra-papel-tesoura), as estratégias disponíveis para os jogadores coincidem com as ações.
+
+Quando introduzirmos a forma extensiva do jogo, a diferença entre estratégia e ação ficará mais clara. Por enquanto, é importante sabermos que os dois conceitos são distintos, ainda que possam coincidir na prática em jogos simultâneos de dois jogadores.
+
+Vamos então introduzir formalmente algumas definições relativas à noção de estratégia.
+
+Definição 2.1: Uma estratégia pura para um jogador $i$ é um plano determinístico de ação. O conjunto de todas as estratégias puras para o jogador $i$ é chamado de $S_i$. Um perfil de estratégias puras $s = \{s_1, s_2, ..., s_n\}, s_i \in S_i$ para todo $i = 1, 2, ..., n$ descreve uma combinação particular de estratégias puras escolhidas por todos os jogadores $n$ no jogo.
+
+Vamos entender a definição primeiro por meio de um exemplo. No caso do Dilema do Prisioneiro, temos dois jogadores, ou seja, o conjunto de jogadores é dado por $N = \{1,2\}$ e $n = 2$. O conjunto de todas as estratégias pura do jogador 1 é formada por duas estratégias, confessar e não-conessar. Podemos, portanto, escrever $S_1 = \{(Confessar, não-confessar)\}$. Similarmente para o jogador 2, de modo que $S_i = \{(Confessar, não-confessar)\}$, para $i \in {1,2}$.
+
+Uma combinação particular de estratégias puras escolhida pelos dois jogadores pode ser o equilíbrio do jogo, ou seja, $s = \{(confessar, confessar)\}$,  em que $s_1 = s_2$, que é a estratégia confessar.
+
+# Jogos na forma estratégica
+
+Um jogo na forma estratégica ou normal inlcuem três componentes:
+1. Um conjunto finito de jogadores $N = \{1, 2, ..., n\}$
+
+2. Uma coleção de conjuntos de estratégias puras, $\{S_1, S_2, ...., S_n\}$
+
+3. Um conjunto de funções de payoff, $\{v_1, v_2, .., v_n\}$, cada uma atribuindo um valor de payoff para cada combinação de estratégias, ou seja, um conjunto de funções $v_i: S_1 * S_2 * ... * S_n \to R$ para cada $i \in N$
+
+Vamos destrinchar o item 3, que parece complexo e assustador, mas é bem simples. Vou usar exemplos para explicar cada uma das partes de 3.
+
+Suponha que eu tenho um conjunto $A$ dado pelas cidades do estado de São Paulo, e um conjunto $B$ dado pelas cidades do estado do Rio de Janeiro. Seja $f$ a função que recebe duas cidades (uma de SP, outra do RJ) e retorna a distância em linha reta entre elas, calculada pelo google, em km. Eu posso descrever essa função do seguinte modo: $f: A * B \to R$.
+Como minha função sempre retorna uma distância em km, a distância é um número real. Então, ela recebe dois elementos, um de A e um de B, e retorna um número real.
+
+Falta explicar a parte em que escrevemos $A * B$. O produto de dois conjuntos $X$ e $Y$ é chamado de produto Cartesiano e é denotado por $X * Y$ e seu resultado é um novo conjunto, formado pelos pares ordenados $(x,y): x \in X , y \in Y$. Por exemplo, suponha que $X = \{1,2\}$ e $Y = \{3,4\}$. 
+
+Então, o produto Cartesiano de $X$ por $Y$ é um conjunto de 4 elementos: $X * Y = \{ (1,3), (1,4), (2,3), (2,4) \}$. Notem que temos apenas 4 elementos nesse conjunto, e cada elemento é um par ordenado de números, isto é, $(3,1)$ não faz parte do novo conjunto, por exemplo.
+
+O exemplo histórico de onde vem o termo é o plano cartesiano. Se eu considerar uma reta $X$ e outra reta $Y$ no plano cartesiano, então o produto dos dois conjuntos forma pares de coordenadas no plano, de forma que cada ponto do plano é um elemento do produto cartesiano de $X$ e $Y$.
+
+Voltando ao nosso exemplo das funções que retornam a distância entre cidades, o produto cartesiano dos dois conjuntos $A$ e $B$ é formado pelo par ordenado de cidades de SP e RJ. Assim, a minha função pode receber cada par de cidade e retornar uma distância em km, que é um número dos Reais.
+
+Retornando finalmente ao nosso exemplo das funções de payoff. Eu tenho o produto cartesiano dos conjuntos de estratégias de cada jogador. De modo que cada elemento desse conjunto é um par ordenado de cada estratégia, ou seja, todas as combinações de estratégias existentes estão nesse conjunto e cada combinação é um elemento do conjunto. E para cada jogador, eu tenho o payoff (que é um número real) resultante de cada combinação de estratégia.
+
+Vamos aplicar isso para o DP?
+
+
+1. Um conjunto finito de jogadores $N = \{1, 2\}$
+
+2. $S_1 = \{Confessa, não-confessa\}$ e $S_2 = \{Confessa, não_-confessa\}$. Ou, mais genericamente, $S_i = \{Confessa, não_-confessa\}$ para $i \in \{1,2\}$
+
+3. $v_1: \{(Confessa, Confessa), (Confessa, não_-confessa), (não_-confessa, confessa), (não-confessa, confessa)\} \to R$.
+Mais especificamente, Seja $v_i (s_1, s_2)$ o payoff para o jogador $i$ se o jogador $i$ joga $s_1$ e o jogador $2$ joga $s_2$. Então:
+
+\begin{equation}
+v_1(s_1, s_2) = 
+\begin{cases}
+    5 & \text{if }~~ Confessa,Confessa \\
+    0 & \text{if }~~ Confessa,Não_-confessa \\
+    10 & \text{if }~~ Não_-confessa,Confessa \\
+    2& \text{otherwise.}
+\end{cases}
+\end{equation}
+
+E similarmente para o jogador 2, já que os payoffs são simétricos.
+
+3. Um conjunto de funções de payoff, ${v_1, v_2, .., v_n}$, cada atribuindo um valor de payoff para cada combinação de estratégias, ou seja, um conjunto de funções $v_i: S_1 * S_2 * ... * S_n \to R$ para cada $i \in N$
+
+
+## Votos em comissão
+Consideremos o seguinte exemplo. Suponha que uma comissão, formada por três pessoas, tem de votar se implementam uma nova política ou mantém o status quo (qualquer que seja ele). Por exemplo, uma comissão de professores deve decidir se continuam com uma política de aquisição de livros para a biblioteca uma vez por ano (status quo) ou duas vezes por ano (nova política). Ou um Conselho de uma empresa deve decidir se aumentam o salário do CEO (nova política) ou não (status quo), ou um júri se condenam alguém (nova política) ou deixam a pessoa livre (status quo). Por fim, pode ser uma comissão de legisladores que devem decidir se aprovam um projeto de lei ou uma nomeação para algum cargo público.
+
+Cada membro pode votat "sim" (S) ou "não" (N). Para simplificar, consideremos que o status quo dá um payoff de 0 (zero) para cada jogador. Jogadores 1 e 2 preferem a nova política, portanto seus payoffs para ela pode ser 1. Já o jogador 3 prefere o stats quo, então consideremos o payoff dela -1 para o jogador 3. Por fim, suponha que se houver uma maioria favorável à nova política, ela é adotada. Caso contrário, permanence o status quo.
+
+Como descrever esse jogo formalmente?
+Jogadores: $N = \{1,2,3\}$
+Conjuntos de estratégias: $S_i = \{S, N, A\}$, para $i \in \{1,2,3\}$
+Payoffs: Seja $P$ o conjunto de perfis de estratégias para o qual uma nova política é escolhida e seja $Q$ o conjunto de perfis de estratégias para o qual o status quo prevalece. Formalmente,
+
+$P = \begin{bmatrix} (S,S,N) & (S,N,S)\\
+(S,S,S) & (N, S, S)
+\end{bmatrix}$
+
+e
+
+$Q = \begin{bmatrix} (N,N,N) & (N,N,S)\\
+(N,S,N) & (S, N, N)
+\end{bmatrix}$
+
+Então os payoffs podem ser escritos como (aqui, para $i \in \{1,2\}$):
+
+\begin{equation}
+v_i(s_1, s_2) =
+\begin{cases}
+    1 & \text{if }~~ (s_1, s_2) \in P \\
+    0 & \text{if }~~ (s_1, s_2) \in Q \\
+\end{cases}
+\end{equation}
+
+
+\begin{equation}
+v_3(s_1, s_2) =
+\begin{cases}
+    0 & \text{if }~~ (s_1, s_2) \in P \\
+    1 & \text{if }~~ (s_1, s_2) \in Q \\
+\end{cases}
+\end{equation}
+
+
+
+## Modelo de competição eleitoral e o Teorema do Eleitor Mediano
+
+Suponha que temos uma eleição com apenas dois candidatos ou dois partidos políticos. Eles devem anunciar uma plataforma no espectro esquerda direita, definido pelo intervalo $[0,1]$. Os eleitores possuem cada uma plataforma ideal, representada por um ponto no intervalo esquerda-direita. Então, eleitores decidem seu voto da seguinte maneira: votam no candidato mais próximo do seu ponto ideal em termos absolutos. Suponha que a plataforma ideal dos eleitores é distribuída uniformimente no intervalo $[0,1]$. Por fim, suponha que o número de eleitores, $n$, é ímpar, para evitar empates. E se os dois candidatos anunciarem a mesma plataforma, o eleitor decide votar no incumbente. O jogador 1 é o incumbente. Qual deve ser a plataforma anunciada pelos partidos se buscam maximizar o percentual de votos válidos totais, $v$?
+
+Primeiro, vamos descrever o jogo:
+Jogadores: $N = \{1,2\}$, que são os partidos.
+Conjunto de estratégias: $S_i \in [0,1]$, para $i = \{1,2\}$
+Payoffs: Seja $v_i$ a fração de voto que cada candidato $i$ recebe. Então, seu payoff é dado por: 
+$u_1 = 1, se |s_1 - v_1| >= |s_2 - v_2|$, 0 caso contrário.
+Similarmente para o jogador 2.
+
+O equilíbrio do jogo é formado pelas estratégias $(1/2, 1/2)$.
+
+## Soluções de equilíbrio
+
+
+Bach e Stravinski
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M=1
+R=2
+P=0
+
+library(knitr)
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,M), pair(P,P), pair(P,P), pair(M,R))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Bach","Stravinski")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Histórico machista - guerra dos sexos
+
+Diferentemente do DP, a melhor resposta depende do que o outro jogador irá fazer. Assim, para fazer uma previsão, precisamos fazer suposições comportamentaise sobre as crenças a respeito do outro jogador para definir um ou mais equilíbrios para o jogo.
+
+Nosso conceito de solução para o jogo será o equilíbrio do jogo. Uma das características dos equilíbrios que iremos abordar durante o curso é que ele seja do tipo que se auto-reforça, isto é, agentes que estão jogando estratégias de equilíbrio não possuem incentivos para mudar suas estratégias, ao contrário, o fato de outros estarem jogando as estratégias de equilíbrio devem reforçar o incentivo para qume um jogador permaneça no equilíbrio.

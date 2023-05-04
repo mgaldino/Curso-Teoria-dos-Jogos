@@ -1,0 +1,31 @@
+---
+title: "Aula 1"
+author: "Manoel Galdino"
+date: "2023-01-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introdução
+
+Uma das grandes preocupações das eleições gerais de 2022 no Brasil eram a disseminação de desinformação, popularmente conhecidas como "fake news". O uso de redes sociais e aplicativos de mensagens para promoção de desinformação por parte de eleitores e candidatos e candidatas era um locus importante de potencial controle da desinformação. Assim, foi muito comum ver notícias do Tribunal Superior Eleitoral determinando que as plataformas removessem conteúdos que continham "fake news" eleitorais. (https://www.tse.jus.br/comunicacao/noticias/2022/Outubro/combate-a-desinformacao-tse-derruba-mais-de-uma-centena-de-postagens-com-narrativas-enganosas). Esse era um jogo, contudo, de "gato e rato", já que nada impedia que os impulsionadores de fake news fizessem novas postagens, mantendo assim a disseminação de desinformação. Esse tipo de situação da vida política, em que atores precisam tomar decisões estratégicas, isto é, tentando levar em consideração o que outras pessoas podem fazer. Esse tipo de interação é o que a teoria dos jogos procuram modelar e analisar.
+
+A política, claro, é permeada de situações em que alguém deve agir com a suposição de que demais participantes do jogo político irão reagir às suas ações e mesmo tentar antecipar o que se irá fazer, fazendo suposições e ruminações sobre o outro. Essa é, inclusive, uma das maiores dificuldades para o cientista político tentar prever os efeitos de uma dada reforma eleitoral. Tema sempre debatido e demandado pela sociedade, mas muitas vezes as propostas são sempre pensadas como se o mundo não fosse estratégico, isto é, como se os agentes da política não fossem mudar seu comportamento em virtude das novas regras que serão adotadas. Considere por exemplo a proibição de doação privada de empresas para campanhas eleitorais, adotada no Brasil após decisão da Suprema Corte Federal em 2016. Muitas pessoas esperavam que assim se reduzisse a influência do dinheiro nas eleições. Com o passar do tempo, contudo, políticos aprovaram um fundo eleitoral de campanha com recursos públicos, aumentaram o fundo sucessimante e ainda aprovaram o que ficou conhecido como "Orçamento Secreto" para também aumentar as chances de eleições, entre outros objetivos menos legítimos. Se comparamos o total de valores envolvidos após a decisão do STF e os valores anteriores, mesmo considerando o Caixa 2, o montante provavelmente superar o que se gastava em eleições anteriores a 2016. É claro que medidas como o "Orçamento Secreto" poderiam ser adotadas também se financiamento por emepresas continuasse permitido, mas a mera possiilidade de que todas essas medidas sejam uma reação de políticos à decisão do STf mostra como é difícil antecipar as repercussões de mudanças nas regras dos jogos e que considerações estratégicas são parte fundamental para entender a política.
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

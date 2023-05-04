@@ -1,0 +1,145 @@
+---
+title: "Aula 1"
+author: "Manoel Galdino"
+date: "2023-03-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 3
+
+Conceitos de solução de um jogo
+
+Para fazer previsões sobre um jogo, precisamos fazer suposições sobre o comportamento e crenças dos jogadores. Estamos em busca do que chamamos de um conceito de solução.
+
+Essas soluções nós vamos chamar de equilíbrio.
+
+# Avaliando conceitos de solução
+
+## Existência
+A existência de um equilíbrio diz respeito à frequência com que ele existe em diferentes tipos de jogos. Quanto mais frequente um tipo de equilíbrio para diferentes tipos de jogos, melhor o conceito de solução.
+
+## Unicidade
+
+Unicidade diz respeito à quanto nosso conceito de equilíbrio retringe os comportamentos previstos. Se tudo pode acontecer, se tudo é um equilíbrio, o conceito é pouco útil.
+
+# Invariância
+
+Nosso conceito de equilíbrio deve ser robusto à pequenas mudanças. Se você muda o jogo só um pouco e a previsão muda, então teremos pouca confiança sobre a previsão dada por uma solução qualquer. 
+Por pequenas mudanças, estamos entendendo variações nos payoffs dos jogadores apenas. Mudanças no número de jogadores e no conjunto de estratégias disponíveis não são pequenas mudanças, pois alteram radicalmente a estrutura de um jogo.
+
+Por fim, queremos avaliar os resultados do nosso conceito de solução, em particular, suas propriedades distributivas. E um critério para isso é o "ótimo de Pareto".
+
+Formalmente, dizemos que um perfil de estratégia $s \in S$ domina no sentido de pareto o perfil de estratégia $s^\prime \in S$ se $v_i(s) >= v_i(s^\prime)$ para todo $i$ e $v_i(s) > v_i(s^\prime)$ para pelo menos um $i$. Nesse caso, diremos também que $s^\prime \in S$ é dominada no sentido de pareto por $s$. Por fim, dizemos que um perfil de estratégia é ótimo no sentido de Pareto se não é dominado no sentido de Pareto por nenhuma outra estratégia.
+
+
+# Vamos agora introduzir alguns conceitos de solução informalmente e discutir em alguns jogos, para depois formalizá-los
+
+# Dominância
+
+Dizemos que uma estrateǵia $s^\prime_i \in S_i$ é estritamente dominada por outra estratégia  $s_i \in S_i$ se $s^\prime_i$ é estritamente pior do que  $s_i$ não importa o que os outros jogadores façam (isto é, para quaisquer estratégias que os demais jogadores escolham).
+
+Proposição: Um jogador racional jamais jogará um estratégia estritamente dominada.
+
+Equilíbrio de estratégia dominante.
+
+Dizemos que um perfil de estratégia $s^D \in S$ é um equilíbrio de estratégia dominante se $s^D_i \in S_i$ é um perfril de estratégia dominante para todo $i$.
+
+# Estrateǵia fracamente dominada
+
+# Equilíbrio de Nash
+
+Um perfil de estratégias é um equilíbrio de Nash se cada jogador está escolhendo a melhor resposta para o que acredita que os demais jogadores farão. Ou seja, todo mundo está simultaneamente escolhendo a melhor resposta uns para os outros.
+
+
+
+## Jogos tradicionais
+
+Stag Hunt
+
+Na teoria dos jogos, o jogo caça ao cervo (stag hunt, em inglês), às vezes é referido como jogo da garantia, dilema da confiança ou jogo do interesse comum e descreve um conflito entre segurança e cooperação social. O jogo surge do trabalho do Rousseau no segunod discurso (sobre a desigualdade)
+
+Trecho traduzido pela GPT3.5
+
+""Se fosse uma questão de caçar um cervo, todos bem sabiam que deveriam permanecer fiéis ao seu posto; mas se uma lebre passasse dentro do alcance de um deles, não podemos duvidar que ele a teria perseguido sem escrúpulos."
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+R=3
+T=2
+P=1
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,T), pair(T,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2, byrow=TRUE)
+dimnames(payoff.mat) <- c(rep(list(c("Cervo","Lebre")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+# Jogo da Coordenação
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+# Define Variables
+M=2
+R=1
+P=0
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,T), pair(T,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2, byrow=TRUE)
+dimnames(payoff.mat) <- c(rep(list(c("Bach","Stravinski")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+# chicken - jogos anti-coordenação
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M <- -1
+R <- 0
+P <- -10
+S <- 3
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,M), pair(M,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Desvia","não desvia")), 2))
+
+# Plot 
+kable(payoff.mat)
+```
+
+## Discussão do DP
+
+Alguns exemplos de aplicação do DP (jogar lixo na rua, pagar a conta com amigos).
+
+Explicar a matriz de payoff.
+
+Todo problema de tomada de decisão consiste de três componentes básicos:
+1. Ações : todas as alternativas que um jogador pode escolher
+2. Resultados: As consequências que resultam de cada ação
+3. Preferências: descreve como os jogadores ranqueiam os possíveis resultados, do mais desejado para o menos.
+
+Identificar no DP os três elementos.

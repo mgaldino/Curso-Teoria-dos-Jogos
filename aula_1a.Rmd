@@ -1,0 +1,65 @@
+---
+title: "Aula 1"
+author: "Manoel Galdino"
+date: "2023-03-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 1a
+
+## Biliografia da aula 1:
+Tadelis, cap. 1.
+Fiani, cap. 1.
+
+## Dilema do Prisioneiro
+
+Nessa aula 1 nós iremos começar com um jogo, talvez o mais famoso da história da Teoria do Jogos, chamado Dilema do Prisioneiro, e que foi proposto em 1951 por Merrill Flood em 1951, e primeiramente formalizado por Albert W. Tucker.
+
+A história é mais ou menos assim. A polícia prendeu dois suspeitos de cometer um crime. Tem evidência de um crime de pena menor, mas gostaria de condená-los por crimes com penas maiores. Se um ou ambos confessarem o crime maior, podem conseguir obter o que precisam.
+
+Para dar concretude, imaginem que a Polícia Federal prendeu dois executivos suspeitos de corrupção e lavagem de dinheiro, a dez anos de prisão. Possuem provas suficientes para condená-los por um crime menor, como tráfico de influência (dois anos de prisão), mas gostariam de condená-los pelo crime de pena maior. A PF colocou os dois presos em celas separadas e decidiu fazer a seguinte oferta para eles:
+
+"Nós temos evidência suficiente para condená-los, você e seu parceiro, pelo crime de tráfico de influência, que dá 2 anos de prisão para cada. Contudo, se você assinar um acordo de colaboração premiada com a gente e confessar o crime de corrupção e lavagem de dinheiro, você sairá livre e seu parceiro será condenado a dez anos de prisão. Um outro policial está na cela do seu parceiro, neste exato momento, fazendo a mesma oferta a ele. Se ele aceitar confessar o crime, e você não, então ele sairá livre e você ficará preso dez anos. Por fim, se ambos confessarem o crime, a pena de dez anos será reduzida à metade e vocês ficarão cinco anos presos. Essa proposta está por escrito, incluindo o fato de que seu parceiro está recebendo proposta igual".
+
+O que você faria?
+
+Discussão em sala de aula, ouvindo as opiniões dos estudantes.
+
+Em seguida, escrevo a matriz de payoff abaixo e peço para os alunos formarem duplas e jogarem o jogo por 8 rodadas. Pedimos para os alunos registrarem as escolhas (estratégias) e payoffs de cada rodada. Em seguida, trocamos os pares de jogadores, e repetimos o jogo por mais 4 rodadas. Quem ficar com mais pontos ganha um prêmio.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M=2
+R=10
+P=5
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(M,M), pair(S,R), pair(R,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Coopera","Não coopera")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+## Discussão do DP
+
+Alguns exemplos de aplicação do DP (jogar lixo na rua, pagar a conta com amigos).
+
+Explicar a matriz de payoff.
+
+Todo problema de tomada de decisão consiste de três componentes básicos:
+1. Ações : todas as alternativas que um jogador pode escolher
+2. Resultados: As consequências que resultam de cada ação
+3. Preferências: descreve como os jogadores ranqueiam os possíveis resultados, do mais desejado para o menos.
+
+Identificar no DP os três elementos.

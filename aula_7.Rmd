@@ -1,0 +1,56 @@
+---
+title: "Aula 6 - Equilíbrio de Nash"
+author: "Manoel Galdino"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 6 - Equilíbrio de Nash em estratégias mistas
+Considere o jogo "cara" ou "coroa" a seguir. Nesse jogo, dois jogadores escolhem entre cara (heads) ou coroa (tails) ao mesmo tempo. Se as escolhas forem iguais, o Jogador 1 ganha um ponto. Caso contrário, o Jogador 2 ganha um ponto. O objetivo dos jogadores é maximizar sua pontuação.
+
+
+```{r, results='asis'}
+library(knitr)
+# Definindo a matriz de payoff
+payoff.mat <- matrix(c(1, -1, -1, 1), 
+                     nrow = 2, ncol = 2, 
+                     dimnames = list(c("Cara", "Coroa"), 
+                                     c("Cara", "Coroa")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Exercício: jogue esse jogo com outra pessoa por 5 rodadas. 
+Após o jogo, podemos perceber que os jogadores possuem interesses opostos e vocês esperam que o outro não consiga antecipar o que você irá fazer. Nesse caso, ele será indiferente entre jogar qualquer uma de suas estratégias, pois esperar que, na média, ambas gerem o mesmo payoff médio.
+
+
+```{r, results='asis'}
+library(knitr)
+
+# Definindo a matriz de payoff
+# Definindo a matriz de payoff
+payoff.mat <- matrix(c(4, 12, -16, -8), 
+                     nrow = 2, ncol = 2, 
+                     dimnames = list(c("A", "B"), 
+                                     c("C", "D")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Uma estratégia mista é justamente um antidoto contra as tentativas dos outros jogadores advinharem o que você irá fazer. Considere o jogo de tênis. No saque, se 
+
+
+Referências
+
+https://twitter.com/page_eco/status/1621511883353395203
+
+
+
+
+

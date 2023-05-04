@@ -1,0 +1,132 @@
+---
+title: "Aula 5 - Equilíbrio de Nash"
+author: "Manoel Galdino"
+date: "2023-04-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 5
+
+P-beauty contest
+
+Escolha um número inteiro, entre 0 e 100. Vence o desafio quem acertar a metade da média dos números escolhidos por
+todos os jogadores. Em outras palavras, vou anotar os números de cada um, computar a média e depois dividir a média
+por 2. Portanto, vocês devem advinhar não a média dos números, mas a média dividida por 2.
+
+Advinhar metade da média
+Dividir em grupos de 10 (3 grupos).
+
+Previsões: primeira vez 25. (uma rodada de dominância)
+Segunda vez 10 (às vezes 5 ou 6) - duas ou três rodadas de dominância
+Terceira vez: 3 ou 4. Mais uma rodada de dominância. Vários zero.
+
+The logical concept of dominance, iterated elimination of dominated strategies, and the culmination in a Nash equilibrium.
+2. Getting close to the Nash equilibrium by the experience of playing the
+game. Whether it is a crucial flaw of the theory that 0 is rarely exactly
+attained, or the theory gives a good approximation, can be a point to be
+debated depending on the time available.
+3. The idea that if one has a good reason to believe that others will not be playing their Nash equilibrium strategies, then one’s optimal choice will also
+differ from one’s own Nash equilibrium strategy.
+
+# Melhor resposta
+
+A ideia de melhor resposta é um conceito central para a teoria dos jogos, de modo que vale a pena defini-lo formalmente.
+
+Definição 4.1: Melhor resposta: A estratégia $s_i \in Si$ é a melhor resposta do jogador $i$ às estratégias de seus oponentes $s_{-i} \in S_{-i}$ se
+
+$v_i(s_i, s_{-i}) >= v_i(s^\prime_i, s_{-i})$ para todo $s^\prime_i \in S_i$
+
+Em palavras: a utilidade (ou payoff) do jogador $i$ resultante da sua estratégia e das estratégias dos oponentes é pelo menos tão boa quanto qualquer outra estratégia que $i$ possa vir a adotar.
+
+
+Considere o jogo da bandeira, do reality show Survivor. Se é sua vez de jogar existem, digamos 20 bandeira, não importa o que você faça, irá perder o jogo se o outro time for racional. Portanto, sua melhor estratégia pode ser tanto 1, 2 ou 3 bandeiras. Esse exemplo mostra que a melhor estratégia pode 1: incluir múltiplas ações; 2. serem igualmente ruins e não fazer diferença nenhuma e resultar todas no mesmo payoff.
+
+# Equilíbrio de Nash
+
+Um perfil de estratégias é um equilíbrio de Nash se cada jogador está escolhendo a melhor resposta para o que acredita que os demais jogadores farão. Ou seja, todo mundo está simultaneamente escolhendo a melhor resposta uns para os outros.
+
+# Equilíbrio de Nash
+
+O equilíbrio de dominância estrita requer apenas racionalidade, enquanto o equilíbrio de EIEED requeria racionalidade e conhecimento comum de crenças (e racionalidade). Agora, iremos fazer uma suposição mais forte ainda, de que as crenças, em certo sentido, estejam corretas. Isso dará origem ao equilíbrio de Nash, formulado pela primeir ves por John Nash em 1950.
+
+Definição 5.1. O perfil de estratégias puras $s^\star = (s^\star_1, s^\star_2, ..., s^\star_n) \in S$ é um equilíbrio de Nash se $s^\star_i$ é uma melhor resposta a $s^\star_{-i}$ para todo $i \in N$. Ou seja,
+
+$v_i(s^\star_i, s^\star_{-i}) >= v_i(s^\prime_i, s^\star_{-i})$, para toda $s^\prime_i \in S_i$ e todo $i \in N$.
+
+Considere o jogo abaixo. O único equilibrio de EIEED é (Alto, Esquerda). Esse também é um equilíbrio de Nash, pois Alto é a melghor resposta a L, e L é a melhor resposta para Alto.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,3), pair(2,1), pair(3,0),
+               pair(5,1), pair(8,4), pair(9,6),
+               pair(6,2), pair(3,6), pair(2,8))
+payoff.mat <- matrix(all_pairs, nrow=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Médio", "Baixo"), c("Esquerda", "Centro", "Direita")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+Considerem o Dilema do Prisioneiro. É fácil ver também que (C,C) é também um equilíbrio de Nash.
+
+Não é coincidência que Dominância estrita, EIEED e racionazabilidade sempre sejam equilíbrios de Nash. Se um equilíbrio é de dominânciaestrita, o único sobrevivente de EIEED e de racionazabilidade, então é o únicoequilíbrio de Nash.
+
+The intuition is of course quite straightforward: we know that
+if there is a strict dominant strategy equilibrium then it uniquely survives IESDS and
+rationalizability, and this in turn must mean that each player is playing a best response
+to the other players’ strategies
+
+Considere o seguinte jogo. Duas jogadoras devem escolher um número inteiro entre 1 e 9. Se a soma dos números for menor ou igual a dez, elas ganham o valor em reais que cada jogadora escolheu. Se a soma for maior que dez, não ganham nada. Esse jogo é dado por $G = [N = 1,2; S_i = (1, 2, ..., 9), v_i(s_1, s_2) = s_i, se s_1 + s_2 <= 10$ $0$, c.c.]$
+
+Quaaisquer pares $(1,9);(9,1)$, $(2,8), (8,2)$ etc. formam equilíbrios de Nash. Em particular, uma vez revelados, nenhum jogador possui qualquer incentivo **unilateral** a mudar sua estratégia.
+
+Vamos enfatizar a palavra **unilateral** aqui. Vamos mudar o jogo anterior para o seguinte. Em vez das jogadoras ganharem os números ecolhidos cuja soma for 10, elas (cada uma) ganham a soma dos quadrados dos núemeros escolhidos. Assim, (1,9) e (9,1) geram $1^2 + 9^2 = 1 + 81 = 82$ reais, enquanto $2^2 + 8^2 = 4 + 64 = 68$ e $5^2 + 5^2 = 50$, de forma que o melhor resultado para as jogadoras é (9,1) ou (1,9). Porém, se jogarem (2,8), nenhuma delas possui incentivo **unilateral** para mudar sua estratégia, pois elas constituem melhores respostas as estratégias umas das outras.
+
+Nas eleições presidenciais de 2022, era muito comum discussões sobre a necessidade de haver uma candidatura única de frente ampla contra o candidato Bolsonaro, já no primeiro turno. Em um artigo na revista Piauí, sobre lições das eleições na República Techeca, um cientista político escreveu: 
+
+"O grande trunfo tcheco foi manter o foco no inimigo e não se intimidar pelo clima de maioria. Liderada pelo ex-reitor conservador Petr Fiala, a oposição guardou o ego no armário e abraçou um pragmatismo invejável. Lideranças de todos os principais grupos de oposição assinaram um compromisso escrito de que não comporiam uma coalizão com o primeiro-ministro. Em vez disso, formaram uma aliança entre a coalizão Juntos — que obteve 27,8% dos votos e abarcava os Cívicos Democratas (direita), o TOP09 (centro-direita) e os Cristãos Democratas (também de centro-direita) — e a coalizão composta pelo partido liberal Prefeitos e Independentes e o esquerdista Partido Pirata, cuja retórica antiestablishment e defesa de causas progressistas atraiu 16% dos eleitores. Mesmo com profundas divergências internas, a aliança conseguiu deixar as disputas para outro momento, concentrando-se no desafio de sufocar a base governista e evitar uma escalada autoritária.
+
+Um compromisso assim exigiu renúncias gigantescas de todas as partes. O líder do Partido Pirata — um ativista social de dreadlock no cabelo chamado Ivan Bartoš — teve que abrir mão de defender ostensivamente o casamento gay. Já o Partido Democrático Cívico (ODS na sigla tcheca) aceitou deixar sua postura anti-União Europeia de lado — um gesto grandioso se pensarmos que a pauta também era defendida por Babis e que a ODS poderia lucrar com uma aliança governista."
+
+Eu não entendo nada da política da República Tcheca. Mas o objetivo dele era sugerir uma estratégia para o Brasil. Como ele mesm oafirma:
+
+"Analogias desse tipo são sempre complicadas, porém, aplicada à política brasileira, a aliança anti-Babis seria o equivalente a algo como o PSOL, PT, PSDB, MDB e DEM fecharem um acordo anti-Bolsonaro antes do pleito de 2022."
+
+Qual é o desafio que o sistema político encontravapara fazer umaa aliança desse tipo? Uma das lições que precisamos tirar de modelos de teoria dos jogod é que não basta boa vontade ou objetivos comuns. É preciso que os equilíbrios sejam tal que nenhum ator tenha um incentivo unilateral para mudar sua estratégia. Em certo sentido, os equilíbrios de Nash sã sustentáveis, no sentido de que não há incentivo para desviar, uma vez estando em um deles. 
+
+Vamos começar modelando um exemplo "mais simples". Em 1964, no Chile, Salvador Allende era o candidato da esquerda. Liberais e Conservadores acetaram apoiar o candidato do centro Eduardo Frei, que ganhou a eleição com 56,1% dos votos contra 38,9% de Allende. Em 1970, Allende ganhou a eleição com menos votos do que havia recebido em 64, 36,2%, enquanto o centrista Randomiro Tomic ganhou 27,8% e direitsta Jorge Allesandri 34,9% dos votos. Especula-se que, se um dos candidatos desistisse da eleição, Allende não teria conquistado o poder.
+
+Vamos então fazer um modelo simples para ilustrar a questão.
+
+Suponha um eleitorado com três tipos de ordenamento de preferências de candidatas $A$, $B$ e $C$.
+1. $A \succ B \succ C$ 
+2. $B \succ C \succ A$ 
+3. $C \succ B \succ A$ 
+
+Vamos supor adicionalmente que 40% do eleitoradotem preferências do tipo 1 o restante igualmente dividido entre o tipo 2 e 3 (30% cada).
+
+Se cada eleitor votar sinceramente (isto é, para sua candidata preferida), $A$ teira 40% dos votos, $B$ 30% e $C$ 30%. Se a regra for como no Brasil 1945-64, em que não havia segundo turno e a candidata mais votada vence, $A$ seria eleita. Se porém parearmos $A$ contra $B$, a vencedora seria $B$ com 60% dos votos, e $B$ contra $C$ também daria a vitória para $B$, com $70\%$ dos votos. Em casos como esse, em que há uma vencedora que ganha todas as disputas 2x2, chamamos de vencedora de Condorcet (Condorcet winner). $B$ e $C$, portanto, poderiam ser estratégicas e votarem não na candidata preferida para obter um resultado mais favorável. O problema que $B$ e $C$ enfrentam pode, portanto, ser modelado do seguinte modo.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%s,%s)", x,y)
+all_pairs <- c("B ganha", "A ganha", "A ganha", "C ganha")
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(list(c("Votar em B","Votar em C"), c("Votar em B","Votar em C")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+Esse jogo é muito parecido com o jogo de coordenação Bach-Stravinsky. Há dois equilíbrios de Nash, B ganha e C ganha. Porém, a escolha de qual equilíbrio acontecerá requer coordenação entre eleitores do tipo 2 e 3. Se falharem em coordenar os votos, contudo, A ganhará. Se B ou C desistir de disputar a eleição, a coordenação estará garantida, como ocorreu no Chile em 1964. Na ausência de tal coalizão, eleitores terão muita dificuldade de coordenar seu voto.
+
+Do ponto de vista da Ciência Política, é importante enfatizar alguns pontos dessa discussão:
+1. É muito mais fácil para as elites polítics coordenarem entre si do que entre os eleitores, que não possuem uma forma fácil de comunicação.
+2. Informações sobre candidatas com maiores intenções de voto em simulações de segundo turno permite ajudar os eleitores a tomarem decisões melhores e coordenarem seus votos. Portanto, quando vocês virem pessoas reclamando de pesquisas d intenção de voto, que isso influenciar o eleitor e faz com que ele vote estrategicamente, pergunte-se: é realmente ruim que o eleitorado vote estrategicamente? Voltaremos a essa discussão em aulas futuras.
+3. Na presença de segundo turno, existe necessidade de haver coordenação antecipada? Não para evitar que A seja eleito. B ou C irá para o segundo turno contra A.
+

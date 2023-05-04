@@ -1,0 +1,84 @@
+---
+title: "Aula 3"
+author: "Manoel Galdino"
+date: "2023-03-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 3
+
+
+## Jogos tradicionais
+
+Stag Hunt
+
+Na teoria dos jogos, o jogo caça ao cervo (stag hunt, em inglês), às vezes é referido como jogo da garantia, dilema da confiança ou jogo do interesse comum e descreve um conflito entre segurança e cooperação social. O jogo surge do trabalho do Rousseau no segunod discurso (sobre a desigualdade)
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+R=3
+T=2
+P=1
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,T), pair(T,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2, byrow=TRUE)
+dimnames(payoff.mat) <- c(rep(list(c("Cervo","Lebre")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+# Jogo da Coordenação
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+# Define Variables
+M=2
+R=1
+P=0
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,T), pair(T,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2, byrow=TRUE)
+dimnames(payoff.mat) <- c(rep(list(c("Bach","Stravinski")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+# chicken - jogos anti-coordenação
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+M <- -1
+R <- 0
+P <- -10
+S <- 3
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,R), pair(S,M), pair(M,S), pair(P,P))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("Desvia","não desvia")), 2))
+
+# Plot 
+kable(payoff.mat)
+```
+

@@ -1,0 +1,87 @@
+---
+title: "Aula 1"
+author: "Manoel Galdino"
+date: "2023-03-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 1b
+
+## Biliografia da aula 1:
+Tadelis, cap. 1.
+Fiani, cap. 1.
+
+
+
+# Relações
+
+O conceito de relação (binária) na matemática está associada à presença de um tipo de vínculo específico entre elementos de um conjunto. Suponha o conjunto $A = {1,2, 3}$. A Relação $\geq$, entendida por "maior ou igual que" expressa uma relação de comparação de magnitude entre os elementos do conjunto. Assim, podemos dizer que $3 > 2$, ou que $2 = 2$ e assim por diante. Em geral, podemos dizer que para quaisquer pares $x e y \in A$ podemos estabelecer a relação $x \geq y$.
+
+A partir desse exemplo, temos uma intuição para construir outros tipos de relações. Em particular, a relação de preferência.
+
+Relações de preferência $\succcurlyeq$ são tais que,se $x \succcurlyeq y$, isso quer dizer que $x$ é pelo menos tão bom quanto $y$. Às vezes aparece como fracamente preferido, no jargão econômico. Se $x \succ y$, então $x$ é preferível a $y$, ou $x$ é melhor que $y$. Por fim, quando temos $x \sim y$, então o jogador ou jogadora é indiferente entre $x$ e $y$, ou $x$ é tão bom quanto $y$.
+
+## Racionalidade
+
+Falamos em ação racional no DP. Mas o que é ser racional? A partir da noção de relação de preferência, podemos definir racionalidade a partir de dois axiomas:
+
+1. Axioma da completude. A relação de preferência  $\succcurlyeq$ é completa. Ou seja, para quaisquer dois resultados $x, y \in X$ é possível ranqueá-los pela relação de preferência, tal que ou $x \succcurlyeq y$ ou $y \succcurlyeq x$ ou $x \sim y$.
+
+O axioma da completude me diz apenas que, se eu tiver dois resultados, sempre vou poder dizer qual prefiro (incluindo dizer que sou indiferente). Porém, não posso ficar na dúvida e não conseguir decidir qual é preferido (ou se sou indiferente). Portanto, é um axioma que requer pouco das pessoas para poder chamá-las de racionais.
+
+O segundo axioma é um pouco mais exigente e irá garantir que podemos ranquear $todos$ os resultados.
+
+2. Axioma da transitividade.  A relação de preferência  $\succcurlyeq$ é transitiva. Ou seja, para quaisquer três resultados $x, y e z \in X$, se $x \succcurlyeq y$ e $y \succcurlyeq z$, então $x \succcurlyeq z$.
+
+O axioma da completude me diz que posso ranquear quaisquer dois resultados, e o axioma da transitividade me diz que não há contradição no meu ranqueamento. Para ver porque a condição de transitividade é mais demandante, considere o seguinte exemplo. Algumas pessoas preferem estritamente café sem açúcar a café com duas colheres de açúcar. Vamos supor que duas colheres de açúcar são 100 gramas de açúcar. A maioria das pessoas é indiferente entre café com 100 gramas e café com 99 gramas, porque a diferença de sabor é imperceptível. Igualmente, é indiferente entre café com 98 gramas e café com 99 gramas. E assim por diante, de modo que é indiferente a café com duas gramas de açúcar e uma grama, e também é indiferente a café com uma grama e café sem açúcar. Porém, prefere café sem açúcar a café com duas colheres de açúcar. As preferências não são transitivas.
+
+De todo modo, parece razoável exigir que pessoas racionais tenham preferências transitivas. A razão para isso é porque, se elas não tiverem de fato preferências transitivas, é possível explorar essa irracionalidade. Tomando o exemplo acima, suponha que um café sem açúcar seja mais caro que um café com açúcar (digamos que a loja é patrocinada por uma empresa de açúcar, de modo que ela ganha mais dinheiro se vende café com açúcar). Em tese a pessoa aceitaria fazer 100 trocas de um café pelo outro com uma diferença de uma grama, tendo pagado mais caro pelo produto que poderia ser comprado mais barato. E o ciclo começaria de novo, até a pessoa ficar completamente sem dinheiro.
+
+Então, uma relação de preferência que é completa e transitiva, isto é, satisfaz os dois axiomas postulados por nós, é uma relação de preferência racional.
+
+------
+Questão em sala de aula: Será que a escolha de sofia é um exemplo de violação do axioma da completude?
+
+------
+
+Para mais críticas ao axioma da completude, ver por exemplo (no contexto da teoria da utilidade cardinal): Aumann, R. J. (1962). Utility theory without the completeness axiom. Econometrica: Journal of the Econometric Society, 445-462.
+
+## Funções de Payoff
+
+Uma das vantagens de se assumir relação de preferência racional é que é possível adotar uma esquema matemático mais operacional do seguinte modo. Suponha que você vai vender suco de limão e tem três possíveis ações: suco de baixa-qualidade $b$, que custa 10 e você vende a 15; suco de média-qualidade $m$, que custa 15 e você vende a 25, e suco de alta-qualidade, $a$, que custa 25 e você vende a 32. Exercício em sala. Escrever o conjunto de ações $ A = {b, m ,a}$, o conjunto de payoffs ou resultados, considerando o lucro, e não a receita apenas: $X = {5, 10, 7}$. Escrever a relação de preferência:  $10 \succ 7 \succ 5$.
+
+
+Assim, a melhor escolha é $m$, que dá o maior lucro.
+
+Uma outra forma de escolher a melhor ação seria definir uma função de lucro p(A), e ver qual a escolha de A que maximiza o lucro. Por exemplo $P(b) = 5$, $P(A) = 10$ e $P(A) = 7)$.
+
+Essa mesma lógica do lucro pode ser aplicada para qualquer decisão, mesmo que não envolva retornos monetários, contanto que a relação de preferência seja racional.
+
+Definição 1. Uma função de payoff (ou função de utilidade) $u: X -> R$ representa a relação de preferência  $\succcurlyeq$ para todo par $x, y \in X$, $u(x) >= u(y)$ se e somente se $x \succcurlyeq y$.
+
+O que estamos dizendo é que a função de utilidade $u$ recebe resultados do conjunto $X$, e retorna um número real para cada resultado. E essa função representa nossa relação de preferência racional se, sempre que a utilidade de $x$ for maior que a utilidade de $y$, para qualquer $x$ e $y$, isso implicar que $x \succcurlyeq y$ e vice-versa.
+
+Veja que o número real a ser atribuído não tem sigifnicado algum e pode ser qualquer valor, desde que a relação de ordem seja preservada. A função de utilidade é uma construção ordinal, porque os payoffs são ordinais. Se um resultado gerar utilidade 10 e outro utilidade 5, não podemos dizer de verdade que o primeiro é duas vezes preferido ao segundo.
+
+## Utilidade Ordinal
+Não função de utilidade definida acima, a utilidade é ordinal. Uma das consequências é que podemos fazer quaisquer transformações na função utilidade que preservem a ordem de preferência. Esse tipo de transformação é chamado de transformação monotônica.
+
+------
+
+Exercícios em sala:
+Digamos que eu tenha uma função de utilidade $u(x)$ qualquer. 
+Diga se as seguintes transformações são montônicas (isto é, preservam a ordem).
+1. $2*u(x)$  
+2. $u(x) + 10$  
+3. $log(u(x))$.  Suponha que $u(x) > 0$ para todo $x$.  
+4. $u(x)^3$  
+5. $u(x)^2$  
+6. $u(x) - 10$  
+
+------
+
+Formalmente, uma transformação da função utilidade por outra função $f$ é monotônica se $f(u)$ for uma função estritamente crescente de $u$. Lembrando que uma função $f(x)$ é estritamente crescente se ela cresce à medida que x cresce. Ou seja, $u_1 > u_2$ $\implies$ $f(u_1) > f(u_2)$.

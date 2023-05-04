@@ -1,0 +1,362 @@
+---
+title: "Aula 6 - Equilíbrio de Nash"
+author: "Manoel Galdino"
+date: "2023-04-25"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 6 - Equilíbrio de Nash em estratégias mistas
+
+Vamos começar relembrando como determinamos se um jogo possui equilíbrio de Nash.
+
+1. Determine as melhores respostas de cada jogador.
+2. Ache os perfis de estratégias onde as estratégias são melhores respostas de todos os jogadores.
+
+## Aplicações de Equilíbrio de Nash
+
+Quando as pessoas pensam em eleições, muitos acreditam que políticos anunciam as plataformas que acreditam, e eleitores escolhem a que preferem. Contudo, na ciência política é comum assumir que, mesmo que políticos se preocupem com suas plataformas serem implementadas, sabem que para isso primeiro precisam ganhar eleições. Portanto, seja porque estão preocupados apenas com o poder ou porque precisam estar preocupados com o poder para implementar plataformas, o fato é que uma supoição comum é assumir que políticos maximizam suas chances de serem eleitos. Essa é a base do modelo discutido por Hotelling (1929). Após contribuições de Duncan Black (Black,
+1948) e Anthony Downs (Downs, 1957), a ideia entrou definitvamente na Ciência Política e ficaria conhecida como Teorema do Eleitor Mediano. 
+
+O modelo do Hotelling tem inspiração em um modelo de competição espacial entre firmas. Ele desenvolve um jogo em dois estágios, em que duas firmas, competindo em uma rua, devem escolher sua localização geográfica no primeiro estágio, e em seguida os consumidores escolhem onde vão comprar os produtos, levando em consideração não apenas o preço dos produtos, mas o custo do transporte. E ele acha um equilíbrio de Nash (sem usar esse termo, obviamente) em que as empresas tendem a se concentrar no meio da rua. E ele notou que essa ideia poderia ser aplicada par competição política entre partidos.  Nós apresenramos aqui uma versão simplificada da ideia do Hotelling e do Teorema do Eleitor Mediano.
+
+Suponha dois políticos, que se importam apenas em ganhar a eleição. Existem 101 eleitores, com preferências uniformimente distribuídas em uma úncia dimensão do espectro político-ideológico. Em particular, suponha que oeleitor mais a esquerda está na posição -50, em seguida -49 e assim por diante, cada um com um número inteiro, até a extrema-direita, +50.
+
+Cada candidato $i$ escolhe uma plataforma $a_i$ no espectro político-ideológico $[-50, -49, ..., +49, +50]$. Cada eleitor escolhe a plataforma mais próxima da sua posição ideal. Por exemplo, de candidato 1 anuncia -20 como plataforma e o candidato 2 anuncia 31, o eleitor mais perto de -20 do que de 31 vota por 1, enquanto quem estiver mais perto de 31 vota por 2.
+
+# determinar os eleitores pivot do exemplo.
+
+É eleito quem obtiver mais voto. Como há um número ímpar de eleitores, a menos que alguém seja indiferente, não há empate. Se alguém for indiferente, o eleitor não vai votar e há um empate.
+A melhor resposta do jogador $i$ é:
+Se $j$ escolher uma plataforma $a_j > 0$, então $a_i = a_j$ ou $a_i = -a_j$ e dá um empate. Se $i$ escolher $a_i > a_j$ ou $a_i < -a_j$, perde com certeza. E escolhendo entre $a_i = a_j -1$ e $a_i = -a_j + 1$ irá ganhar com certeza. $a_i \in [-a_j + 1, a_j -1]$. Por um argumento similar se $a_j < 0$, temos que a estratégia vencedora é no intervalo $a_i \in [a_j + 1, -a_j -1]$. Por fim, a melhor resposta para $a_j = 0$ é $a_i = 0$.
+Como é tudo simétrico, as melhores respostas de cada jogador são similares.
+
+Existe um único equilíbrio de Nash, em que ambos candidatos jogam (0,0), que é o centro do espectro político. Essa é a base para o teorema do eleitor mediano, presente já no trabalho do Hotelling.
+
+# estratégias Mistas
+
+Considere o jogo pedra-papel-tesoura. Assuma que vencer gera um payoff de 1, empate 0 e perder de -1. A matriz de payoff pode ser representada do seguinte modo:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(0,0), pair(1,-1), pair(-1,1),
+               pair(-1,1), pair(0,0), pair(1,-1),
+               pair(1,-1), pair(-1,1), pair(0,0))
+payoff.mat <- matrix(all_pairs, nrow=3)
+dimnames(payoff.mat) <- c(list(c("Pedra","Papel", "Tesoura"), c("Pedra", "Papel", "Tesoura")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+
+A correspondência de melhor resposta do jogador 1 para suas crenças a respeito do jogador 2 pode ser escrita da seguinte forma:
+$s_1(s_2) =$ Papel quando $s_2 = Pedra$
+$s_1(s_2) =$ Tesoura quando $s_2 = Papel$
+$s_1(s_2) =$ Pedra quando $s_2 = Tesoura$
+
+E de maneira análoga para o jogador 2. É fácil ver que não existe equilíbrio de Nahs em estratégias puras nesse jogo. Raciocínios do tipo: "se ele acha que vou jogar pedra, então ele jogará papel, de forma que devo jogar tesoura. Porém, se ele antecipar isso, ele jogará pedra, de forma que devo jogar papel. Mas ele pode antecipar isso também e jogar tesoura, mas aí eu jogo pedra..." leva a uma regressão que nunca terminará. Em certo sentido, tanto faz o que você joga, porque não é possível advinhar o que você o outro jogador irá fazer. Mas dizer tanto faz pode ser pensado como se você aleatorizasse e jogasse cada uma das três ações com a mesma probabilidade $1/3$, e o mesmo o jogador 2. Nesse caso, dizemos que os jogadores estão jogando uma estratégia mista. Neste caso em particular, joga cada uma das t^Res ações com probabilidade $1/3$.
+
+Definição do Ronaldo Fiani (p. 192):
+Quando, em vez de escolher entre suas estratégias uma dada estratégia para jogá-la com certeza, um jogador decide alternar entre suas estratégias aleatoriamente, atribuindo uma probabilidade a cada estratégia a ser escolhida, diz-se que o jogador utiliza estratégias mistas. Caso contrário, diz-se que emprega estratégias puras.
+
+# Incerteza, risco e utilidade esperada
+
+A introdução de probabilidades traz incerteza para nossos jogos. Por isso é importante entender como nossa teortia de comportamento racional pode se modificar na presença de incerteza.
+
+A ideia da incerteza foi inicialmente abordada com a ideia de calcular o valor esperado de ações e escolher aquela ação que rende o maior valor esperado. Considere o seguinte jogo. Após responder várias perguntas corretas, uma pessoa em um programa de TV tem a seguinte escolha para fazer:
+ a) será jogada uma moeda. Se cair coroa, ganha 100 mil reais. Se der cara, não ganha nada.
+ b) Escolher entre três envelopes, cada um contém prêmios no valor de 90 mil reais, 30 mil reais e 15 mil reais. Qual estratégia ele deve escollher?
+ 
+ O valor esperado de cada ação pode ser calculado da seguinte forma:
+ a) $VE(A) = 100000*.5 + 0*.5 = 50.000,00$
+ b) $VE(B) = 90000*(1/3) + 30000*(1/3) + 15000*(1/3) = 30000 + 10000 + 5000 = 45000$
+ A pessoa deveria, portanto, escolher A, pois em média paga mais que do que a opção B.
+ Uma justificativa para a ideia de maximizar o valor esperado é a seguinte. A pessoa se defronta com várias decisões em sua vida que possuem riscos. Pode comprar um carro com algum opcional de segurança que reduz seu risco de vida em acidentes, se vai atravessar fora da faixa e pedestre, se anda de moto, se sai na chuva em dia de raios etc. Cada decisão dela tem um risco e se escolher sempre maximizando a utilidade esperada, na média de longo prazo terá um retorno maior.
+ 
+ Um problema da abordagem de maximizar o valor esperado é ilustrado pelo Paradoxo de São Petersburgo. Considere o seguinte jogo. Uma moeda é jogada, se o resultado é coroa, o jogador é pago 1 real e o jogo acaba. Se der cara, o jogo continua e uma moeda é novamente lançada. Se der coroa, recebe dois reais e o jogo acaba. Se der cara, o jogo continua e uma moeda é novamente lançada. Se der coroa, o jogador ganha 4 reais e o jogo acaba. Se der cara, o jogo continua, e assim indefinidamente, sempre dobrando o valor pago até o momento em que der cara.
+ 
+ Suponha que a casa tem fundos ilimitados. Qual o valor esperado desse jogo? Ou, colocando de outro modo, quanto um jogador racional (no sentido de maximizar valor esperado) deveria pagar para ter o privilégio de jogar esse jogo?
+ O jogo basicamente tem a seguinte configuração. A casa paga 1 real com probabiliade 50%, 2 reais com probabilidade 25%, 4 reais com prob. 1/8 e assim por diante:
+ $VE(jogo) = 1*(1/2) + 2*(1/4) + 4*(1/8) + ...$
+ 
+ Veja que essa soma infinita é equivalente a:
+ 
+  $VE(jogo) = 1/2 + 2*/4 + 4/8 + ... = 1/2 + 1/2 + 1/2 + ...$
+
+O que dá uma soma infinita.
+
+Usando nossa lógica de escolher ações cujo valor esperado é maior, entre a alternativa de pagar toda a fortuna de uma pessoa para jogar o jogo e não jogar e preservar a forturna, pagar a fortuna dá um valor esperado maior, pois infinito menos uma quantia finita é ainda infinito.
+
+Obviamente, não faz sentido escolher jogar esse jogo pagando toda a sua fortuna, pois na prática em algum momento a pessoa irá perder e antes de recuperar o valor de sua forturna.
+
+Naturalmente, a questão seguinte a se perguntar é: podemos encontrar algum outro princípio para fundamentar a decisão sob incerteza?
+
+Daniel Bernoulli, matemático, percebeu que o valor monetário é diferente a depender de quanto dinheiro você tem. O valor de mil reais para uma pessoa pobre é diferente do valor de mil reais para uma pessoa rica. Obviamente podemos supor que mais dinheiro é preferido a menos, porém não de maneira linear. Bernoulli sugeriu uma "lei da utilidade decrescente", como ficou conhecida depois, segundo a qual cada real adicional gera um pouco menos de utilidade. Mais ainda, ele propôs que a relação entre dinheiro e utilidade deveria ser logarítmica, o que implica que mudanças percentuais no dinheiro implicam mudanças iguais na utilidade.
+
+Duas críticas forma feitas à proposta de Bernoulli. Em primeiro lugar, a arbitrariedade do uso de logarítmo. Em segundo lugar, como medir utilidades? Nós já vimos que podemos trabalhar com utilidades ordinais. Mas cardinais, é bem mais complicado.
+
+Tivemos de esperar até o trabalho de von Neumann e Morgenstern Game Theory and EconomicBehavior (1944) para haver uma reabilitação das ideias propostas por Bernoulli. A ideia chave de VNM é que é possível estimar a intensidade de preferências em uma escala intervalar (em que os pontos máximos e mínimos são arbitŕarios, como na escala de celcius e farenheit) a partir da elicitação de preferências sobre loterias. Com representações numéricas de utilidade, podemos calcular a utilidade esperada (à maneira do valor esperado), exceto que a utilidade marginal pode ser decrescente e, portanto, evitar o paradoxo de São Petersburgo.
+
+Vamos ver como funciona por meio do seguinte exemplo.
+Suponha que uma loteria tem quatro possíveis prêmios: $x_1, x_2, x_3, x_4$. Suponha que os prêmios foram ordenados em ordem ascendente de preferência, isto é, $x_4 \succ x_3 \succ x_2 \succ x_1$. Agora, atribua valores de utilidade arbitrários para o prêmio mais desejado e o menos desejado. Digamos: $u(x_4) = 1$ e $u(x_1) = 0$.
+
+Quaisquer outros números funcionariam, mas é conveniente matematicamente (já veremos o porquê) usar zero e um. Usando esses dois valores de utilidade como ancoragem, o ponto do teorema de VNM é que existe uma forma garantida de atribuir utilidades numéricas para as preferências de cada um dos prêmios, de forma que podemos trabalhar com o caĺculo de utilidade esperada. O procedimento é o seguinte. Considere qualquer outro prêmio (por exemplo, $x_2$). Pergutamos então a cada jogador qual a probabilidade $p_2$ que tornaria ela indiferente entre ganhar $x_2$ com certeza e $x_4$ com probabilidade $p_2$ e $x_1$ com probabilidade $1 - p_2$. Veja que quanto mais valioso for $x_2$, maior deve ser $p_2$, a chance de ganhar $x_4$ o prêmio mais valorizado, para que a pessoa aceite trocar algo certo por aldo duvidoso. Assim, $p_2$ mede a desejabilidade do prêmio $x_2$.
+A gente repete esse experimento com $x_3$ e assim teremos uma medida da desejabilidade de todos os prêmios.
+
+E VNM definem a utilidade de cada prêmio como a aposta (loteria)que cada jogador considera igualmente desejável ao prêmio:
+
+$u(x_i) = p_i*x_n + (1-p_i)*x_1$
+No no caso:
+$u(x_i) = p_i*1 + (1-p_i)*0 = p_i$
+
+Ao escolher os valores máximos e mínimos da utilidade de maneira conveniente, as probabilidades passam a medir a desejabilidade diretamente de cada prêmio. Temos portanto números para as utilidades que não são apenas ordinais, mas cardinais.
+
+Eu sei que nós gastamos muito tempo repetindo e enfatizando que a teoria da utilidade tratava apenas de representar preferências ordinais e, portanto, os números eram completamente arbitrários. Agora não, apenas os pontos máximos e mínimos são arbitrários, mas todos os demais são derivados por esse experimento mental. 
+
+Na verdade, para ser mais preciso, o que VNM mostram é que se alguns axiomas forem satisfeitos, então agentes racionais se comportatão como se tivessem respondido a essas perguntas desse experimento. Mas não precisam de fato fazer esse experimento para se comportarem desse jeito. Mais ainda, em situações de incerteza, agentes racionais escolherão o que maximizar sua utilidade esperada.
+
+A Teoria da Utilidade Esperada, portanto, ajuda a explicar porque pessoas contratam seguros ou apostam em loterias como a mega-sena. Embora o valor esperado seja negativo de ambas as escolhas, as pessoas possuem utilidades distintas de cada opção (jogar ou não jogar, contratar ou não-contratar seguro).
+
+# Aversão a risco
+
+Tipicamente as pessoas são avessas ao risco. No contexto da utilidade esperada, isso quer dizer que as pessoas preferem um payoff certo a uma aposta justa. Em outras palavras, se eu oferecer uma escolha entre ficar como está ou uma aposta em que você ganha mil reais se der cara, paga mil reais se der coroa, as pessoas tendem a preferir a primeira opção, ainda que o valor esperado seja igual. Se vocÇe for indiferente entre as duas opções, dizemos que você é neutro ao risco. E se prefere a aposta, você é amante do risco.
+
+Tipicamente em modelos na ciência política, assume-se neutralidade ao risco ou aversão ao risco. Aversão ao risco é visto como a suposição mais aceitável e neutralidade ao risco é suposta apenas quando é mais fácil a matemática e a conclusão não muda se supusermos aversão ao risco.
+
+
+# Teoria e Prática
+
+Muitos testes foram feitos para verificar se o comportameto das pessoas em situações experimentais condizem com o previsto pela TUE. Em particular, Tversky and Kanheman realizaram uma série de experimentos. Vamos apresentar um deles aqui.
+
+"Suponha que o Brasil está se preparando para um surto de uma doença que surgiu em outro país e a expectativa é que a doença matará 600 pessoas se nada for feito. Dois programas alternativos para combater as doenças foram pensados. Assuma que as exatas consequências científicas dos programas são como seguem:
+
+1. 
+Programa A: 200 pessoas serão salvas.
+Programa B: Há uma probabilidade de $1/3$ que 600 pessoas serão salvas, e uma probabilidade de $2/3$ que nenhuma pessoa será salva.
+
+
+72% escolherão A e 28% B
+2. 
+Programa C: 400 pessoas morrerão.
+Programa D: Há uma probabilidade de $1/3$ que ninguém morrerá, e uma probabilidade de $2/3$ que 600 pessoas morrerão.
+
+Já nesse cenário, 78% preferem D e 22% preferem C.
+
+
+# Aplicação
+
+War as a commitment problem. Robert Pwoer (2006).
+Fearon (1996): Rationalists explanations for war
+
+Nós agora estamos preparados para entender como a literatura tem utilizado teoria dos jogos para modelar e discutir fenômenos relevantes. Aqui iremos retomar aplicações que discutem a ocorrência de guerras.
+
+Fearon introduziu a questão de como a escolha racional coloca problemas para explicações tradicionais (realistas, por exemplo) para a guerra.
+
+Guerras, como a da Rússia e Ucrância, são custosas. Qualquer que sejao resultado final da guerra, em tese uma negociação que resultasse no mesmo resultsado final, sem a guerra, seria preferia por ambos os estados (pareto superior) e portanto a guerra deveria ser evitada sempre. Como explicar que guerras ocorram?
+
+Fearon aponta três explicações mais gerais:
+1. Pessoas (e líderes políticos em particular) podem ser irracionais ou sofrer de vieses, que os levam a subestimar o custo da guerra ou a entender como suas ações podem provocar uma guerra.
+
+2. Líderes se beneficiam da guerra, mas não pagam seus custos (soldados é que lutam as guerras) e, portanto, o cálculo racional de custos não seriarelevante.
+
+3. Agentes racionais por alguma razão acabam guerreando.
+
+A primeira e segundas explicações, embora plausíveis, corrm risco muito grande de serem bobas. Dizer que Putin é malvado e tem mania de grandeza e por isso fez a guerra independente de qualquer cálculo racional pode servir a uma visão ideológica, mas é muito fácil. Se a pessoa faz guerra porque é burra ou má, não temos muita ciências sociais para fazer. É mais uma questão da psicologia ou psiquiatria.
+
+Portanto, mais relevante para nós são explicações racionalistas. Vejam que explicações de corte neorealistas, que enfatizam variáveis no sistema internacional são justamente do tipo que estamos interessados. Atores racionais farão guerra se o sistema internacional produzir situações que levam à guerra.
+
+Fearon irá então dizer o seguinte: Não é suficiente dizer que, sob anarquia, nada impede um estado de usar a força, ou que estados devem contar apenas com a auto-ajuda em um sistema anárquico, o que gera suspeita mútua e por fim, conflito (por espiral de suspeita ou dilema da segurança).
+
+E o ponto dele é o que falei no começo. Guerra é custosa. Isso significa que, em princípio, estados poderiam chegar a um acordo que seria pareto superior e evitasse a guerra. É um pouco como o gatoro que sofre bullyng na escola, mas os valentões nunca precisam de fato bater no garoto, porque este antecipa a derrota e já entrega o lanche que os valentões pedem. Um conflito destruiria parte do valor do lanche (no mínimo ficaria mais frio etc.) e o resultado final seria o mesmo, situação pareto inferior.
+
+Anarquia não implica na guerra porque estados poderiam chegar a um acordo preferível á guerra, mesmo sob anarquia. Digamos, A toma 10% do território de B. Se esse é o resultado da guerra, melhor chegar a ele sem guerra.
+
+Similarmente, o dilema da segurança (um estado se tornar mais seguro torna outro relativamente menos seguro) não impede de um acordo ser feito que previna a guerra. Fearondirá que é preciso argumentos mais elaborados. Considere por exemplo a explicação típica de espiral. Um estado A se arma, tornando outro, B, relativamente mais inseguro. No limite, B decide fazer uma guerra preventiva. Se A sabe que é isso que irá acontecer e antecipa, então .... Se A falha em antecipar e não queria a guerra, então o problema é mais de cálculo errado do que de anarquia. E aí é preciso mostrar que uma negociação não poderia resolver o problema do erro de cálculo.
+
+Se uma potência declinante pensa em fazer uma guerra preventiva contra uma potência ascendente, então poderia fazer uma barganha envolvendo concessões no presente e no futuro, para evitar a guerra, que seria preferível por ambos os estados. Mais ainda, a potência delclinante, sabendo que barganhas no futuro são preferíveis à guerra, não teriam razão para ter medo de serem atacados no futuro.
+
+Outro tipo de explicação é sobre utilidade esperada da guerra diferente entre estados. Bruce Bueno de Mesquista argumentou, de maneira influente, que a guerra aconteceria quando ambos os estados esperam uma utilidade esperada do conflito (isto é, benefícios esperados maiores que os custos esperados) maior do que a da paz. Porém, por que não exisitiria um acordo a ser negociado que geraria maiores benefícios, ao evitar a guerra?
+
+Fearon irá então modelar o jogo entre dois estados, para formalizar essas intuições e argumentos. Dois estados, A e B, que têm preferências sobre um objeto (como um território), representado por $X = [0,1]$. 
+
+Estado A prefere soluções o mais próximas de 1 possível, enquanto B é o oposto (mais perto de zero). Podemos pensar que é a divisão de um território entre as partes, e pode ir de 0% a 100%, representando o percentual do território controlado por A. Se o resultado da disputa for $x \in X$, então estados têm utilidade $u_a(x)$ e $u_b(1-x)$. Funções de utilidade são de VNM, com aversão a risco ou neutralidade ao risco. E vamos definir que $u_i(1) = 1$ e $u_i(0) = 0$, $i \in {A,B}$.
+
+Dizer que o conjunto $X$ contém acordos negociados preferíveis á guerra implica que podemos dizer como os estados avaliam conflito armado a opções negociadas.
+
+Se ocorre uma guerra, $A$ vence com probabilidade $p$ e perde com probabilidade $1-p$. Quem vencer escolher o máximo do território.
+A utilidade esperada de A é:
+$p*u_a(1) + (1-p)*u_a(0) - c_a= p - c_a$, em que $c_a$ é o valor perdido (em utilidade) da guerra para A. Digamos, destruição econômica mais perdas de vidas humanas e perdas de equipamento militares.
+
+Similarmente para B:
+$(1-p)*u_b(1) + p*u_b(0) - c_b= 1- p - c_b$,
+
+Suponha que a função utilidade é $u(x) = x$, que representa uma função de utilidade de neutralidade ao risco. Então, se existir algum $x^*$, tal que, $u_a(x^*) > p - c_a$ e $u_b(x^*) > 1 - p - c_b$, então $x^*$ é preferido por ambos os estados. Se existir mais de um ponto, ou mesmo um intervalo, então esse intervalo é preferível a guerra. Resolvendo o sistema de equações de desigualdade, temos que 
+$x^* > p - c_a$ e $1 -x^* > 1 - p - c_b$
+Suponha que $x^* = p - c_a - 0.1$. A primeira equação é satisfeita trivialmente, e a segunda também é satisfeita, como é fácil ver, pois $1 -( p - c_a - 0.1) = 1 -p + c_a + 0.1  > 1 - p - c_b$ , pois 1 cancela, p cancela, ficando
+$c_a + 0.1  > -c_b$. Como $c_a$ é positivo e $c_b$ é positivo, o lado esquerdo da equação é maior que o lado direito.
+
+Do mesmo modo, o ponto $p + c_b - .01$ também satisfaz as duas equações. Portanto, no intervalo 
+$[p - c_a - 0.1, p + c_b - .01]$, ambos os estados estão melhores do que com a guerra. De maneira geral, no intervalo aberto, posso tirar o $.01$ e ficar com: $(p - c_a, p + c_b)$.
+
+Para dar concretude. Se A ucrância e B Rússia. Digamos que $p$, a probabilidade da Ucrância prevalecer fosse 10% antes da guerra começar, $c_a = 2%$ e $c_b = .05%$. Então,  $(.05 - .02, .05 + .005) = (3%, .5,5%)$. Ou seja, a Ucrânia poderia ficar com 3% do seu território + epsiolon para evitar a guerra, e a Rússia aceitaria no máximo  que a Ucrância ficasse com 5,5% do território. A intuição é que a utilidade esperada da Guerra pra Ucrância é uma utilidade equivalente a 3% do território (5% do território menos 2% de destruição da guerra). Ela não poderia dar mais de 5,5% do território, pois preferiria a guerra.
+
+Quais suposições substantivas foram feitas:
+1. existe uma probabilidade $p$, objetiva, que cada estado irá ganhar a guerra. Ainda que ambos os estados tenham estimativas diferentes e conflitivas e haja incerteza sobre seu valor, existe uma probabilidade real, que eles não sabem. E essa probabilidade dá ensejo ao intervalo de negociação e eles sabem disso (se são racionais). Portanto, a princípio uma solução negociada ainda poderia ser tentada.
+
+2. Assumimos que estados são neutros ao risco ou avessos ao risco. Parece plausível, já que um acordo certo seria preferível a uma aposta de tudo ou nada com o mesmo valor esperado. Por fim, assumimos que há uma continuidade de acordos possíveis. Ou seja, o objeto é perfeitamente divisível. Há casos em que isso não é divisível, como por exemplo quando é quem é o líder que ficará no governo. Só pode ser uma pessoa. Nesse caso, indivisibilidade poderia trnar o intervalo de negociação vazio. Porém, pagamentos laterais e issue-linkage podem tornar o objeto divisível. então teria de ser mostrado porque isso não foi possível.
+
+Fearon irá sugerir que o que pode explicar a guerra nesse paradigma é, portanto, blefe resultado de incentivos a superestimar suas capacidades militares e conseguir um acordo melhor na negociação, levando à guerra. Mas aqui é necessário mostrar porque estados não conseguem transmitir informações críveis sobre suas capacidades.
+
+Commitment problems (dificuldade de se comprometer). Potência em ascenção não pode fazer um compromisso crível de ser um hegemon benigno no futuro.^
+
+# Voltando a estratégias mistas
+
+Se o conjunto de estrartégias disponíveis para um jogador é $S = (s_1, s_2, ..., s_m)$, então uma estratégia mista para aquele jogador é uma loteria sobre $S$, $p = (p_1, p_2, ..., p_m)$. Diz-se que o jogador escolheu a estratégia $p$ se ele usa esta loteria para determinar qual estratégia pura irá implementar no jogo.
+
+Em outras plavras, uma estratégia mista é uma distribuição de probabilidade que determina como uma estratégia pura será jogada por meio da realização dessa distribuição.
+
+
+
+
+
+s the expected utility of the gamble that the individual considers equally
+desirable to x
+Vehamos um exemplo na prática de como isso funcionaria.
+
+Parece razoável assumir que tal probabilidade exista. E também que, quanto mais valioso for $x_4$, maior deve ser a probabilidade $p_2$.
+
+
+A pessoa vai comprar um carro e tem duas opções. Carro A faz 20 km/l de consumo de gasolina. E o carro B, igual ao carro A, mas pode fazer 25km/l ou 15km/l com igual probabilidade.
+
+Suponha que eu ofereço então a seguinte escolha: você prefere o carro A ou o carro B?
+
+
+Definição 6.1.
+Se um conjunto de estatégias disponíveis para um jogador é $S = {s_1, s_2, ..., s_n}$, então uma **estratégia mista** para aquele jogador é uma loteria sobre $S$, $p = (p_1, p_2, ..., p_n)$. Diz-se que o jogador escolhe essa estratégia $p$ se ele usa essa loteria para determinar que estratégia pura irá implmentar quando de fato jogar o jogo.
+
+# Preferências sobre loterias
+
+Já que estamos falando de loterias em nossa definição, é importante fazer um detour para explicar o conceito de loterias e preferências sobre loterias
+
+Uma loteria existe quando eu tenho payoffs que têm um componente aleatório. A mega-sena paga alguns milhões de reais com uma dada probabilidade, e zero reais com outra probabilidade.
+
+Mais formalmente:
+Definição 6.2. Uma loteria simples sobre resultados $X = {x_1, x_2, ..., x_n}$ é definida como a distribuição de probabilidade $p = (p(x_1), p(x_2), ..., p(x_n))$, em que $p(x_k) \ge 0$ é a probabilidade de que $x_k$ ocorra e $\Sigma_{k=1}^n x_k = 1$.
+
+
+
+Segunda vez 10 (às vezes 5 ou 6) - duas ou três rodadas de dominância
+Terceira vez: 3 ou 4. Mais uma rodada de dominância. Vários zero.
+
+The logical concept of dominance, iterated elimination of dominated strategies, and the culmination in a Nash equilibrium.
+2. Getting close to the Nash equilibrium by the experience of playing the
+game. Whether it is a crucial flaw of the theory that 0 is rarely exactly
+attained, or the theory gives a good approximation, can be a point to be
+debated depending on the time available.
+3. The idea that if one has a good reason to believe that others will not be playing their Nash equilibrium strategies, then one’s optimal choice will also
+differ from one’s own Nash equilibrium strategy.
+
+# Melhor resposta
+
+A ideia de melhor resposta é um conceito central para a teoria dos jogos, de modo que vale a pena defini-lo formalmente.
+
+Definição 4.1: Melhor resposta: A estratégia $s_i \in Si$ é a melhor resposta do jogador $i$ às estratégias de seus oponentes $s_{-i} \in S_{-i}$ se
+
+$v_i(s_i, s_{-i}) >= v_i(s^\prime_i, s_{-i})$ para todo $s^\prime_i \in S_i$
+
+Em palavras: a utilidade (ou payoff) do jogador $i$ resultante da sua estratégia e das estratégias dos oponentes é pelo menos tão boa quanto qualquer outra estratégia que $i$ possa vir a adotar.
+
+
+Considere o jogo da bandeira, do reality show Survivor. Se é sua vez de jogar existem, digamos 20 bandeira, não importa o que você faça, irá perder o jogo se o outro time for racional. Portanto, sua melhor estratégia pode ser tanto 1, 2 ou 3 bandeiras. Esse exemplo mostra que a melhor estratégia pode 1: incluir múltiplas ações; 2. serem igualmente ruins e não fazer diferença nenhuma e resultar todas no mesmo payoff.
+
+# Equilíbrio de Nash
+
+Um perfil de estratégias é um equilíbrio de Nash se cada jogador está escolhendo a melhor resposta para o que acredita que os demais jogadores farão. Ou seja, todo mundo está simultaneamente escolhendo a melhor resposta uns para os outros.
+
+# Equilíbrio de Nash
+
+O equilíbrio de dominância estrita requer apenas racionalidade, enquanto o equilíbrio de EIEED requeria racionalidade e conhecimento comum de crenças (e racionalidade). Agora, iremos fazer uma suposição mais forte ainda, de que as crenças, em certo sentido, estejam corretas. Isso dará origem ao equilíbrio de Nash, formulado pela primeir ves por John Nash em 1950.
+
+Definição 5.1. O perfil de estratégias puras $s^\star = (s^\star_1, s^\star_2, ..., s^\star_n) \in S$ é um equilíbrio de Nash se $s^\star_i$ é uma melhor resposta a $s^\star_{-i}$ para todo $i \in N$. Ou seja,
+
+$v_i(s^\star_i, s^\star_{-i}) >= v_i(s^\prime_i, s^\star_{-i})$, para toda $s^\prime_i \in S_i$ e todo $i \in N$.
+
+Considere o jogo abaixo. O único equilibrio de EIEED é (Alto, Esquerda). Esse também é um equilíbrio de Nash, pois Alto é a melghor resposta a L, e L é a melhor resposta para Alto.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,3), pair(2,1), pair(3,0),
+               pair(5,1), pair(8,4), pair(9,6),
+               pair(6,2), pair(3,6), pair(2,8))
+payoff.mat <- matrix(all_pairs, nrow=3)
+dimnames(payoff.mat) <- c(list(c("Alto","Médio", "Baixo"), c("Esquerda", "Centro", "Direita")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+Considerem o Dilema do Prisioneiro. É fácil ver também que (C,C) é também um equilíbrio de Nash.
+
+Não é coincidência que Dominância estrita, EIEED e racionazabilidade sempre sejam equilíbrios de Nash. Se um equilíbrio é de dominânciaestrita, o único sobrevivente de EIEED e de racionazabilidade, então é o únicoequilíbrio de Nash.
+
+The intuition is of course quite straightforward: we know that
+if there is a strict dominant strategy equilibrium then it uniquely survives IESDS and
+rationalizability, and this in turn must mean that each player is playing a best response
+to the other players’ strategies
+
+Considere o seguinte jogo. Duas jogadoras devem escolher um número inteiro entre 1 e 9. Se a soma dos números for menor ou igual a dez, elas ganham o valor em reais que cada jogadora escolheu. Se a soma for maior que dez, não ganham nada. Esse jogo é dado por $G = [N = 1,2; S_i = (1, 2, ..., 9), v_i(s_1, s_2) = s_i, se s_1 + s_2 <= 10$ $0$, c.c.]$
+
+Quaaisquer pares $(1,9);(9,1)$, $(2,8), (8,2)$ etc. formam equilíbrios de Nash. Em particular, uma vez revelados, nenhum jogador possui qualquer incentivo **unilateral** a mudar sua estratégia.
+
+Vamos enfatizar a palavra **unilateral** aqui. Vamos mudar o jogo anterior para o seguinte. Em vez das jogadoras ganharem os números ecolhidos cuja soma for 10, elas (cada uma) ganham a soma dos quadrados dos núemeros escolhidos. Assim, (1,9) e (9,1) geram $1^2 + 9^2 = 1 + 81 = 82$ reais, enquanto $2^2 + 8^2 = 4 + 64 = 68$ e $5^2 + 5^2 = 50$, de forma que o melhor resultado para as jogadoras é (9,1) ou (1,9). Porém, se jogarem (2,8), nenhuma delas possui incentivo **unilateral** para mudar sua estratégia, pois elas constituem melhores respostas as estratégias umas das outras.
+
+Nas eleições presidenciais de 2022, era muito comum discussões sobre a necessidade de haver uma candidatura única de frente ampla contra o candidato Bolsonaro, já no primeiro turno. Em um artigo na revista Piauí, sobre lições das eleições na República Techeca, um cientista político escreveu: 
+
+"O grande trunfo tcheco foi manter o foco no inimigo e não se intimidar pelo clima de maioria. Liderada pelo ex-reitor conservador Petr Fiala, a oposição guardou o ego no armário e abraçou um pragmatismo invejável. Lideranças de todos os principais grupos de oposição assinaram um compromisso escrito de que não comporiam uma coalizão com o primeiro-ministro. Em vez disso, formaram uma aliança entre a coalizão Juntos — que obteve 27,8% dos votos e abarcava os Cívicos Democratas (direita), o TOP09 (centro-direita) e os Cristãos Democratas (também de centro-direita) — e a coalizão composta pelo partido liberal Prefeitos e Independentes e o esquerdista Partido Pirata, cuja retórica antiestablishment e defesa de causas progressistas atraiu 16% dos eleitores. Mesmo com profundas divergências internas, a aliança conseguiu deixar as disputas para outro momento, concentrando-se no desafio de sufocar a base governista e evitar uma escalada autoritária.
+
+Um compromisso assim exigiu renúncias gigantescas de todas as partes. O líder do Partido Pirata — um ativista social de dreadlock no cabelo chamado Ivan Bartoš — teve que abrir mão de defender ostensivamente o casamento gay. Já o Partido Democrático Cívico (ODS na sigla tcheca) aceitou deixar sua postura anti-União Europeia de lado — um gesto grandioso se pensarmos que a pauta também era defendida por Babis e que a ODS poderia lucrar com uma aliança governista."
+
+Eu não entendo nada da política da República Tcheca. Mas o objetivo dele era sugerir uma estratégia para o Brasil. Como ele mesm oafirma:
+
+"Analogias desse tipo são sempre complicadas, porém, aplicada à política brasileira, a aliança anti-Babis seria o equivalente a algo como o PSOL, PT, PSDB, MDB e DEM fecharem um acordo anti-Bolsonaro antes do pleito de 2022."
+
+Qual é o desafio que o sistema político encontravapara fazer umaa aliança desse tipo? Uma das lições que precisamos tirar de modelos de teoria dos jogod é que não basta boa vontade ou objetivos comuns. É preciso que os equilíbrios sejam tal que nenhum ator tenha um incentivo unilateral para mudar sua estratégia. Em certo sentido, os equilíbrios de Nash sã sustentáveis, no sentido de que não há incentivo para desviar, uma vez estando em um deles. 
+
+Vamos começar modelando um exemplo "mais simples". Em 1964, no Chile, Salvador Allende era o candidato da esquerda. Liberais e Conservadores acetaram apoiar o candidato do centro Eduardo Frei, que ganhou a eleição com 56,1% dos votos contra 38,9% de Allende. Em 1970, Allende ganhou a eleição com menos votos do que havia recebido em 64, 36,2%, enquanto o centrista Randomiro Tomic ganhou 27,8% e direitsta Jorge Allesandri 34,9% dos votos. Especula-se que, se um dos candidatos desistisse da eleição, Allende não teria conquistado o poder.
+
+Vamos então fazer um modelo simples para ilustrar a questão.
+
+Suponha um eleitorado com três tipos de ordenamento de preferências de candidatas $A$, $B$ e $C$.
+1. $A \succ B \succ C$ 
+2. $B \succ C \succ A$ 
+3. $C \succ B \succ A$ 
+
+Vamos supor adicionalmente que 40% do eleitoradotem preferências do tipo 1 o restante igualmente dividido entre o tipo 2 e 3 (30% cada).
+
+Se cada eleitor votar sinceramente (isto é, para sua candidata preferida), $A$ teira 40% dos votos, $B$ 30% e $C$ 30%. Se a regra for como no Brasil 1945-64, em que não havia segundo turno e a candidata mais votada vence, $A$ seria eleita. Se porém parearmos $A$ contra $B$, a vencedora seria $B$ com 60% dos votos, e $B$ contra $C$ também daria a vitória para $B$, com $70\%$ dos votos. Em casos como esse, em que há uma vencedora que ganha todas as disputas 2x2, chamamos de vencedora de Condorcet (Condorcet winner). $B$ e $C$, portanto, poderiam ser estratégicas e votarem não na candidata preferida para obter um resultado mais favorável. O problema que $B$ e $C$ enfrentam pode, portanto, ser modelado do seguinte modo.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%s,%s)", x,y)
+all_pairs <- c("B ganha", "A ganha", "A ganha", "C ganha")
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(list(c("Votar em B","Votar em C"), c("Votar em B","Votar em C")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+Esse jogo é muito parecido com o jogo de coordenação Bach-Stravinsky. Há dois equilíbrios de Nash, B ganha e C ganha. Porém, a escolha de qual equilíbrio acontecerá requer coordenação entre eleitores do tipo 2 e 3. Se falharem em coordenar os votos, contudo, A ganhará. Se B ou C desistir de disputar a eleição, a coordenação estará garantida, como ocorreu no Chile em 1964. Na ausência de tal coalizão, eleitores terão muita dificuldade de coordenar seu voto.
+
+Do ponto de vista da Ciência Política, é importante enfatizar alguns pontos dessa discussão:
+1. É muito mais fácil para as elites polítics coordenarem entre si do que entre os eleitores, que não possuem uma forma fácil de comunicação.
+2. Informações sobre candidatas com maiores intenções de voto em simulações de segundo turno permite ajudar os eleitores a tomarem decisões melhores e coordenarem seus votos. Portanto, quando vocês virem pessoas reclamando de pesquisas d intenção de voto, que isso influenciar o eleitor e faz com que ele vote estrategicamente, pergunte-se: é realmente ruim que o eleitorado vote estrategicamente? Voltaremos a essa discussão em aulas futuras.
+3. Na presença de segundo turno, existe necessidade de haver coordenação antecipada? Não para evitar que A seja eleito. B ou C irá para o segundo turno contra A.
+
