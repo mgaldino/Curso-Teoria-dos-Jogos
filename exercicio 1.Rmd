@@ -1,0 +1,64 @@
+---
+title: "Lista de exercício 1"
+author: "Manoel Galdino"
+date: "2023-01-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+referências
+http://people.maths.ox.ac.uk/griffit4/Math_Alive/4/Problems1.html
+
+
+# |
+Serena e Martín foram brincar de par ou ímpar. Suponha que uma vitória no jogo vale um ponto, empate zero e derrota -1. 
+
+a) Como você descreveria as estratégias disponíveis para cada jogador?
+b) represente o jogo na forma normal
+c) ache todos os Equilíbrios de Nash de Estratégia Pura (ENEP) e os Equilíbrios de Nash de Estratégia Mista (ENEM)
+
+Serena, Martín e Nina foram brincar de zerinho ou um. Suponha que uma vitória no jogo vale um ponto, empate zero e derrota -1.
+
+a) Como você descreveria as estratégias disponíveis para cada jogador?
+b) represente o jogo na forma normal
+c) ache todos os Equilíbrios de Nash de Estratégia Pura (ENEP) e os Equilíbrios de Nash de Estratégia Mista (ENEM)
+
+
+
+## Estratégia dominante
+
+Para todos os jogos abaixo, ache:
+
+1. 
+2. Todos os equilíbrios de estatégia dominante estrita e fraca.
+3. Aplique a iteração de dominância estrita
+4. Todos os Equilíbrios de Nash (EN) de estratégia pura (EP) e mista (EM) - isto é, ENEP e ENEM.
+
+Considere que o jogador P1 é o jogador linha, e P2 o jogador coluna (P2 estará indicado na coluna para reduzir o esforço cognitivo).
+a) Considere o sequinte jogo:
+
+```{r results = "asis", echo=FALSE, message = FALSE}
+library(knitr)
+library(kableExtra)
+# Define Variables
+M=1
+R=2
+S=0
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(R,M), pair(S,S), pair(S,S), pair(M,R))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(list(c("Alto", "Baixo"), c("Esquerda",  "Direita")))
+
+# Plot 
+kable(payoff.mat) %>%
+  kable_styling() %>%
+   add_header_above(c("","P2", ""))
+
+```
+
+
