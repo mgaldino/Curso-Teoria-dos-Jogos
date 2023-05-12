@@ -1,15 +1,88 @@
 ---
-title: "Aula 6 - Equilíbrio de Nash"
+title: "Aula 7 - Equilíbrio de Nash em Estratégias Mistas"
 author: "Manoel Galdino"
 date: "`r format(Sys.Date(), '%d de %B de %Y')`"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Aula 6 - Equilíbrio de Nash em estratégias mistas
+
+
+# Aplicação em RI, continuação aula 6
+
+War as a commitment problem. Robert Power (2006).
+Fearon (1996): Rationalists explanations for war
+
+Nós agora estamos preparados para entender como a literatura tem utilizado teoria dos jogos para modelar e discutir fenômenos relevantes. Aqui iremos retomar aplicações que discutem a ocorrência de guerras.
+
+Fearon introduziu a questão de como a escolha racional coloca problemas para explicações tradicionais (realistas, por exemplo) para a guerra.
+
+Guerras, como a da Rússia e Ucrância, são custosas. Qualquer que sejao resultado final da guerra, em tese uma negociação que resultasse no mesmo resultsado final, sem a guerra, seria preferia por ambos os estados (pareto superior) e portanto a guerra deveria ser evitada sempre. Como explicar que guerras ocorram?
+
+Fearon aponta três explicações mais gerais:
+1. Pessoas (e líderes políticos em particular) podem ser irracionais ou sofrer de vieses, que os levam a subestimar o custo da guerra ou a entender como suas ações podem provocar uma guerra.
+
+2. Líderes se beneficiam da guerra, mas não pagam seus custos (soldados é que lutam as guerras) e, portanto, o cálculo racional de custos não seriarelevante.
+
+3. Agentes racionais por alguma razão acabam guerreando.
+
+A primeira e segundas explicações, embora plausíveis, corrm risco muito grande de serem bobas. Dizer que Putin é malvado e tem mania de grandeza e por isso fez a guerra independente de qualquer cálculo racional pode servir a uma visão ideológica, mas é muito fácil. Se a pessoa faz guerra porque é burra ou má, não temos muita ciências sociais para fazer. É mais uma questão da psicologia ou psiquiatria.
+
+Portanto, mais relevante para nós são explicações racionalistas. Vejam que explicações de corte neorealistas, que enfatizam variáveis no sistema internacional são justamente do tipo que estamos interessados. Atores racionais farão guerra se o sistema internacional produzir situações que levam à guerra.
+
+Fearon irá então dizer o seguinte: Não é suficiente dizer que, sob anarquia, nada impede um estado de usar a força, ou que estados devem contar apenas com a auto-ajuda em um sistema anárquico, o que gera suspeita mútua e por fim, conflito (por espiral de suspeita ou dilema da segurança).
+
+E o ponto dele é o que falei no começo. Guerra é custosa. Isso significa que, em princípio, estados poderiam chegar a um acordo que seria pareto superior e evitasse a guerra. É um pouco como o gatoro que sofre bullyng na escola, mas os valentões nunca precisam de fato bater no garoto, porque este antecipa a derrota e já entrega o lanche que os valentões pedem. Um conflito destruiria parte do valor do lanche (no mínimo ficaria mais frio etc.) e o resultado final seria o mesmo, situação pareto inferior.
+
+Anarquia não implica na guerra porque estados poderiam chegar a um acordo preferível á guerra, mesmo sob anarquia. Digamos, A toma 10% do território de B. Se esse é o resultado da guerra, melhor chegar a ele sem guerra.
+
+Similarmente, o dilema da segurança (um estado se tornar mais seguro torna outro relativamente menos seguro) não impede de um acordo ser feito que previna a guerra. Fearondirá que é preciso argumentos mais elaborados. Considere por exemplo a explicação típica de espiral. Um estado A se arma, tornando outro, B, relativamente mais inseguro. No limite, B decide fazer uma guerra preventiva. Se A sabe que é isso que irá acontecer e antecipa, então .... Se A falha em antecipar e não queria a guerra, então o problema é mais de cálculo errado do que de anarquia. E aí é preciso mostrar que uma negociação não poderia resolver o problema do erro de cálculo.
+
+Se uma potência declinante pensa em fazer uma guerra preventiva contra uma potência ascendente, então poderia fazer uma barganha envolvendo concessões no presente e no futuro, para evitar a guerra, que seria preferível por ambos os estados. Mais ainda, a potência delclinante, sabendo que barganhas no futuro são preferíveis à guerra, não teriam razão para ter medo de serem atacados no futuro.
+
+Outro tipo de explicação é sobre utilidade esperada da guerra diferente entre estados. Bruce Bueno de Mesquista argumentou, de maneira influente, que a guerra aconteceria quando ambos os estados esperam uma utilidade esperada do conflito (isto é, benefícios esperados maiores que os custos esperados) maior do que a da paz. Porém, por que não exisitiria um acordo a ser negociado que geraria maiores benefícios, ao evitar a guerra?
+
+Fearon irá então modelar o jogo entre dois estados, para formalizar essas intuições e argumentos. Dois estados, A e B, que têm preferências sobre um objeto (como um território), representado por $X = [0,1]$. 
+
+Estado A prefere soluções o mais próximas de 1 possível, enquanto B é o oposto (mais perto de zero). Podemos pensar que é a divisão de um território entre as partes, e pode ir de 0% a 100%, representando o percentual do território controlado por A. Se o resultado da disputa for $x \in X$, então estados têm utilidade $u_a(x)$ e $u_b(1-x)$. Funções de utilidade são de VNM, com aversão a risco ou neutralidade ao risco. E vamos definir que $u_i(1) = 1$ e $u_i(0) = 0$, $i \in {A,B}$.
+
+Dizer que o conjunto $X$ contém acordos negociados preferíveis á guerra implica que podemos dizer como os estados avaliam conflito armado a opções negociadas.
+
+Se ocorre uma guerra, $A$ vence com probabilidade $p$ e perde com probabilidade $1-p$. Quem vencer escolher o máximo do território.
+A utilidade esperada de A é:
+$p*u_a(1) + (1-p)*u_a(0) - c_a= p - c_a$, em que $c_a$ é o valor perdido (em utilidade) da guerra para A. Digamos, destruição econômica mais perdas de vidas humanas e perdas de equipamento militares.
+
+Similarmente para B:
+$(1-p)*u_b(1) + p*u_b(0) - c_b= 1- p - c_b$,
+
+Suponha que a função utilidade é $u(x) = x$, que representa uma função de utilidade de neutralidade ao risco. Então, se existir algum $x^*$, tal que, $u_a(x^*) > p - c_a$ e $u_b(x^*) > 1 - p - c_b$, então $x^*$ é preferido por ambos os estados. Se existir mais de um ponto, ou mesmo um intervalo, então esse intervalo é preferível a guerra. Resolvendo o sistema de equações de desigualdade, temos que 
+$x^* > p - c_a$ e $1 -x^* > 1 - p - c_b$
+Suponha que $x^* = p - c_a - 0.1$. A primeira equação é satisfeita trivialmente, e a segunda também é satisfeita, como é fácil ver, pois $1 -( p - c_a - 0.1) = 1 -p + c_a + 0.1  > 1 - p - c_b$ , pois 1 cancela, p cancela, ficando
+$c_a + 0.1  > -c_b$. Como $c_a$ é positivo e $c_b$ é positivo, o lado esquerdo da equação é maior que o lado direito.
+
+Do mesmo modo, o ponto $p + c_b - .01$ também satisfaz as duas equações. Portanto, no intervalo 
+$[p - c_a - 0.1, p + c_b - .01]$, ambos os estados estão melhores do que com a guerra. De maneira geral, no intervalo aberto, posso tirar o $.01$ e ficar com: $(p - c_a, p + c_b)$.
+
+Para dar concretude. Se A ucrância e B Rússia. Digamos que $p$, a probabilidade da Ucrância prevalecer fosse 10% antes da guerra começar, $c_a = 2%$ e $c_b = .05%$. Então,  $(.05 - .02, .05 + .005) = (3%, .5,5%)$. Ou seja, a Ucrânia poderia ficar com 3% do seu território + epsiolon para evitar a guerra, e a Rússia aceitaria no máximo  que a Ucrância ficasse com 5,5% do território. A intuição é que a utilidade esperada da Guerra pra Ucrância é uma utilidade equivalente a 3% do território (5% do território menos 2% de destruição da guerra). Ela não poderia dar mais de 5,5% do território, pois preferiria a guerra.
+
+Quais suposições substantivas foram feitas:
+1. existe uma probabilidade $p$, objetiva, que cada estado irá ganhar a guerra. Ainda que ambos os estados tenham estimativas diferentes e conflitivas e haja incerteza sobre seu valor, existe uma probabilidade real, que eles não sabem. E essa probabilidade dá ensejo ao intervalo de negociação e eles sabem disso (se são racionais). Portanto, a princípio uma solução negociada ainda poderia ser tentada.
+
+2. Assumimos que estados são neutros ao risco ou avessos ao risco. Parece plausível, já que um acordo certo seria preferível a uma aposta de tudo ou nada com o mesmo valor esperado. Por fim, assumimos que há uma continuidade de acordos possíveis. Ou seja, o objeto é perfeitamente divisível. Há casos em que isso não é divisível, como por exemplo quando é quem é o líder que ficará no governo. Só pode ser uma pessoa. Nesse caso, indivisibilidade poderia trnar o intervalo de negociação vazio. Porém, pagamentos laterais e issue-linkage podem tornar o objeto divisível. então teria de ser mostrado porque isso não foi possível.
+
+Fearon irá sugerir que o que pode explicar a guerra nesse paradigma é, portanto, blefe resultado de incentivos a superestimar suas capacidades militares e conseguir um acordo melhor na negociação, levando à guerra. Mas aqui é necessário mostrar porque estados não conseguem transmitir informações críveis sobre suas capacidades.
+
+Commitment problems (dificuldade de se comprometer). Potência em ascenção não pode fazer um compromisso crível de ser um hegemon benigno no futuro.^
+
+
+
+
+
+
+# Aula 7 - Equilíbrio de Nash em estratégias mistas
 Considere o jogo "cara" ou "coroa" a seguir. Nesse jogo, dois jogadores escolhem entre cara (heads) ou coroa (tails) ao mesmo tempo. Se as escolhas forem iguais, o Jogador 1 ganha um ponto. Caso contrário, o Jogador 2 ganha um ponto. O objetivo dos jogadores é maximizar sua pontuação.
 
 
@@ -25,16 +98,40 @@ payoff.mat <- matrix(c(1, -1, -1, 1),
 kable(payoff.mat)
 ```
 
-Exercício: jogue esse jogo com outra pessoa por 5 rodadas. 
-Após o jogo, podemos perceber que os jogadores possuem interesses opostos e vocês esperam que o outro não consiga antecipar o que você irá fazer. Nesse caso, ele será indiferente entre jogar qualquer uma de suas estratégias, pois esperar que, na média, ambas gerem o mesmo payoff médio.
+
+
+Esse jogo é similar ao de par ou ímpar, que estamos acostumados
+
+Exercício 7.1: jogue par ou ímpar com outra pessoa por 5 rodadas. 
+
 
 
 ```{r, results='asis'}
 library(knitr)
+# Definindo a matriz de payoff
+payoff.mat <- matrix(c(1, -1, -1, 1), 
+                     nrow = 2, ncol = 2, 
+                     dimnames = list(c("Par", "Ímpar"), 
+                                     c("Par", "Ímpar")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Após o jogo, podemos perceber que os jogadores possuem interesses opostos e vocês esperam que o outro não consiga antecipar o que você irá fazer. Nesse caso, ele será indiferente entre jogar qualquer uma de suas estratégias, pois esperar que, na média, ambas gerem o mesmo payoff médio.
+
+Uma estratégia mista é justamente um antidoto contra as tentativas dos outros jogadores advinharem o que você irá fazer. Considere o jogo de tênis. No saque, se seu adversiário antecipar o que você irá fazer, ele terá uma vantagem. Então, você precisa jogar de um jeito que ele não consiga angtecipar ou advinhar suas estratégias.
+
+Considere o seguinte jogo.
+
+
+```{r, results='asis', echo=FALSE}
+library(knitr)
+
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
 
 # Definindo a matriz de payoff
-# Definindo a matriz de payoff
-payoff.mat <- matrix(c(4, 12, -16, -8), 
+payoff.mat <- matrix(c(pair(4, 25), pair(16, 10), pair(12, 5), pair(8, 15)), 
                      nrow = 2, ncol = 2, 
                      dimnames = list(c("A", "B"), 
                                      c("C", "D")))
@@ -43,7 +140,173 @@ payoff.mat <- matrix(c(4, 12, -16, -8),
 kable(payoff.mat)
 ```
 
-Uma estratégia mista é justamente um antidoto contra as tentativas dos outros jogadores advinharem o que você irá fazer. Considere o jogo de tênis. No saque, se 
+É fácil ver que não há equilíbrio de Nash em estratégias puras. Vocês viram que no jogo do par ou ímpar, o ideal é jogar cada estratégia com 50% de chance. Vamos tentar colocar alguma probabilidade nesse jogo? Que tal 50% para cada estratégia também?
+
+Vamos calcular o payoff (utilidade) esperado das novas estratégias, para poder preenhcer a nova matriz de payoff aumentada.
+
+```{r, results='asis', echo=FALSE}
+library(knitr)
+
+pair0 <- function(x,y) sprintf("(%.0f,%.0f)", x,y)
+pair2 <- function(x,y) sprintf("(%.2f,%.2f)", x,y)
+# Definindo a matriz de payoff
+
+payoff.mat <- matrix(c(pair0(4, 25), pair0(16, 10), pair2(10, 17.5), pair0(12, 5), pair0(8, 15), pair0(10, 10), 
+                       pair0(8, 15), pair2(12, 12.5), pair2(10, 13.75)), 
+                     nrow = 3, ncol = 3, 
+                     dimnames = list(c("A", "B", "50% C, 50% D"), 
+                                     c("C", "D", "50% C, 50% D")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Vamos calcular o Equilíbrio de Nash, se existe?
+
+Novamente, não existe equilíbrio de Nash. Lembremos que estamos querendo deixar os jogadores indeferentes entre suas estratégias. Então, devemos procurar probabilidades que os deixem indiferentes. Isso significa que eles não poderão antecipar a estratégia do outro jogador se for um equilíbrio de Nash (é a melhor resposta simultaneamente).
+
+Como achar essas probabilidades? O payoff esperado de jogar A e B, para o jogador 1 deve ser o mesmo, pois ele é indiferente dado o que o jogador 2 está fazendo. E a estratégia mista de 1 deve deixar 2 indiferente entre jogar C e D.
+Formalmente:
+Se 2 está misturando suas estratpegias para deixar 1 indiferente, então a utilidade esperada de 1 jogar A, dado que 2 está jogando C com probabilidade $p_2c$ e D com probabilidade $ 1 - p_2c$, deve ser a mesma de 1 jogar B, dado que 2 está jogando C com probabilidade $p_2c$ e D com o complemento.
+
+Para o jogador 1, $E[U(A)] = E[U(B)]$ e para o jogador 2, $E[U(C)] = E[U(D)]$.
+Como calcular a utilidade esperada de jogar "A"? Suponha que o jogador 1 escolhe a com probabilidade $p_1$, e B com probabilidade $1-p_2$. Então:
+
+$E[U(A)] = p_2c*U(A| 2 joga C) + (1-p_2c)*U(A| dado 2 joga D ) = p_2c*4 + (1-p_2c)*12$
+
+$E[U(A)] =  p_2c*4 + 12 -p_2c*12 = 12 - 8*p_2c$
+
+$E[U(B)] = p_2c*U(B| 2 joga C) + (1-p_2c)*U(B| dado 2 joga D ) = p_2c*16 + (1-p_2c)*8$
+
+$E[U(B)] = p_2c*16 + 8 -8*p_2c = 8 + 8*p_2c$
+
+Se 1 está indiferente, então:
+$E[U(A)] = E[U(B)]$
+
+$12 - 8*p_2c = 8 + 8*p_2c$
+
+$12 - 8 =  8*p_2c + 8*p_2c$
+
+$4 =  16*p_2c$
+
+$p_2c = 4/16$
+
+$p_2c = 1/4$
+
+$p_2d = 3/4$
+
+E agora fazemos a mesma coisa para o jogador 2.
+$E[U(C)] = E[U(D)]$
+
+$p_1a*U(C| 1 joga A) + (1-p_1a)*U(C| dado 1 joga B ) = p_1a*U(D| 1 joga A) + (1-p_1a)*U(B| dado 1 joga B )$
+
+$p_1a*25 + (1-p_1a)*10 = p_1a*5 + (1-p_1a)*15$
+
+$p_1a*25 + 10 -p_1a*10 = p_1a*5 + 15 - p_1a*15$
+
+$p_1a*15 + 10  =  15 - p_1a*10$
+
+$p_1a*25  =  5$
+
+$p_1a = 5/25$
+
+$p_1b = 4/5$
+
+
+Nossa matriz agora fica:
+
+
+```{r, results='asis', echo=FALSE}
+library(knitr)
+
+pair0 <- function(x,y) sprintf("(%.0f,%.0f)", x,y)
+pair2 <- function(x,y) sprintf("(%.2f,%.2f)", x,y)
+# Definindo a matriz de payoff
+
+payoff.mat <- matrix(c(pair0(4, 25), pair0(16, 10), pair2(13.6, 13), pair0(12, 5), pair0(8, 15), pair2(8.8, 13), 
+                       pair0(10, 10), pair2(10, 13.75), pair0(10, 13)), 
+                     nrow = 3, ncol = 3, 
+                     dimnames = list(c("A", "B", "1/5 C, 4/5 D"), 
+                                     c("C", "D", "1/4 C, 3/4 D")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Podemos ver, em primeiro lugar, que na nova matriz de payoff, 1 é indiferente entre jogar A, B ou sua estratégia mista de equilíbrio se 2 de fato está misturando suas estratégias C e D com as probabilidade de equilíbrio. Notem que ele sempre ganha 10.
+
+Do mesmo jeito, 2 sempre ganha 13 se 1 está em sua estratégia mista.
+Por fim, vemos que ambas são estratégias de equilíbrio de Nash. E, nesse caso, a única estratégia mista (ou pura) de equilíbrio.
+
+Vamos agora fazer o mesmo exercício para o jogo do par ou ímpar e para pedra, papel tesoura.
+
+Aplicação em ciência política.
+Suponha duas candidatas, 1 e 2, que devem decidir onde alocar seus dias finais de campanha, seja no estado A ou estado B, nos EUA. As pesquisas indicam que esses são os estados que podem decidir a batalha. Suponha que as probabilidades de cada candidata ganhar a eleição são dadas como segue:
+
+
+
+```{r, results='asis', echo=FALSE}
+library(knitr)
+
+pair <- function(x,y) sprintf("(%.1f,%.1f)", x,y)
+
+# Definindo a matriz de payoff
+payoff.mat <- matrix(c(pair(.5, .5), pair(.9, .1), pair(.9, .1), pair(.6, .6)), 
+                     nrow = 2, ncol = 2, 
+                     dimnames = list(c("A", "B"), 
+                                     c("A", "B")))
+
+# Renderizando a tabela de payoff
+kable(payoff.mat)
+```
+
+Vamos calcular o ENEM (Eq. Nash em Estratégias Mistas)?
+
+Ambas vão para A com prob 3/7 (aprox. 0.43) e B com prob 4/7 (aprox. 0.57).
+
+Agora, suponha que, antes de implementar essas estratégias, novas pesquisas saem e a probabilidade muda. Se 1 for para B sozinha, sua prob é .7 e não .9. Isso é conhecimento comum. Portanto, isso poderia nos levar a crer que ela deveria gastar mais tempo em A, ou aumentar a probabilidade de ir para A. Mas os novos equilíbrios indicam que 1 agora vai para A com pob 1/5 e visitar b com 4/5. Isso porque 2 vai mudar sua estratégia e aumentar a prob de visitar A (de 3/7 para 3/5). E se ambos vão para A, a prob de 1 ganhar é menor do que se ela for para B sozinha.
+
+Esse tipo de coisa acontece com frequência em esportes. Um jogador veterano atacante se machuca e alguém das divisões de base entra no lugar. E aí, ele comeca a receber mais passes e tem mais oportunidades de gol e, por isso, marca mais gols do que o veterano. Ocorre que, como ele tem menos chance de criar jogadas e fazer gols, é melhor deixar ele mais livre e marcar outros jogadores. Isso aumenta a chance de gol do novato, mas diminui a de todos os outros jogadores. Então, embora ele esteja marcando mais gols que o veterano, o time no geral estará com desempenho pior.
+
+
+
+# Pedra-papel-tesoura
+
+Considere o jogo pedra-papel-tesoura. Assuma que vencer gera um payoff de 1, empate 0 e perder de -1. A matriz de payoff pode ser representada do seguinte modo:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(0,0), pair(1,-1), pair(-1,1),
+               pair(-1,1), pair(0,0), pair(1,-1),
+               pair(1,-1), pair(-1,1), pair(0,0))
+payoff.mat <- matrix(all_pairs, nrow=3)
+dimnames(payoff.mat) <- c(list(c("Pedra","Papel", "Tesoura"), c("Pedra", "Papel", "Tesoura")))
+results = "asis"
+
+kable(payoff.mat)
+```
+
+
+A correspondência de melhor resposta do jogador 1 para suas crenças a respeito do jogador 2 pode ser escrita da seguinte forma:
+$s_1(s_2) =$ Papel quando $s_2 = Pedra$
+$s_1(s_2) =$ Tesoura quando $s_2 = Papel$
+$s_1(s_2) =$ Pedra quando $s_2 = Tesoura$
+
+E de maneira análoga para o jogador 2. É fácil ver que não existe equilíbrio de Nahs em estratégias puras nesse jogo. Raciocínios do tipo: "se ele acha que vou jogar pedra, então ele jogará papel, de forma que devo jogar tesoura. Porém, se ele antecipar isso, ele jogará pedra, de forma que devo jogar papel. Mas ele pode antecipar isso também e jogar tesoura, mas aí eu jogo pedra..." leva a uma regressão que nunca terminará. Em certo sentido, tanto faz o que você joga, porque não é possível advinhar o que você o outro jogador irá fazer. Mas dizer tanto faz pode ser pensado como se você aleatorizasse e jogasse cada uma das três ações com a mesma probabilidade $1/3$, e o mesmo o jogador 2. Nesse caso, dizemos que os jogadores estão jogando uma estratégia mista. Neste caso em particular, joga cada uma das t^Res ações com probabilidade $1/3$.
+
+Definição do Ronaldo Fiani (p. 192):
+
+Quando, em vez de escolher entre suas estratégias uma dada estratégia para jogá-la com certeza, um jogador decide alternar entre suas estratégias aleatoriamente, atribuindo uma probabilidade a cada estratégia a ser escolhida, diz-se que o jogador utiliza estratégias mistas. Caso contrário, diz-se que emprega estratégias puras.
+
+Nós vamos definir estratégias mistas da seguinte forma:
+Se o conjunto de estrartégias disponíveis para um jogador é $S = (s_1, s_2, ..., s_m)$, então uma estratégia mista para aquele jogador é uma loteria sobre $S$, $p = (p_1, p_2, ..., p_m)$. Diz-se que o jogador escolheu a estratégia $p$ se ele usa esta loteria para determinar qual estratégia pura irá implementar no jogo.
+
+Em outras plavras, uma estratégia mista é uma distribuição de probabilidade que determina como uma estratégia pura será jogada por meio da realização dessa distribuição.
+
+Definição 6.1.
+Se um conjunto de estatégias disponíveis para um jogador é $S = {s_1, s_2, ..., s_n}$, então uma **estratégia mista** para aquele jogador é uma loteria sobre $S$, $p = (p_1, p_2, ..., p_n)$. Diz-se que o jogador escolhe essa estratégia $p$ se ele usa essa loteria para determinar que estratégia pura irá implmentar quando de fato jogar o jogo.
 
 
 Referências
