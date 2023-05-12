@@ -1,0 +1,153 @@
+---
+title: "Aula 8 - Equilíbrio de Nash em Estratégias Mistas e Jogos dinâmicos"
+author: "Manoel Galdino"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Como calcular ENEM
+
+# Definições
+
+Uma estgratégia mista do jogador $i$ chamamos de $p_i$, indicando uma dada distribuição de probabilidade sobre o conjunto de estratégias puras $S_i$ do jogador. E $p_i \in \Delta S_i$, para indicar o conjunto de todas as distribuições de probabilidades possíveis.
+
+# Def. 8.1. Utilidade esperada.
+
+A *Utilidade esperada* (ou payoff esperado) do jogador $i$ quando ele escolhe a estratégia pura $s_i \in S_i$ e seu oponente joga a estratégia mista $p_{-i} \in \Delta S_i$ é:
+
+$u_i(s_i, p_{-i}) = {\sum\limits_{si \in S_i} u_i(s_i,p_{-i}) *p_i(s_i)}$
+
+# Achando o ENEM
+
+Considere o jogo do par ou ímpar. Seja $p$ a probabilidade com que a jogadora 1 joga "Par" e $(1-p)$ a probabilidade com o que elajoga "ímpar". De maneira análoga, definimos $q$ e $q -1$ para a jogadora 2.  
+
+a utilidade esperada da jogadora de cada uma de suas estratégias puras é:
+
+$ue_i(par, q) = q*1 + (1-q)*(-1) = q - 1 + q = 2q - 1$
+
+$ue_i(ímpar, q) = q*(-1) + (1-q)*(1) = -q + 1 - q = 1 - 2q$
+
+Sabemos que o ENEM deixa a jogadora 1 indiferente entre par ou ímpar. Notem que se 
+$ue_i(par, q) > ue_i(ímpar, q)$, a melhor resposta é jogar "par", e se a desigualdade for menor, a melhor resposta é jogar "ímpar". 
+
+$ue_i(par, q) = ue_i(ímpar, q)$
+
+$2q - 1 = 1 - 2q$
+
+$4q = 2$
+
+$q = 1/2$
+
+Em termos de melhor resposta (de correspondência), $p = 0$ se $q < 1/2$, $p = 1/2$ se $q = 1/2$ e $p = 1$ se $q > 1/2$.
+
+Similarmente para a jogadora 2 (exercício para o leitor), mostrando que $(p=1/2, q=1/2)$ é a melhor resposta de ambos os jogadores e constitui um Equilíbrio de Nash (em estratégias mistas).
+
+# Exercício
+
+Considere o seguinte jogo.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(10,-5), pair(20,-20), pair(5,-10), pair(0,0))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(list(c("Não Critica","critica"), c("Baixa juros", "Mantém juros")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+## Jogados Dinâmicos
+
+# Racionalidade Sequencial
+
+Considere novamente o jogo Bach e Stravinsky. Suponha que a jogadora 1 joga primeiro e e a jogadora 2 pode observar a esoclha de 1. Imagine que ela vai para um lugar, liga para a amiga e diz: estou aqui no lugar tal (espetáculo do Bach ou do Stravinsky).
+
+Veja que em termos de equilíbrios de Nash, continuamos com os mesmos dois equilíbrios de antes. Porém, não faz sentido achar que o equilíbrio (S,S) será jogado, pois a jogadora 1 sabe que, se for para Bach, 2 também irá. Jogos na forma normal não capturam muito bem a noção de jogos sequenciais e racionalidade sequencial.
+
+A forma estratégica do jogo, de fato, não traz informações nem sobre a ordem dos movimentos, nem as ações disponíveis para cada jogadora na sua vez de jogar (apenas estratégias. A distinção ficará mais clara depois.)
+# Jogo na forma extensiva
+
+Por isso, iremos alterar a representação de nosso jogo, para a forma extensiva.
+
+```{r results = "asis", echo=FALSE, warnings=FALSE}
+library(rgamer)
+
+g1 <- extensive_form(
+  players = list("Serena",
+                 rep("Nina", 2),
+                 rep(NA, 4)),
+  actions = list(c("Bach", "Stravinski"),
+                  c("bach", "stravinski"), c("bach", "stravinski")),
+  payoffs = list(Serena = c(2, 0, 0, 1),
+                 Nina  = c(1, 0, 0, 2)),
+   show_node_id = TRUE)
+```
+
+A árvore do jogo é lida de cima para baixo. No topo está quem joga primeiro. O retângulo com o nome da jogadora é chamado de nó. No primeiro nó, Serena tem duas ações possívels, Bach e Stravinski. Uma vez que ela escolha sua ação, é a vez da Nina, que também tem duas opções ("bach" e "stravinsky", em caixa baixa, para distinguir as ações das duas jogadoras). Se Serena escolheu Bach, Nina está no galho da esquerda. Se Serena escolheu Stravinsky, Nina está no galo da direita. E uma vez que Nina faça sua escolha, o jogo acaba e os payoffs finais são mostrados. O primeiro payoff é da jogadora 1, e o segundo da jogadora 2.
+
+Assim, acrescentaremos:
+
+1. ordem dos movimentos
+2. Ações das jogadores quand for a vez deles de se moverem.
+3. O conhecimento que as jogadoras possuem quando é sua vez de se moverem.
+
+Há um novo elemento que também iremos introduzir, que são distribuições de probabilidade sobre eventos exógenos.
+
+
+Também é possivel representar nosso jogo original em que as jogadoras escolhem simultaneamente ou, mais propriamente, sem saber o que a outra jogadora fez. Porém, precisaremos modificar um pouquinho nossa árvore do jogo. Antes de fazer isso, vamos defini-la.
+
+Definição de árvore do jogo
+
+Uma **árvore do jogo** é formada por um conjunto de nós $x \in X$ com uma relação de precedência $x > x'$, que significa "x precede a x'". Ou seja, $x$ vem antes de $x'$. Cada nó só tem um predecessor. A relação de precedência é transitiva ($x > x', x' > x'' => x > x''$), assimetrica (x > x' => não (x' > x)), isto é, $x$ precede $x'$, mas $x'$ não precede  $x$, e incompleta (nem todos os pares podem ser ordenados). Há um nó especial, chamado raiz da árvore, denotada por n1, que precede quaisquer outros nós $x \in X$. Nós que não precedem outros ós são chamados de nós terminais, denotados pelo conjunto $Z \subset X$. Nós terminais denotam o fim do jogo, com os payoffs associados. Cada nós $x$ que não é terminal é atribuído a um jogador $i(x)$ com o conjunto de ações $A_i(x)$, ou para natureza.
+
+
+# Jogo da confiança
+
+```{r results = "asis", echo=FALSE, warnings=FALSE}
+library(rgamer)
+
+g1 <- extensive_form(
+  players = list("p1", c(NA, "p2"),
+                 rep(NA, 2)),
+  actions = list(c("Nope", "Trust"),
+                  c("Cooperar", "Desertar")),
+  payoffs = list(p1 = c(0, 1, -1),
+                 p2  = c(0, 1, 2)),
+   show_node_id = TRUE)
+```
+
+O jogador p1 joga primeiro. Logo, i(n1) = p1. 
+
+We proceed to put structure on the information that a player has when it is his turn to move. A player can have very fine information and know exactly where he is in the game tree, or he may have coarser information and not know what has happenedbefore his move, therefore not knowing exactly where he is in the game tree. We introduce the following definition:
+
+
+<!-- Definição conjunto de informações: -->
+
+<!-- Every player i has a collection of information sets h_i in H_i that partition the nodes of the game at which player i moves with the following properties: -->
+
+
+<!-- 1. If $h_i$ is a singleton that includes only $x$ then player $i$ who moves at $x$ knows -->
+<!-- that he is at $x$. -->
+<!-- 2. If x $\neq$ x' and if both x ∈ hi and x1 ∈ hi then player i who moves at x does not -->
+<!-- know whether he is at x or x1 . -->
+<!-- 3. If x $\neq$ x' and if both x ∈ hi and x' ∈ hi then Ai (x ) = Ai (x). -->
+
+<!-- The formal definition builds on a simple idea. Consider the sequential move Battle of the Sexes game in Figure 7.2 and observe that player 2 moves at x1. We want to describe whether or not he knows that he is at x1. If we write h2 = {x1}, this means that the information set at x1 is a singleton (it includes only the node x1). Hence player -->
+<!-- 2 has information that says “I am at x1,” which is captured by property (1) of the definition. In this case it will follow that player 2 will have another information set, h2 = {x2}. -->
+
+<!-- If, in contrast, we want to represent a game in which player 2 does not know whether he is at x1 or x2, then it must be the case that his information is I know that I am at either x1 or x2, but I don’t know at which of the two I am. Thus we will write h2 = {x1, x2}, which exactly means that player 2 cannot tell whether he is at x1 or x2. -->
+<!-- This is the essence of property (2) of the definition. -->
+
+<!-- Finally, property (3) is also essential to maintain the logic of information. If instead x ∈ hi and x ∈ hi but Ai(x) = Ai (x), then by the mere fact that player i has different actions from which to choose at each of the nodes x and x , he should be able to distinguish between these two nodes. It would therefore be illogical to assume that -->
+<!-- he cannot distinguish between them. -->
