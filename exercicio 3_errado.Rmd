@@ -1,0 +1,64 @@
+---
+title: "Lista de exercícios 3"
+author: "Manoel Galdino"
+date: "2023-04-14"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Escreva as informações que especificam um jogo na forma normal (Número de jogadores, estratégias e funções de utilidade) e a matriz de payoff dos seguintes jogos apresentados em aula: Dilema do Prisioneiro, Bach e Stravinsky, Jogo do Chicken e Stag Hunt.
+
+2. Para os jogos da questão anterior, responda às seguintes perguntas:
+a) Existe alguma estratégia estritamente dominada para algum (ou ambos) jogador(es)? Se sim, qual.
+b) existe um equilírio de estratégia estritamente dominante? Se sim, qual?
+c) Existe algum equilíbrio de Eliminação Iterativa de Estratégias Estritamente Dominadas? Se sim, qual? Ele é ótimo de Pareto?
+
+3. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(3,3), pair(3,3), pair(3,3), pair(3,3))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+b) Quantos equilíbrios de Nash em estratégias puras existem?
+
+4. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,4), pair(5,0), pair(0,-1), pair(0,5), pair(1,1), pair(0,0), pair(-1,0), pair(0,0), pair(1,1))
+payoff.mat <- matrix(all_pairs, nrow=3, ncol=3)
+dimnames(payoff.mat) <- c(list(c("A", "B", "C"), c("A", "B", "C")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+b) Existe ENEM em que os jogadores aleatorizam entre A e B? Explique.
+c) Existe ENEM em que os jogadores aleatorizam entre B e c? Explique.
+
