@@ -1,0 +1,113 @@
+---
+title: "Lista de exercícios 5"
+author: "Manoel Galdino"
+date: "2023-05-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta versão da lista está com os payoffs corrigidos da última questão.
+
+1. Qual o equilíbrio de Nash em Estratégias Mistas (ENEM) do Dilema do Prisioneiro?
+
+2. Qual o ENEM do jogo do Chicken?
+
+3. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(3,3), pair(3,3), pair(3,3), pair(3,3))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+b) Quantos equilíbrios de Nash em estratégias mistas existem?
+
+4. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,4), pair(5,0), pair(0,-1), pair(0,5), pair(1,1), pair(0,0), pair(-1,0), pair(0,0), pair(1,1))
+payoff.mat <- matrix(all_pairs, nrow=3, ncol=3)
+dimnames(payoff.mat) <- c(list(c("A", "B", "C"), c("A", "B", "C")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+b) Existe ENEM em que os jogadores aleatorizam entre A e B? Explique.
+c) Existe ENEM em que os jogadores aleatorizam entre B e c? Explique.
+
+4. Uma funcionária (jogadora 1) que trabalha para uma chefe (jogadora 2) pode tanto trabalhar (T) quanto enrolar (E), enquanto sua chefe pode tanto monitorar a funcionária (M) quanto ignorá-la (I). Como em muitos relacionamentos entre funcionária e chefe, se a funcionária estiver trabalhando, a chefe prefere não monitorá-la, mas se a chefe não estiver monitorando, a funcionária prefere enrolar. A matriz de payoff abaixo representa uma situação como essa.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(1,1), pair(0,2), pair(1,2), pair(2,1))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("T","E"), c("M", "I")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) escreva a fução de melhor resposta de cada jogadora (isto é, para a jogadora 1, qual probabilidade $p$ ela deve escolher para cada possível escolha de probabilidade $q$ da jogadora 2).
+b) qual o equilíbrio de Nash do jogo?
+
+5. Duas jogadoras devem escolher entre três alternativas, a, b e c. As preferências do Jogadora 1 são dadas por a$\succeq b \succeq c$, enquanto as preferências do Jogador 2 são dadas por $c \succeq b \succeq a$. As regras são que a Jogadora 1 se move primeiro e pode vetar uma das três alternativas. Em seguida, a Jogadora 2 escolhe uma das duas alternativas restantes.
+
+a. Modele isso como uma árvore de jogo em forma extensiva (escolha payoffs que representem as preferências).
+b. Quantas (e quais) estratégias puras cada jogadora tem?
+c. Qual o equilíbrio de Nash por indução para trás?
+
+6. Câmara e Senado. É muito comun que analistas defendam que ter maioria na Câmara é mais importante do que no Senado, pois projetos de lei (pls) enviados pelo executivo em geral iniciam pela Câmara. Desconsiderando a possibilidade de veto do presidente da república para simplificar o jogo e desconsiderando as comissões, podemos modelar o que pode acontecer pera árvore do jogo na forma abaixo. Em resumo, a Câmara pode aprovar o pl original  (representado por A pl0), emendá-lo (E pl0) ou rejeitá-lo (o jogo acaba). Se a Câmara aprovar o pl original, vai para o Senado a versão do presidente. Se emendar, vai a versão emendada. O Senado pode então aprovar o pl que receber, emendá-lo ou rejeitá-lo. Se rejeitar ou aprovar (A pl-EC, de Aprovar pl emendado da Câmara) como veio da Câmara, o jogo acaba. Se emendar (E pl-EC), volta para a Câmara, que deve aprovar as alterações do Senado (A pl-S) ou aprovar o texto original (não pode emendá-lo novamente).
+
+```{r results = "asis", echo=FALSE}
+library(rgamer)
+
+game2 <- extensive_form(
+  players = list("Camara",
+                 c(rep("Senado", 2), NA),
+                 c(NA, "Camara", rep(NA, 2), "Camara", NA),
+                 rep(NA, 4)),
+  actions = list(c("A pl0", "E pl0", "Rejeita"), # segundo
+                 c("A pl0", "E pl0", "Rejeita"), c("A pl-EC", "E pl-EC", "Rejeita pl-EC"), # senado
+                 c("A pl-S", "A pl0"),
+                 c("Aprova pl-EC-ES", "A pl0")),
+  payoffs = list(Camara = c(2, -2, 2, 1, 2 ,1, -2, 1, -2),
+                 Senado =  c(1, -1, 1, 1 ,1 ,1, -1, 1, -1)),
+  direction = "horizontal")
+```
+
+Vamos supor que o pl original do presidente está situado na esquerda, a Câmara (eleitor mediano) prefere mais à direita, e o Senado mais ao centro (direita). Então, o pl original rende um payoff 2 para o presidente (que não está no jogo), -2 para a Câmara e -1 para o Senado. A versão emendada da Câmara gera -2 para o presidente, 1 para o Senado e 2 para a Câmara. Por fim, a emenda do Senado gera 2 para o Senado, 1 para a Cãmara e -1 para o presidente. Se o PL for rejeitado, prevalece o status quo, que rende -2 para o presidente, 2 para a Câmara e 1 para o Senado. Note que os payoffs são sempre: se o presidente ganha $x$, a Câmara ganha $-x$ e o Senado $-x +1$.
+
+a) Qual o equilíbrio de Nash por indução para trás?
+b) se o pl for rejeitado em qualquer momento e prevalecer o status quo, o presidente preferiria não ter enviado o pl em primeiro lugar. Ele deveria ter enviado o PL? Justifique sua resposta.
+b) Suponha quatro cenários, em que o status quo gera a) -3, b) -1, c) 0 e d) 1 de payoff para o presidente. Ele deveria enviar um projeto de lei em algum dos possíveis cenários de status quo? Modifique a árvore do jogo para cada cenário, acha o equilíbrio de Nash por indução para trás e justifique sua resposta. Ps.: Novamente, se o PL for rejeitado, ele prefere não enviar o PL.

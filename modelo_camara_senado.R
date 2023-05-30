@@ -22,15 +22,27 @@ game6
 game1 <- extensive_form(
   players = list("Presidente", 
                  "Camara",
-                 rep("Senado", 3),
-                 rep(NA, 7)),
+                 c(rep("Senado", 2), NA),
+                 rep(NA, 6)),
   actions = list(c("Envia projeto de lei"), # primeiro
                  c("Aprova projeto original", "Emenda", "Rejeita"), # segundo
                  c("Aprova projeto original", "Emenda original", "Rejeita"),
-                 c("stat", "game", "teste"),
-                 c("nada faz")),
+                 c("Aprova projeto emendado", "Emenda projeto da Câmara", "Rejeita projeto da Câmara")),
   payoffs = list(Presidente = c(2, 0, 1, 1, 1, 1, 0),
                  Camara = c(1, 0, 1, 1, 1 ,1, 0),
                  Senado =  c(1, 0, 1, 1 ,1 ,1, 0)),
   direction = "right")
 
+
+game2 <- extensive_form(
+  players = list("Camara",
+                 c(rep("Senado", 2), NA),
+                 c(NA, "Câmara", rep(NA, 2), "Câmara", NA),
+                 rep(NA, 4)),
+  actions = list(c("Aprova pl O", "Emenda pl", "Rejeita"), # segundo
+                 c("Aprova  pl O", "Emenda  pl O", "Rejeita"), c("Aprova emendado C", "Emenda pl Câmara", "Rejeita pl da Câmara"), # senado
+                 c("Aprova emenda Senado", "Aprova pl O"),
+                 c("Aprova Câmara-Senado", "Aprova pl O")),
+  payoffs = list(Camara = c(1, 0, 1, 1, 1 ,1, 0, 0, 0),
+                 Senado =  c(1, 0, 1, 1 ,1 ,1, 0, 0, 0)),
+  direction = "horizontal")

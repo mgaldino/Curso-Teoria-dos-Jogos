@@ -1,0 +1,39 @@
+---
+title: "Aula 8 - Equilíbrio de Nash em Estratégias Mistas e Jogos dinâmicos"
+author: "Manoel Galdino"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+# Baron-Ferejohn model
+
+In all variants of the Baron-Ferejohn model a
+proposer is selected according to a known rule and then proposes an alternative to a group of
+voters. According to a known voting rule the proposal is either accepted or rejected. If the
+proposal is accepted, the game ends and all actors receive pay-offs as specified by the accepted
+proposal. Otherwise, another proposer is selected etc. iv This process continues until a proposal is
+accepted.
+
+Consider a simple version of the model where there are three political parties that need to
+decide on how to split one dollar. Suppose that no party has a majority of seats. The Baron-
+Ferejohn model predicts that the party with proposal power will propose a minimal winning
+coalition consisting of itself and one other member, leaving the third party with zero. The
+proposing party will offer its coalition partner just the amount necessary to secure acceptance.
+This amount (or continuation value) equals the coalition partner’s expected pay-off if the
+proposal was rejected and the bargaining continued. Proposals are thus always accepted in the
+first round. Note that the proposing party will always choose as its coalition partner the party
+with the lowest continuation value. The division of spoils will, in general, be highly unequal,
+especially if the parties’ discount factors are low.
+
+Second, the model’s prediction is based on the assumption of stationarity, a stronger equilibrium requirement than mere subgame-perfection, which rules out dependence of previous
+actions and thus eliminates the use of punishment strategies familiar from the study of repeated
+games. Without it, the Baron-Ferejohn model faces a folk-theorem where all individually rational
+outcomes can be supported as equilibria. But this means that one cannot test the Baron-Ferejohn
+model in isolation, but only in conjunction with an additional equilibrium refinement (here
+stationarity).

@@ -99,7 +99,7 @@ A árvore do jogo é lida de cima para baixo. No topo está quem joga primeiro. 
 Assim, acrescentaremos:
 
 1. ordem dos movimentos
-2. Ações das jogadores quand for a vez deles de se moverem.
+2. Ações das jogadores quando for a vez deles de se moverem.
 3. O conhecimento que as jogadoras possuem quando é sua vez de se moverem.
 
 Há um novo elemento que também iremos introduzir, que são distribuições de probabilidade sobre eventos exógenos.
@@ -129,25 +129,24 @@ g1 <- extensive_form(
 
 O jogador p1 joga primeiro. Logo, i(n1) = p1. 
 
-We proceed to put structure on the information that a player has when it is his turn to move. A player can have very fine information and know exactly where he is in the game tree, or he may have coarser information and not know what has happenedbefore his move, therefore not knowing exactly where he is in the game tree. We introduce the following definition:
+# Informações
+
+Quais informações cada jogador tem quando é sua vezde jogar? Uma jogadora pode ter informação bem fina sobre onde está no jogo, ou bem grosseira. Vamos então introduzir a seguinte definição:
 
 
-<!-- Definição conjunto de informações: -->
+Definição conjunto de informações:
 
-<!-- Every player i has a collection of information sets h_i in H_i that partition the nodes of the game at which player i moves with the following properties: -->
+Cada jogador $i$ tem uma coleção de conjuntos de informação $h_i$ the particione (divide) os nós do jogo no qual uma jogadora $i$ move com as seguintes propriedades:
 
+1. Se $h_i$ é uma conjunto unitário (singleton) que inclui apenas $x$, então a jogadora $i$ que se move em $x$ sabe que está em $x$.
+2. Se  $x \neq x'$ e se ambos $x \in h_i$ e $x' \in h_i$ então a jogadora $i$ que se move em $x$ não sabe se está em em $x$ ou $x'$.
+3. Se $x \neq x'$ e se ambos $x$ e $x' \in h_i$, então $A_i(x) = A_i(x')$.
 
-<!-- 1. If $h_i$ is a singleton that includes only $x$ then player $i$ who moves at $x$ knows -->
-<!-- that he is at $x$. -->
-<!-- 2. If x $\neq$ x' and if both x ∈ hi and x1 ∈ hi then player i who moves at x does not -->
-<!-- know whether he is at x or x1 . -->
-<!-- 3. If x $\neq$ x' and if both x ∈ hi and x' ∈ hi then Ai (x ) = Ai (x). -->
+Vamos entender esta definição formal. Considere novamente o jogo do Bach e Stravinsky na forma extensiva. No gráfico temos n1, n2.. como nós, enquanto na definição usamos x1 etc. Vou falar em x em vez de n apenas para continuar com a discussão. Considere quando a jogadora 2 se move em x2. A questão é: ela sabe que está em x2? Ou não sabe se está em x2 ou x3? Se a gente escreve $h_2 = {x_2}$, então isso significa que o conjunto de informações em $x_1$ é um conjunti unitário. Portanto, a jogadora a jogadora possui informação que diz "estou em x_2", que é capturado pela propriedade 1 da definição. Nesse caso, segue-se que a jogadora 2 també mtem outro conjunto de informação $h_2 = {x_3}.
 
-<!-- The formal definition builds on a simple idea. Consider the sequential move Battle of the Sexes game in Figure 7.2 and observe that player 2 moves at x1. We want to describe whether or not he knows that he is at x1. If we write h2 = {x1}, this means that the information set at x1 is a singleton (it includes only the node x1). Hence player -->
-<!-- 2 has information that says “I am at x1,” which is captured by property (1) of the definition. In this case it will follow that player 2 will have another information set, h2 = {x2}. -->
+Se, por outro lado, a jogadora 2 não sabe se está em $x_2$ ou $x_3$, como no jogo do Bach e Stravinsky simultâneo, então deve ser verdade que sua informação é de que está em $x_1$ ou $x_2$, mas não sabe em qual dos dois. Nesse caso, escrevemos $h_2 = {x_1, x_2}$. Esta é a propriedade 2.
 
-<!-- If, in contrast, we want to represent a game in which player 2 does not know whether he is at x1 or x2, then it must be the case that his information is I know that I am at either x1 or x2, but I don’t know at which of the two I am. Thus we will write h2 = {x1, x2}, which exactly means that player 2 cannot tell whether he is at x1 or x2. -->
-<!-- This is the essence of property (2) of the definition. -->
+Finalmente, a propriedade 3 é essencial para manter a lógica da informação, em particular quando as ações disponíveis em cada nós forem diferentes para uma jogadora. Considere o jogo da confiança. Se ela não sabe se está no nó x2 (onde o jogo terminou e não tem o que fazer) ou x3, então ela não pode saber quais as ações disponíveis para ela.
 
-<!-- Finally, property (3) is also essential to maintain the logic of information. If instead x ∈ hi and x ∈ hi but Ai(x) = Ai (x), then by the mere fact that player i has different actions from which to choose at each of the nodes x and x , he should be able to distinguish between these two nodes. It would therefore be illogical to assume that -->
-<!-- he cannot distinguish between them. -->
+Finally, property (3) is also essential to maintain the logic of information. If instead x ∈ hi and x ∈ hi but Ai(x) = Ai (x), then by the mere fact that player i has different actions from which to choose at each of the nodes x and x , he should be able to distinguish between these two nodes. It would therefore be illogical to assume that
+he cannot distinguish between them.

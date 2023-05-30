@@ -1,0 +1,24 @@
+---
+title: "Lista preferencia temporal"
+author: "Manoel Galdino"
+date: "2023-02-26"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+1. Uma pessoa é indiferente entre receber 100 reais hoje a 120 em um ano. Qual taxa de desconto temporal dessa pessoa?
+
+2. Estime sua preferência intertemporal em 30 dias respondendo a uma série de perguntas seguindo as instruções a seguir. Comece com alguma pergunta como "Você preferiria ter 10 reais hoje ou 15 daqui a 30 dias?". Se preferir o presente (futuro) ao futuro (presente), responda uma pergunta trocando 10 reais por um valor maior (menor) no futuro, digamos 20 (13) reais, e vá aumentando (diminuindo) esse valor até ficar indiferente ou preferir o futuro (presente) . Se ficar indiferente, calcule sua taxa de desconto temporal. Se preferir o futuro, reduza um pouco o valor, e vá iterando, até ficar indiferente.
+
+3. Aplique o procedimento acima para uma colega de sala e estime a sua preferência intertemporal. Compare quem é mais impaciente, você ou sua colega.
+
+4. Uma vendedora oferece um produto a R$ 100,00 à vista, ou a prazo, em três parcelas mensais de 40 reais. Considere que a primeira parcela é paga como entrada (isto é, no momento presente). Qual a taxa de desconto temporal implícita nessa venda a prazo? Se a primeira parcela for paga apenas após um mês (sem entrada), qual a taxa de desconto temporal implícita?
+
+5. Suponha que
+
+6. Em um experimento realizado pelo prêmio Nobel de economia Richar Thaler (1981), participantes tinha de responder a seguintepergunta: Quanto (em dinheiro) precisariam receber em um mês, um ano e dez anos para ficar indiferente a receber $15 no presente. As respostas médias foram foram 20, 50 e 100. Sem fazer cálculo algum, avalie se elas parecem razoávels e se você responderia muito diferente. Lembre-se que, se você for mesmo indiferente, então aceitaria a proposta oposta (digamos, pagar 15 reais para alguém em troca de receber 20 daqui a um mês, 50)

@@ -1,0 +1,323 @@
+---
+title: "Lista de exercícios 5"
+author: "Manoel Galdino"
+date: "2023-05-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Esta versão da lista está com os payoffs corrigidos da última questão.
+
+1. Qual o equilíbrio de Nash em Estratégias Mistas (ENEM) do Dilema do Prisioneiro?
+
+Para achar o ENEM, devemos igualar as utilidades esperadas das estratégias. Supondo que 2 joga C (coopera) com probabilidade $q$ e NC (não-coopera) com probabilidade $1-q$ e similarmente para 1, só que com probabilidades $p$ e $(1-p)$, temos:
+
+$E[U_1(C)] = E[U_1(D)]$
+
+$q*-2 + (1-q)*-10 = q*0 + (1-q)*-5$
+
+$-2q -10 + 10q = -5 + 5q$
+
+$8q -5q = 10 - 5$
+
+$3q = 5$
+
+$q = 5/3$. 
+
+Notem que $q > 1$, o que não é possível. Isso significa que não há estratégia mista para 2. Cálculo similar mostra que também não há estratégia mista para 1. A razão é que para identificar uma estratégia mista de equilíbrio, queremos deixar cada jogadora indiferente entre as estratégias. Porém, não existe nenhuma probabilidade positiva de jogar cooperar que vá deixar uma jogadora indiferente entre essa estratégia de cooperar e não cooperar. Uma outra forma de ver isso é que (C,C) é um equilíbrio de estratégia dominante. Portanto, podemos usar EIESD para deixar o jogo com uma única estratégia para ambos os jogadores, e já não dá para usar nosso algoritmo de igualar utilidade esperada de estratégias.
+
+2. Qual o ENEM do jogo do Chicken?
+Sejam as estratégias D (desvia) e ND (não desvia). E a matriz de payoff dada por: 
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(0,0), pair(2,-1), pair(-1,2), pair(-10,-10))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("D","ND")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Então, o ENEM requer:
+
+$E[U_1(D)] = E[U_1(DN)]$
+
+$0*q + -1*(1-q) = 2*q + -10*(1-q)$
+
+Resolvendo, temos:
+$-1 + q = 2q + -10 + 10q$
+
+$-1 + q =  -10 + 12q$
+
+$9= 11q$
+
+$q = 9/11$.
+
+Como os payoffs são simétricos, ambos jogadores vão aleatorizar com as mesmas probabilidades. Logo, o ENEM é (p=3/4, 1-p = 1/4; q = 3/4, 1-q = 1/4).
+
+
+3. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(3,3), pair(3,3), pair(3,3), pair(3,3))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("Alto","Baixo"), c("Esquerda", "Centro")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+
+Existem 4 ENEP: (A,E); (A,C), (B,E) e (B,C), já que não é possível nenhum jogador melhorar unilateralmente em cada uma desses casos.
+
+b) Quantos equilíbrios de Nash em estratégias mistas existem?
+o ENEM requer:
+
+$E[U_1(A)] = E[U_1(B)]$
+
+$3*q + 3*(1-q) = 3*q + 3*(1-q)$
+
+$ 3 = 3$.
+
+Ou seja, qualquer valor de q torna a equação verdadeira. Isso significa que existem infinitos equilíbrios de Nash em estratégias mistas, dados por (p = [0,1], q=[0,1]).
+
+ps.: Aqui eu incluí os ENEP como casos limites. Mas poderia ter excluído também, seguindo a convenção de não tratar ENEP como ENEM.
+
+ps.2: Você podem verificar que de fato qualquer valor de $q$ torna o jogador indiferente, calculando os payoffs esperados para casos particulares (digamos, $q=1/2$, depois $q=1/3$ etc.). Intuitivamente é fácil ver que isso é verdade, já que os payoffs são sempre iguais, não importa o que se jogue, com qualquer probabilidade.
+
+4. Considere o seguinte jogo representado na forma estratégica:
+
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(4,4), pair(5,0), pair(0,-1), pair(0,5), pair(1,1), pair(0,0), pair(-1,0), pair(0,0), pair(1,1))
+payoff.mat <- matrix(all_pairs, nrow=3, ncol=3)
+dimnames(payoff.mat) <- c(list(c("A", "B", "C"), c("A", "B", "C")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) Existe algum equilíbrio de Nash em Estratégias Puras (ENEP)? Se sim, qual (ou quais)?
+
+R.: Vejam que A é estritamente dominada por B do ponto de vista da jogadora 1. Portanto, podemos eliminar essa estratégia do jogo. Similarmente, A é estritamente dominada por B para a jogadora 2, de forma que também podemos eliminar essa estratégia. Ficamos então com a seguinte matriz:
+
+```{r results = "asis", echo=FALSE}
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(1,1), pair(0,0), pair(0,0), pair(1,1))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("B", "C"), c("B", "C")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+Temos então dois ENEP: (B,B) e (C,C).
+
+b) Existe ENEM em que as jogadoras aleatorizam entre A e B? Explique.
+
+R.: Nós já sabemos que uma estratégia estritamente dominada não pode ser aleatorizada com probabilidade positiva em estratégias mistas. Portanto, não existe ENEM em que as jogadoras aleatorizam entre A e B.
+
+c) Existe ENEM em que as jogadoras aleatorizam entre B e C? Explique.
+
+R. Nós sabemos que quase sempre os equilíbrios de Nash em estratégias puras e ímpares somam um número ímpar de equilíbrios. Se temos 2 ENEP, esperamos que devemos ter pelo menos mais um ENEM (ou 3, 5 etc.).
+
+R.: Para achar o ENEM, devemos igualar as utilidades esperadas. Supondo que 1 joga B com probabilidade $p$ e C com probabilidade $1-p$ e, analogamente, 2 joga B com probabilidade $q$ e C com probabilidade $1 - q$, temos:
+
+$E(U_1(B*)) = E(U_2(C)) $
+
+$1*q + 0*(1-q)= 0*q + 1*(1-q)$
+
+$q = 1 - q$
+
+$2q = 1$
+
+$q = 1/2$.
+
+Como os payoffs são simétricos, calculo similar revelará que $p = 1/2$. Portanto, o ENEM é formado por (p=1/2, 1-p = 1/2; q=1/2, 1 - q = 1/2).
+
+
+5. Uma funcionária (jogadora 1) que trabalha para uma chefe (jogadora 2) pode tanto trabalhar (T) quanto enrolar (E), enquanto sua chefe pode tanto monitorar a funcionária (M) quanto ignorá-la (I). Como em muitos relacionamentos entre funcionária e chefe, se a funcionária estiver trabalhando, a chefe prefere não monitorá-la, mas se a chefe não estiver monitorando, a funcionária prefere enrolar. A matriz de payoff abaixo representa uma situação como essa.
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Define Variables
+
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(1,1), pair(0,2), pair(1,2), pair(2,1))
+payoff.mat <- matrix(all_pairs, nrow=2, ncol=2)
+dimnames(payoff.mat) <- c(list(c("T","E"), c("M", "I")))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+a) escreva a fução de melhor resposta de cada jogadora (isto é, para a jogadora 1, qual probabilidade $p$ ela deve escolher para cada possível escolha de probabilidade $q$ da jogadora 2).
+
+Seja $p$ a probabilidade que a jogadora 1 escolha T e $1 - p$ E, e do lado da 2, $q$ de jogar $M$ e $1 - q$ de jogar I. Segue que a $E[U_1(T,q)] > E[U_1(E,q)]$ se e somente se:
+
+$1*q + 1*(1-q) > 0*q + 2*(1-q)$
+
+$1 > 2 - 2q$
+
+$2q > 1$
+
+$q > 1/2$. Similarmente, $E[u_q(p,M)] > E[u_2(p,I)]$ se e somente se:
+
+$1*p + 2*(1-p) > 2*p + 1*(1-p)$
+
+$p + 2 -2p > 2p + 1 - p$
+
+$2 - p > p + 1$
+
+$1 > 2p$
+
+$ p < 1/2$. Portanto, para a jogadora 1:
+
+Melhor Resposta da jogadora 1 para cada $q$ da jogadora 2 é:
+
+MR_1(q): =
+
+1. Se $q < 1/2$, $p = 0$.
+2. Se $q > 1/2$, $p = 1$
+3. se $q = 1/2$, $p \in [0,1]$.
+
+
+E analogamente para a jogadora 2.
+
+
+
+b) qual o equilíbrio de Nash do jogo?
+
+Pela matriz de payoff, é fácil verificar que não há ENEP. Resta checar então qual o ENEM (sabemos, pelo teorema de Nash, que todo jogo finito de informação completa sempre tem pelo menos um equilíbrio de Nash, seja em puras ou mistas).
+
+Das correspondências de melhor resposta, vemos que o único ENEM é p = q = 1/2, ou (1/2, 1/2). Outra forma de achar o ENEM é igualando as utilidades esperadas, o que também dá 1/2.
+
+6. Duas jogadoras devem escolher entre três alternativas, a, b e c. As preferências do Jogadora 1 são dadas por a$\succeq b \succeq c$, enquanto as preferências da Jogadora 2 são dadas por $c \succeq b \succeq a$. As regras são que a Jogadora 1 se move primeiro e pode vetar uma das três alternativas. Em seguida, a Jogadora 2 escolhe uma das duas alternativas restantes.
+
+a. Modele isso como uma árvore de jogo em forma extensiva (escolha payoffs que representem as preferências).
+
+Assuma que o payoff da melhor opção é 3, da segunda melhor 2 e da pior, 1. As ações da jogadora 1 são quais alternativas remover, e a da jogadora 2 escolher entre as restantes.
+
+```{r results = "asis", echo=FALSE}
+library(rgamer)
+
+game_cs<- extensive_form(
+  players = list("Jogadora1", 
+                 rep("Jogadora2",3),
+                 rep(NA, 6)),
+  actions = list(c("Remove A", "Remove B", "Remove C"),
+                 c("B", "C"),
+                 c("A", "C"), 
+                 c("A", "B")),
+  payoffs = list(Jogadora1 = c(2, 1, 3, 1, 3, 2),
+                 Jogadora2 = c(2, 3, 1, 3, 1, 2)))
+```
+
+
+b. Quantas (e quais) estratégias puras cada jogadora tem?
+
+Jogadora 1 tem 3 (remover A, B ou C). A Jogadora 2 tem $2^3 = 8$ estratégias. 
+As estratégias da jogadora 2 podem ser listadas da seguinte forma.
+Suponha que "xyz" é a estratégia da jogadora 2, em que x é o que ela faz após a remoção de a, y o que ela faz após a remoção de b e z o que faz após a remoção de c. Então, temos as seguintes estratégias:
+
+baa, bab, bca, bcb, caa, cab, cca, ccb.
+
+c. Qual o equilíbrio de Nash por indução para trás? 
+
+Resposta: 1 remove C e dois escolhe B. Mais formalmente, (c, bcb).
+
+
+
+7. Câmara e Senado. É muito comun que analistas defendam que ter maioria na Câmara é mais importante do que no Senado, pois projetos de lei (pls) enviados pelo executivo em geral iniciam pela Câmara. Desconsiderando a possibilidade de veto do presidente da república para simplificar o jogo e desconsiderando as comissões, podemos modelar o que pode acontecer pera árvore do jogo na forma abaixo. Em resumo, a Câmara pode aprovar o pl original  (representado por A pl0), emendá-lo (E pl0) ou rejeitá-lo (o jogo acaba). Se a Câmara aprovar o pl original, vai para o Senado a versão do presidente. Se emendar, vai a versão emendada. O Senado pode então aprovar o pl que receber, emendá-lo ou rejeitá-lo. Se rejeitar ou aprovar (A pl-EC, de Aprovar pl emendado da Câmara) como veio da Câmara, o jogo acaba. Se emendar (E pl-EC), volta para a Câmara, que deve aprovar as alterações do Senado (A pl-S) ou aprovar o texto original (não pode emendá-lo novamente).
+
+```{r results = "asis", echo=FALSE}
+library(rgamer)
+
+game2 <- extensive_form(
+  players = list("Camara",
+                 c(rep("Senado", 2), NA),
+                 c(NA, "Camara", rep(NA, 2), "Camara", NA),
+                 rep(NA, 4)),
+  actions = list(c("A pl0", "E pl0", "Rejeita"), # segundo
+                 c("A pl0", "E pl0", "Rejeita"), c("A pl-EC", "E pl-EC", "Rejeita pl-EC"), # senado
+                 c("A pl-S", "A pl0"),
+                 c("Aprova pl-EC-ES", "A pl0")),
+  payoffs = list(Camara = c(2, -2, 2, 2, 2 ,1, -2, 1, -2),
+                 Senado =  c(1, -1, 1, 1 ,1 ,2, -1, 2, -1)),
+  direction = "horizontal")
+```
+
+
+Vamos supor que o pl original do presidente está situado na esquerda, a Câmara (eleitor mediano) prefere mais à direita, e o Senado mais ao centro (direita). Então, o pl original rende um payoff 2 para o presidente (que não está no jogo), -2 para a Câmara e -1 para o Senado. A versão emendada da Câmara gera -2 para o presidente, 1 para o Senado e 2 para a Câmara. Por fim, a emenda do Senado gera 2 para o Senado, 1 para a Cãmara e -1 para o presidente. Se o PL for rejeitado, prevalece o status quo, que rende -2 para o presidente, 2 para a Câmara e 1 para o Senado. Note que os payoffs são sempre: se o presidente ganha $x$, a Câmara ganha $-x$ e o Senado $-x +1$.
+
+a) Qual o equilíbrio de Nash por indução para trás?
+
+A ávore abaixo marcou em vermhlo e azul os caminhos que sobram após a eliminação dos subjogos que não são críveis.
+Considerando esses três payoffs que sobraram, por indução para trás, a Câmara escolhe rejeitar o projeto de partida.
+
+
+```{r results = "asis", echo=FALSE}
+library(rgamer)
+
+solve_efg(game2)
+```
+
+Para indicar a estratégia de equilíbrio de Nash por indução para trás (que chamaremos de Equilíbrio de Nash Perfeito de Subjogo ou ENPS) eu preciso tranformar o jogo da forma extensiva para a forma estratégia, de forma a lista todas as estratégias possíveis, achar os equilíbrios de Nash e, dentre esses, quais os de subjogo (que é só um, nesse caso). Como isso é tedioso em um jogo desse, não precisamos ser tão formais e basta indicar que a Câmara rejeita de partida (aqui ou na prova, se esta questão cair na prova). Porém, apenas para deixar a resposta completa e sermos rigorosos, eis o que o R lista como as estratégias.
+
+Estratégias da jogada 1 (Câmara)
+```{r results = "asis", echo=FALSE}
+library(rgamer)
+all_s <- to_matrix(game2)
+
+# estratégias de 1
+print(all_s$strategy$s1)
+
+# estratégias de 12
+print(all_s$strategy$s2)
+```
+
+Estratégias da jogadora 2, Senado:
+
+```{r results = "asis", echo=FALSE}
+
+# estratégias de 12
+print(all_s$strategy$s2)
+```
+
+E o Equilíbrio de Nash Perfeito de Subjogo (ou por indução para trás), sendo rigoroso, seria descrito pelo par:
+((Rejeita, A pl-S, Aprova pl-EC-ES); (E pl0, E pl-EC))
+
+
+b) se o pl for rejeitado em qualquer momento e prevalecer o status quo, o presidente preferiria não ter enviado o pl em primeiro lugar. Ele deveria ter enviado o PL? Justifique sua resposta.
+
+Como o ENPS é o PL ser rejeitado, o presidente não deveria enviar o PL, supondo que o desgaste de ser derrotado gere utilidade negativa para ele.
