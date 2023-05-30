@@ -1,0 +1,34 @@
+---
+title: "Aula 10"
+author: "Manoel Galdino"
+date: "`r format(Sys.Date(), '%d de %B de %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Jogos repetidos/multiperíodos
+
+# Barganha em Legislaturas
+
+O modelo clássico é o de Baron-Ferejohn (1989). Eles adaptam o modelo de barganha do Rubinstein para n jogadores e regra da maioria. Então, antes de entrar na aplicação clássica, vamos primeiro para o modelo do Rubinstein (1982). 
+
+Uma negociação bilateral (entre dois agentes) para dividir um objeto fixo foi um problema para a teoria dos jogos desde seu início. Embora seja uma aplicação óbia da teoria dos jogos (como negociar racionalmente), não havia uma boa solução para esse problema. Foi apenas com o trabalho de Rubinstein que definitivamente a teoria dos jogos não-cooperativa achou um caminho para abordar a questão. A solução foi desenhar um protocolo para as negociações. Na versão do Rubinstein, o protocolo é que as jogadoras fazem ofertas alternadas de divisão de uma torta (pie), isto é, quanto irá para cada uma. A torta tem valor 1. Outra forma de interpretar o jogo é que é um jogo do ultimatum repetido
+
+
+Nosso jogo consiste então de:
+Jogadores: $N = {1,2}$
+Estratrégias: para a jogadora que propõe, uma proposta de divisão da torta (ou do 1 real) para 1 e 2 respectivamente, do tipo $(x, 1-x), x \in [0,1]$. Para a jogadora que recebe, se aceita ou rejeita a proposta.
+Logo, temos: Quando a jogadora $i$ propõe$, $S_i = (x, 1-x), x \in [0,1]$ e quando a jogadora $i$ recebe a proposta, $S_i = {aceita, rejeita}$.
+Payoffs: $U_1(s_1, s_2) = \delta^t x$ e $U_2(s1, s2) = \delta^t (1-x)$.
+
+
+## Referências
+
+Baron, D. P., & Ferejohn, J. A. (1989). Bargaining in legislatures. American political science review, 83(4), 1181-1206.
+
+Rubinstein, A. (1982). Perfect equilibrium in a bargaining model. Econometrica: Journal of the Econometric Society, 97-109.
+
+
