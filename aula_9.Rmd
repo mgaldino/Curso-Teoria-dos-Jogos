@@ -11,8 +11,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Subjogo
 
-Subjogo de um jogo extensivo com infomação completa
+Subjogo de um jogo extensivo com informação perfeita
 
+Um subjogo é qualquer parte de um jogo na forma extensiva que satisfaz as seguintes condições:
+
+1. Sempre se inicia em um único nó de decisão
+2. Não está em um nó terminal
+3. Contém todos os nós que se seguem após ele
+
+Em um jogo de informação imperfeita, acrescentamos:
+
+4. Se contiver qualquer nós de um conjunto de informação, ele conterá todos os nós do conjunto de informação.
+
+
+Nós chamamos de subjogo próprio todos os subjogos que não são a árvore do jogo na sua totalidade.
 # Exercícios
 
 Ache todos os subjogos do jogo abaixo.
@@ -56,17 +68,59 @@ g1 <- extensive_form(
 
 Existem 6 subjogos próprios e 7 subjogos no total, contando o jogo inteiro como um subjogo.
 
-Equilíbrio de Nash Perfeito de Subjogo
+Equilíbrio de Nash Perfeito em Subjogos
 
-Definição informal: Um equilíbrio perfeito de subjogo é um perfil estratégico $s^*$ com a propriedade de que, em nenhum subjogo, qualquer jogador $i$ pode se sair melhor escolhendo uma estratégia diferente de $s^*_i$, dado que todos os outros jogadores $j$ aderem a $s^*_j$.
+Definição informal: Um equilíbrio perfeito em subjogos é um perfil estratégico $s^*$ com a propriedade de que, em nenhum subjogo, qualquer jogador $i$ pode se sair melhor escolhendo uma estratégia diferente de $s^*_i$, dado que todos os outros jogadores $j$ aderem a $s^*_j$.
 
-The important point in this definition is that each player’s strategy is required
-to be optimal for every history after which it is the player’s turn to move, not only
-at the start of the game as in the definition of a Nash equilibrium
+Nessa definição (informal), requeremos que a estratrégia de cada jogadora seja ótima para toda história após ser a vez dela jogar, e não apenas no início do jogo, como no equlíbrio de Nash.
+
 
 Todo jogo extensivo finito com informação perfeita possui (pelo menos) um equilíbrio perfeito de subjogo. 
 
 Um jogo finito significa que em nenhum momento um jogador possui infinitas opções de ações. Para dar um exemplo trivial (do Osborne):  um único jogador escolhe um número menor que 1 e recebe um pagamento igual ao número que ela escolhe. Não há um número maior que todos os outros números menores que um, então o jogador único não possui uma ação ótima, e assim o jogo não possui um equilíbrio perfeito de subjogo.
+
+## Jogos repetidos
+
+Jogos repetidos diferem de jogos dinâmicos porque os payoffs são realizados a cada estágio do jogo, e não apenas ao final, como no jogo dinâmico. Não iremos gastar muita energia aqui com jogos repetidos, embora eles sejam muito importantes, porque quero concentrar energias em estudar barganhas, com aplicações centrais para a ciência política e RI. Porém, a ideia de jogos repetidos nos permitirá introduzir a questão de descontos intertemporais, que serão importantes para as barganhas.
+
+Um jogo repetido (finito) é, como o nome sugere, um jogo em que o mesmo jogo é repetido várias vezes (finitamente). Em aulas, nós jogamos alguns jogos repetidos, quando por exemplo jogamos o par ou ímpar várias vezes, ou o DP várias vezes. Entretanto, uma modificação precisará ser feita nesses jogos que acontecem em turnos. Payoffs futuros devem ser descontados (trazidos a valor presente), pois os agentes preferem o presente ao futuro.
+
+Usaremos $\delta \in [0,1]$ como fator der desconto comum a todas as jogadoras do jogo. Para ver o que significa, vejamos o DP (já com os payoffs negativos), repetido duas vezes.
+
+A priemria matriz de payoff é como conhecemos:
+
+```{r results = "asis", echo=FALSE}
+library(knitr)
+# Assign Pairs
+pair <- function(x,y) sprintf("(%d,%d)", x,y)
+all_pairs <- c(pair(-2,-2), pair(0,-10), pair(-10,0), pair(-5,-5))
+payoff.mat <- matrix(all_pairs, nrow=2)
+dimnames(payoff.mat) <- c(rep(list(c("C","NC")), 2))
+results = "asis"
+
+# Plot 
+kable(payoff.mat)
+
+```
+
+A segunda matriz de payoff, porém, será modificada como segue. Todos os payoffs devem ser multiplicados por $\delta$, para indicar que agora têm menos impacto. Ou seja, uma sentença de 2 anos de prisão hoje valem mais do que um sentença de dois anos de prisão no futuro.
+
+E agora temos a seguinte proposição, que não irei provar, mas é bom sabermos. Em um jogo repetido finitas vezes que possui um único equilíbrio de Nash em cada jogo separado, então o jogo repetido possui um único equilíbrio perfeito em subjogo. A ideia é usar indução para trás para ver isso no caso do DP.
+
+Obviamente, parece uma perda muito grande não conseguir fugir do equilíbrio pareto inferior repetidas vezes, especialmente se o jogo for longo.
+
+O que nos leva a jogos infinitos.
+
+Valor presente:
+Dado o fator de disconto $\delta$, o valor presente de uma sequência infinita de payoffs $\{u^t_i\}^\infty_{t=1}$ para a jogadora $i$ é:
+
+$u_i = u^1_i\delta^0 + u_^2_i \delta^1  + u_^3_i \delta^2 + ... +
+u_^t_i \delta^{t-1} + ... =$
+
+$= \sum(\delta^{t-1}u^t_i)$
+
+
+
 
 # Baron-Ferejohn model
 
