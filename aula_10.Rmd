@@ -13,9 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Barganha em Legislaturas
 
-O modelo clássico é o de Baron-Ferejohn (1989). Eles adaptam o modelo de barganha do Rubinstein para n jogadores e regra da maioria. Então, antes de entrar na aplicação clássica, vamos primeiro para o modelo do Rubinstein (1982). 
+O modelo clássico é o de Baron-Ferejohn (1989).  O artigo do BF foi tão profícuo (quase 3 mil citações no Google Scholar) que se tornou a base para uma série de artigos subsequentes analisando formação e dissolução de governo,   (), bicameralismo (), revisãojudicial (), poder de veto do executivo (), lobby (), estrutura de classe (), comércio internacional () entre outros.  É portanto fundamental conehcer esse trabalho para entender os modelos formais feitos em todas essas áreas, além da própria negociação em legislaturas, tema do artigo.
 
-Uma negociação bilateral (entre dois agentes) para dividir um objeto fixo foi um problema para a teoria dos jogos desde seu início. Embora seja uma aplicação óbia da teoria dos jogos (como negociar racionalmente), não havia uma boa solução para esse problema. Foi apenas com o trabalho de Rubinstein que definitivamente a teoria dos jogos não-cooperativa achou um caminho para abordar a questão. A solução foi desenhar um protocolo para as negociações. Na versão do Rubinstein, o protocolo é que as jogadoras fazem ofertas alternadas de divisão de uma torta (pie), isto é, quanto irá para cada uma. A torta tem valor 1. Outra forma de interpretar o jogo é que é um jogo do ultimatum repetido
+Mas para entender o trabalho de BF, precisamos saber que adaptam o modelo de barganha do Rubinstein para $n$ jogadores e regra da maioria. O artigo do Rubinstein é mais clássico ainda, pois gerou mais desenvolvimentos ainda, tendo mais de 7 mil citações no Google Scholar. Então, antes de entrar na aplicação clássica em CP, vamos primeiro para o modelo do Rubinstein (1982). 
+
+Uma negociação bilateral (entre dois agentes) para dividir um objeto fixo foi um problema para a teoria dos jogos desde seu início. Embora seja uma aplicação óbia da teoria dos jogos (como negociar racionalmente), não havia uma boa solução para esse problema. Foi apenas com o trabalho de Rubinstein que definitivamente a teoria dos jogos não-cooperativa achou um caminho para abordar a questão. A solução foi desenhar um protocolo para as negociações. Na versão do Rubinstein, o protocolo é que as jogadoras fazem ofertas alternadas de divisão de uma torta (pie), isto é, quanto irá para cada uma. A torta tem valor 1. Outra forma de interpretar o jogo é que é um jogo do ultimatum repetido.
 
 
 Nosso jogo consiste então de:

@@ -1,0 +1,20 @@
+---
+title: "Relações binárias"
+author: "Manoel Galdino"
+date: "2023-03-18"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Mais sobre relações binárias
+
+O conceito de relação de preferência pode ser difícil de entender a primeira vista, de forma que mais exemplos de relações binárias (como é a relação de preferência), podem ser úteis. Então, eis alguns exemplos de outros tipos de relação.
+
+Uma relação binária de preferência é como uma relação de "inclusão": assim como a relação "o conjunto A está incluído no conjunto B" é uma relação binária que compara dois conjuntos e determina se um é um subconjunto do outro, uma relação binária de preferência compara duas opções e determina se uma opção é preferida estritamente, fracamente preferida ou se há indiferença entre as opções.
+
+Uma relação binária de preferência é como uma relação de "antecessor/sucessor": assim como a relação "3 é o antecessor de 4" é uma relação binária que compara dois números e determina sua relação de sequência, uma relação binária de preferência compara duas opções e determina qual opção vem primeiro em uma sequência de preferência.
+
+Uma relação binária de preferência é como uma relação de "implicação": assim como a relação "se A é verdadeiro, então B é verdadeiro" é uma relação binária que estabelece uma implicação lógica entre duas proposições, uma relação binária de preferência estabelece uma implicação lógica entre duas opções, ou seja, se uma opção é preferida a outra, então a outra opção não pode ser a escolha final.

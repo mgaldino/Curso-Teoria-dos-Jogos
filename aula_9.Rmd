@@ -9,7 +9,64 @@ output: pdf_document
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Subjogo
 
+Subjogo de um jogo extensivo com infomação completa
+
+# Exercícios
+
+Ache todos os subjogos do jogo abaixo.
+
+```{r results = "asis", echo=FALSE, warnings=FALSE}
+library(rgamer)
+
+g1 <- extensive_form(
+  players = list("Serena",
+                 rep("Nina", 2),
+                 rep(NA, 4)),
+  actions = list(c("C", "D"),
+                  c("E", "F"), c("G", "H")),
+  payoffs = list(Serena = c(1, 3, 2, 0),
+                 Nina  = c(0, 2, 3, 1)),
+   show_node_id = TRUE)
+```
+
+
+Modelo o jogo como uma árvore (forma extensiva) e ache todos os subjogos do jogo abaixo. (exercício 156.2c do Osborne).
+
+Os políticos Rosa e Ernesto precisam tomar uma posição sobre um assunto. As opções são Berlim (B) ou Havana (H). Eles escolhem sequencialmente. Uma terceira pessoa, Karl, determina quem escolhe primeiro. Tanto Rosa quanto Ernesto se importam apenas com as ações que escolhem, não com quem escolhe primeiro. Rosa prefere o resultado em que ambos escolhem B ao resultado em que ambos escolhem H, e prefere esse resultado a qualquer um dos casos em que ela e Ernesto escolhem ações diferentes; ela é indiferente entre esses dois últimos resultados. As preferências de Ernesto diferem das de Rosa no sentido de que os papéis de B e H são invertidos. As preferências de Karl são as mesmas que as de Ernesto. Modele essa situação como um jogo extensivo com informação perfeita. (Especifique os componentes do jogo e represente o jogo em um diagrama.)
+
+
+```{r results = "asis", echo=FALSE, warnings=FALSE}
+library(rgamer)
+
+g1 <- extensive_form(
+  players = list("Karl",
+                 c("Rosa", "Ernesto"),
+                rep(c("Ernesto", "Rosa"), each=2),
+                 rep(NA, 8)),
+  actions = list(c("R", "E"),
+                 c("B", "H"), c("B", "H"),
+                  c("B", "H"), c("B", "H"), c("B", "H"), c("B", "H")),
+  payoffs = list(Karl = c(1, 0, 0, 2, 1, 0, 0, 2),
+                 Rosa = c(2, 0, 0, 1, 2, 0, 0, 1),
+                 Ernesto  = c(1, 0, 0, 2, 1, 0, 0, 2)),
+   show_node_id = TRUE)
+```
+
+Existem 6 subjogos próprios e 7 subjogos no total, contando o jogo inteiro como um subjogo.
+
+Equilíbrio de Nash Perfeito de Subjogo
+
+Definição informal: Um equilíbrio perfeito de subjogo é um perfil estratégico $s^*$ com a propriedade de que, em nenhum subjogo, qualquer jogador $i$ pode se sair melhor escolhendo uma estratégia diferente de $s^*_i$, dado que todos os outros jogadores $j$ aderem a $s^*_j$.
+
+The important point in this definition is that each player’s strategy is required
+to be optimal for every history after which it is the player’s turn to move, not only
+at the start of the game as in the definition of a Nash equilibrium
+
+Todo jogo extensivo finito com informação perfeita possui (pelo menos) um equilíbrio perfeito de subjogo. 
+
+Um jogo finito significa que em nenhum momento um jogador possui infinitas opções de ações. Para dar um exemplo trivial (do Osborne):  um único jogador escolhe um número menor que 1 e recebe um pagamento igual ao número que ela escolhe. Não há um número maior que todos os outros números menores que um, então o jogador único não possui uma ação ótima, e assim o jogo não possui um equilíbrio perfeito de subjogo.
 
 # Baron-Ferejohn model
 

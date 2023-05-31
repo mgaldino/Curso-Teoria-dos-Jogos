@@ -147,6 +147,3 @@ Vamos entender esta definição formal. Considere novamente o jogo do Bach e Str
 Se, por outro lado, a jogadora 2 não sabe se está em $x_2$ ou $x_3$, como no jogo do Bach e Stravinsky simultâneo, então deve ser verdade que sua informação é de que está em $x_1$ ou $x_2$, mas não sabe em qual dos dois. Nesse caso, escrevemos $h_2 = {x_1, x_2}$. Esta é a propriedade 2.
 
 Finalmente, a propriedade 3 é essencial para manter a lógica da informação, em particular quando as ações disponíveis em cada nós forem diferentes para uma jogadora. Considere o jogo da confiança. Se ela não sabe se está no nó x2 (onde o jogo terminou e não tem o que fazer) ou x3, então ela não pode saber quais as ações disponíveis para ela.
-
-Finally, property (3) is also essential to maintain the logic of information. If instead x ∈ hi and x ∈ hi but Ai(x) = Ai (x), then by the mere fact that player i has different actions from which to choose at each of the nodes x and x , he should be able to distinguish between these two nodes. It would therefore be illogical to assume that
-he cannot distinguish between them.
