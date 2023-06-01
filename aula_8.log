@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.15)  24 MAY 2023 13:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.15)  1 JUN 2023 13:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,23 +499,23 @@ File: aula_8_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use aula_8_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: aula_8_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 237.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[4 <./aula_8_files/figure-latex/unnamed-chunk-3-1.pdf>] (./aula_8.aux)
+[4 <./aula_8_files/figure-latex/unnamed-chunk-3-1.pdf>] [5] (./aula_8.aux)
 Package rerunfilecheck Info: File `aula_8.out' has not changed.
 (rerunfilecheck)             Checksum: 6C58C8ADE60B25A0ECA44350C23E8673;1205.
  ) 
 Here is how much of TeX's memory you used:
- 11295 strings out of 477984
- 175470 string characters out of 5838971
+ 11296 strings out of 477984
+ 175476 string characters out of 5838971
  1863388 words of memory out of 5000000
  31268 multiletter control sequences out of 15000+600000
  562154 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  63i,6n,67p,511b,530s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on aula_8.pdf (4 pages, 223885 bytes).
+{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/home/mgaldino/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/mgaldino/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on aula_8.pdf (5 pages, 246698 bytes).
 PDF statistics:
- 169 PDF objects out of 1000 (max. 8388607)
- 130 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 179 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

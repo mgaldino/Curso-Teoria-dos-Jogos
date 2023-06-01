@@ -114,8 +114,11 @@ O que nos leva a jogos infinitos.
 Valor presente:
 Dado o fator de disconto $\delta$, o valor presente de uma sequência infinita de payoffs $\{u^t_i\}^\infty_{t=1}$ para a jogadora $i$ é:
 
-$u_i = u^1_i\delta^0 + u_^2_i \delta^1  + u_^3_i \delta^2 + ... +
-u_^t_i \delta^{t-1} + ... =$
+$u_i = u^1_i \delta^0 +$ 
+
+$u^2_i \delta^1 + u^3_i \delta^2$
+
+$... + u^t_i \delta^{t-1} + ... =$
 
 $= \sum(\delta^{t-1}u^t_i)$
 
