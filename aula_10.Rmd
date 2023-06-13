@@ -20,12 +20,33 @@ Mas para entender o trabalho de BF, precisamos saber que adaptam o modelo de bar
 Uma negociação bilateral (entre dois agentes) para dividir um objeto fixo foi um problema para a teoria dos jogos desde seu início. Embora seja uma aplicação óbia da teoria dos jogos (como negociar racionalmente), não havia uma boa solução para esse problema. Foi apenas com o trabalho de Rubinstein que definitivamente a teoria dos jogos não-cooperativa achou um caminho para abordar a questão. A solução foi desenhar um protocolo para as negociações. Na versão do Rubinstein, o protocolo é que as jogadoras fazem ofertas alternadas de divisão de uma torta (pie), isto é, quanto irá para cada uma. A torta tem valor 1. Outra forma de interpretar o jogo é que é um jogo do ultimatum repetido.
 
 
+
+
+O jogo de uma rodada é o jogo do ultimato. Nesse caso, o equilíbrio de Nash é $s_1 = ((1, 0), aceita)$.
+
+No caso de um jogo de duas rodadas, a jogadora 1 poderia oferecer $(x, 1 - x)$ na primeira rodada. Se 2 aceita, o jogo acaba e essa é a divisão do bolo. Porém, se 2 não aceita, vamos para a segunda rodada e aí 2 está no jogo do ultimato. Como o futuro vale menos que o passado, o que está disponível agora é: $(\delta x, \delta (1-x))$. Veja que o total disponível é dado por $\delta x + \delta (1-x) =  \delta$. Ou seja, supondo que $\delta < 0$, um valor menor do bolo a ser distribuído no segundo período. E o payoff de equilíbrio de Nash na segunda rodada é simplesmente $((\delta, 0), aceita)$. Note que a estratégia é oferecer $1$ pra 2 e 0 para 1. Ocorre que $1$ vale só $\delta 1$. 
+
+Podemos aplicar indução para trás e raciocinar que a jogadora 1 pode antecipar que isso irá acontecer na segunda rodada. Logo, ela sabe que 2 espera ganhar $\delta$. Se ela oferecer na primeira rodada $s_1 = (1 - \delta , \delta)$, 2 será indiferente entre aceitar na primeira rodada ou esperar a segunda rodada. 
+
+O que acontece se o jogo for até a terceira rodada? Mais uma vez, é melhor começar pelo final. Na terceira rodada, 1 é a última pessoa e está no jogo do ultimato. Pode oferecer $(1,0)$, dois aceita e isso é equilíbrio de Nash e os payoffs, são: $(\delta^2,0)$. Na rodada imediatamente anterior, é a vez de 2 jogar e ela sabe que 1 espera obter esse payoff se o jogo for para a terceira e última rodada. Então, se oferecer $(\delta^2, 1 - \delta^2)$, a jogadora 1 será indiferente entre aceitar a proposta e negar e esperar a terceira rodada. Como 2 não pode fazer melhor nem 1, isso é um equilíbrio de Nash. 1, antecipando isso na primeira rodada, sabe que se oferecer $(\delta^2, 1 - \delta^2)$, 2 aceita e o jogo acaba.
+
+# fazer quarta rodada
+# generalizar para n rodadas.
+
+# perceber que à medida que n aumenta, vai convergindo para 1/2. 1/2. Se tivermos infinitas rodadas, esse é o EN.
+
+# Apresentar a estrutura do jogo.
 Nosso jogo consiste então de:
 Jogadores: $N = {1,2}$
 Estratrégias: para a jogadora que propõe, uma proposta de divisão da torta (ou do 1 real) para 1 e 2 respectivamente, do tipo $(x, 1-x), x \in [0,1]$. Para a jogadora que recebe, se aceita ou rejeita a proposta.
 Logo, temos: Quando a jogadora $i$ propõe$, $S_i = (x, 1-x), x \in [0,1]$ e quando a jogadora $i$ recebe a proposta, $S_i = {aceita, rejeita}$.
 Payoffs: $U_1(s_1, s_2) = \delta^t x$ e $U_2(s1, s2) = \delta^t (1-x)$.
 
+# Agora, modelo BJ
+
+
+
+Vejam que quem joga por último obtém a maior parte do benefício para si.
 
 ## Referências
 
