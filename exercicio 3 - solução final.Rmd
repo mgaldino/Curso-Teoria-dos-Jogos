@@ -16,14 +16,14 @@ knitr::opts_chunk$set(echo = TRUE)
 Resposta.
 1.1 DP:
 Designando confessar por C e não confessar por NC, temos:
-o DP é formado por: jogadores $N = \{1,2\}$, estratégias $S_i = \{C, NC\}, i = \{1,2\}$, e payoffs $U_i(s_1=C, s_2=C) = -2, i = \{1,2\}$, $U_i(s_1=NC, s_2=NC) = -5, i = \{1,2\}$, $U_1(s_1=C, s_2=NC) = 0$ e $U_2(s_1=C, s_2=NC) = -10$,  $U_1(s_1=NC, s_2=C) = -10$ e $U_2(s_1=NC, s_2=C) = 0$.
+o DP é formado por: jogadores $N = \{1,2\}$, estratégias $S_i = \{C, \NC}, i = \{1,2\}$, e payoffs $U_i(s_1=C, s_2=C) = -2, i = \{1,2\}$, $U_i(s_1=NC, s_2=NC) = -5, i = \{1,2\}$, $U_1(s_1=C, s_2=NC) = 0$ e $U_2(s_1=C, s_2=NC) = -10$,  $U_1(s_1=NC, s_2=C) = -10$ e $U_2(s_1=NC, s_2=C) = 0$.
 
 A matriz de payoff é:
 ```{r results = "asis", echo=FALSE}
 library(knitr)
 # Assign Pairs
 pair <- function(x,y) sprintf("(%d,%d)", x,y)
-all_pairs <- c(pair(-2,-2), pair(-10,0), pair(0,-10), pair(-5,-5))
+all_pairs <- c(pair(-2,-2), pair(0,-10), pair(-10,0), pair(-5,-5))
 payoff.mat <- matrix(all_pairs, nrow=2)
 dimnames(payoff.mat) <- c(rep(list(c("NC","C")), 2))
 results = "asis"
@@ -203,7 +203,8 @@ R. Vamos começar eliminando Esquerda para a jogadora 2, que é fracamente domin
 
 Se, porém, no passo 2 eu eliminar Baixo em vez de alto para a jogadora 1, teremos como equilíbrio (Alto, Direita). Isso mostra que a ordem de eliminação pode alterar o equilíbrio de um jogo.
 
-b) A apicação de EIEED em diferentes ordens, diferentemente de EIEFD, gera sempre o mesmo resultado. Como você interpreta essa diferença em termos das previsões de cada tipo de solução de um jogo? 
+b) A apicação de EIEED em diferentes ordens, diferentemente de EIEFD, gera sempre o mesmo resultado
+. Como você interpreta essa diferença em termos das previsões de cada tipo de solução de um jogo? 
 
 R. A EIEED tem previsões de equilíbrio mais robustas, pois não há critério óbvio na teoria para distinguir entre possíveis equilíbrios por EIEFD.
 
