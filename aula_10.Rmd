@@ -20,15 +20,67 @@ Mas para entender o trabalho de BF, precisamos saber que adaptam o modelo de bar
 Uma negociação bilateral (entre dois agentes) para dividir um objeto fixo foi um problema para a teoria dos jogos desde seu início. Embora seja uma aplicação óbia da teoria dos jogos (como negociar racionalmente), não havia uma boa solução para esse problema. Foi apenas com o trabalho de Rubinstein que definitivamente a teoria dos jogos não-cooperativa achou um caminho para abordar a questão. A solução foi desenhar um protocolo para as negociações. Na versão do Rubinstein, o protocolo é que as jogadoras fazem ofertas alternadas de divisão de uma torta (pie), isto é, quanto irá para cada uma. A torta tem valor 1. Outra forma de interpretar o jogo é que é um jogo do ultimatum repetido.
 
 
+Given any x 2 (0; 1), the strategy proÖle fa1 = x; a2 = (accept iff a1 <= x)
+is a Nash equilibrium. So, there are inÖnitely many Nash equilibria.
 
+ut once player 1 has made an o§er, the optimal strategy for 2 is to accept
+any offer a1 < 1 and he is indifferent with accepting offer a1 = 1:
+ What can you say about subgame perfect equilibria?
 
-O jogo de uma rodada é o jogo do ultimato. Nesse caso, o equilíbrio de Nash é $s_1 = ((1, 0), aceita)$.
+# 1 rodada
+O jogo de uma rodada é o jogo do ultimato. Nesse caso, o equilíbrio de Nash perfeito em subjogo é $s_1 = ((1, 0), aceita)$.
 
-No caso de um jogo de duas rodadas, a jogadora 1 poderia oferecer $(x, 1 - x)$ na primeira rodada. Se 2 aceita, o jogo acaba e essa é a divisão do bolo. Porém, se 2 não aceita, vamos para a segunda rodada e aí 2 está no jogo do ultimato. Como o futuro vale menos que o passado, o que está disponível agora é: $(\delta x, \delta (1-x))$. Veja que o total disponível é dado por $\delta x + \delta (1-x) =  \delta$. Ou seja, supondo que $\delta < 0$, um valor menor do bolo a ser distribuído no segundo período. E o payoff de equilíbrio de Nash na segunda rodada é simplesmente $((\delta, 0), aceita)$. Note que a estratégia é oferecer $1$ pra 2 e 0 para 1. Ocorre que $1$ vale só $\delta 1$. 
+Veja que há infinitos equilíbrios de Nash, mas apenas um ENPS. Por exemplo, seja $x = .6$, o perfil de estratégia $s_1  = \{a_1 = .6\}$ e $s_2 = aceite se e somente se a_1 <= .6$ é um equilíbrio de Nash. Se 1 aumentar seu pedaço do bolo, 2 rejeita. Se 1 oferecer menos, está pior. Portanto, 1 não pode melhorar, dado o que 2 está fazendo. Por sua vez, 2 não pode melhorar rejeitando a oferta, dado oque 1 está fazendo. Em geral, Para qualquer $0 < x < 1$ o perfil de estratégia $s_1  = \{a_1 = x\}$ e $s_2 = aceite_-se_-e_-somente_-se: a_1 <= x$ é um ENEP.
+
+# 2 rodadas
+
+No caso de um jogo de duas rodadas, a jogadora 1 poderia oferecer $(x, 1 - x)$ na primeira rodada. Se 2 aceita, o jogo acaba e essa é a divisão do bolo. Porém, se 2 não aceita, vamos para a segunda rodada e aí 2 está no jogo do ultimato. Como o futuro vale menos que o passado, o que está disponível agora é: $(\delta x, \delta (1-x))$. Veja que o total disponível é dado por $\delta x + \delta (1-x) =  \delta$. Ou seja, supondo que $\delta < 0$, um valor menor do bolo a ser distribuído no segundo período. E o payoff de equilíbrio de Nash em subjogo na segunda rodada é simplesmente $((\delta, 0), aceita)$. Note que a estratégia é oferecer $1$ pra 2 e 0 para 1. Ocorre que $1$ vale só $\delta 1$. 
 
 Podemos aplicar indução para trás e raciocinar que a jogadora 1 pode antecipar que isso irá acontecer na segunda rodada. Logo, ela sabe que 2 espera ganhar $\delta$. Se ela oferecer na primeira rodada $s_1 = (1 - \delta , \delta)$, 2 será indiferente entre aceitar na primeira rodada ou esperar a segunda rodada. 
 
-O que acontece se o jogo for até a terceira rodada? Mais uma vez, é melhor começar pelo final. Na terceira rodada, 1 é a última pessoa e está no jogo do ultimato. Pode oferecer $(1,0)$, dois aceita e isso é equilíbrio de Nash e os payoffs, são: $(\delta^2,0)$. Na rodada imediatamente anterior, é a vez de 2 jogar e ela sabe que 1 espera obter esse payoff se o jogo for para a terceira e última rodada. Então, se oferecer $(\delta^2, 1 - \delta^2)$, a jogadora 1 será indiferente entre aceitar a proposta e negar e esperar a terceira rodada. Como 2 não pode fazer melhor nem 1, isso é um equilíbrio de Nash. 1, antecipando isso na primeira rodada, sabe que se oferecer $(\delta^2, 1 - \delta^2)$, 2 aceita e o jogo acaba.
+# 3 rodadas
+O que acontece se o jogo for até a terceira rodada? Mais uma vez, é melhor começar pelo final. Na terceira rodada, 1 é a última pessoa e está no jogo do ultimato. Pode oferecer $(1,0)$, dois aceita e isso é equilíbrio de Nash perfeito em subjogo e os payoffs, são: $(\delta^2,0)$.
+
+Na rodada imediatamente anterior, é a vez de 2 jogar e ela sabe que 1 espera obter esse payoff se o jogo for para a terceira e última rodada. O valor do bolo na rodada 2 é $\delta$. Então, se oferecer $(\delta^2, \delta - \delta^2) = (\delta^2, \delta*(1 - \delta))$, a jogadora 1 será indiferente entre aceitar a proposta e negar e esperar a terceira rodada. Como 2 não pode fazer melhor nem 1, isso é um equilíbrio de Nash perfeito em subjogo. 1, antecipando isso na primeira rodada, sabe que se oferecer $(\delta^2 + 1 - \delta, \delta*(1 - \delta)) = (1 + \delta*(\delta - 1), \delta*(1 - \delta))$, 2 aceita e o jogo acaba.
+
+# 4 rodadas
+O que acontece se o jogo for até a quarta rodada? Na quarta rodada, 2 é a última pessoa e está no jogo do ultimato. Pode oferecer $(1,0)$, dois aceita e isso é equilíbrio de Nash e os payoffs, são: $(0 , \delta^3)$. 
+
+Na rodada imediatamente anterior, é a vez de 1 jogar e ela sabe que 2 espera obter esse payoff se o jogo for para a quarta e última rodada. Então, se oferecer $(\delta^2 - \delta^3, \delta^3) = (\delta^2*(1 - \delta), \delta^3)$, a jogadora 2 será indiferente entre aceitar a proposta e negar e esperar a quarta rodada. Como 2 não pode fazer melhor nem 1, isso é um equilíbrio de Nash perfeito em subjogo.
+
+A jogadora 2, antecipando isso na segunda rodada, sabe que se oferecer $(\delta^2*(1 - \delta),\delta^3 + \delta - \delta^2) = (\delta^2*(1 - \delta), \delta^*(\delta^2 + 1 - \delta))$, 1 aceita e o jogo acaba. Por fim, na primeira rodada, 1 oferece $(,\delta^*(\delta^2 + 1 - \delta)))$, 2 aceita, e o jogo acaba.
+
+Nesse momento, está claro que:
+1. Quem joga por último, como se encontrará na posição do jogo do ultimato, tem mais poder na negociação e abocanha a maior parte do bolo.
+2. À medida que o número de rodadas cresce, quem joga por último abocanha menos e menos do bolo. Em particular, com 2 rodadas, $\delta$, com três rodadas, $\delta^2$, com quatro rodadas $\delta^3$. Com $n$ rodadas, $\delta^{n-1}$.
+
+O gráfico abaixo mostra o percentual que cada jogador ganha à medida que $n$ cresce, para três valores de $\delta$: 0,99; 0,95 e 0,9.
+
+```{r results = "asis", echo=FALSE, warnings=FALSE}
+library(ggplot2)
+library(tidyverse)
+d <- c(.99, .95, .9)
+
+u1 <- matrix(0, nrow = 1000, ncol =3)
+u2 <- matrix(0, nrow = 1000, ncol =3)
+
+n <- 500
+for ( j in 1:3) {
+  for ( i in 1:n) {
+  u1[i, j] <- (d[j]^(i-1))*(i%%2) + (1- d[j]^(i-1))*(i%%2==0)
+  u2[i, j] <- (d[j]^(i-1))*(i%%2 == 0) + (1- d[j]^(i-1))*(i%%2)
+  }
+}
+
+
+df <- data.frame(rodada = rep(1:n, 3), d = rep(d, each = n), u1 = c(u1[, 1], u1[, 2], u1[, 3] ), u2 = c(u2[, 1], u2[, 2], u2[, 3]))
+
+df %>%
+  filter(rodada %in% seq(1,n, by=2)) %>%
+  ggplot(aes(rodada, u1, colour = as.factor(d))) + geom_point()
+  
+
+```
 
 # fazer quarta rodada
 # generalizar para n rodadas.
