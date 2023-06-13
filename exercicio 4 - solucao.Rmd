@@ -1,5 +1,5 @@
 ---
-title: "Lista de exercícios 4"
+title: "Lista de exercícios 4 - solução"
 author: "Manoel Galdino"
 date: "2023-04-18"
 output: pdf_document
@@ -25,7 +25,6 @@ Para o Chicken, também temos dois ENEP: (D, ND) e (ND, D)
 Para o Stag Hunt, temos (Cervo, Cervo) e (Lebre, Lebre).
 
 3. Na matriz resultante de EIESD, temos dois ENEP: (Baixo, Esquerda) e (Baixo, Direita).
-Exercícios bônus (não cairão na prova e são opcionais)
 
 4. (Baixo, Esquerda) e (Baixo, Direita).
 
@@ -46,12 +45,13 @@ Exercícios bônus (não cairão na prova e são opcionais)
 
 a) Nesse jogo, explique porque a proposta (10, 0) é um equilíbrio de Nash. Explique também porque ele é um equilíbrio instável (não robusto a pequenas variações no pyaoff de 2), considerando a alternativa para a jogadora 2.
 
-1 obviamente não pode melhorar, pois 10 é o máximo. E dois, ao rejeitar a proposta, ficará com o mesmo payoff, portanto, tampouco pode melhorar, configurando assim um equilíbrio de Nash.
+R. 1 obviamente não pode melhorar, pois 10 é o máximo. E dois, ao rejeitar a proposta, ficará com o mesmo payoff, portanto, tampouco pode melhorar, configurando assim um equilíbrio de Nash.
 
 O equilíbrio não é robusto porque se 1 perder um mínimo de utilidade que seja por receber uma proposta tão desigual, ela prefere não aceitar a proposta.
 
 b) Se o menor número possível for 1 real (em vez de zero) e o máximo 9 reais, qual o equilíbrio de Nash?
-(9, 1).
+
+R. (9, 1).
 
 c) Se voce fosse a jogadora 2 e recebesse a oferta do equilíbrio de Nash do jogo da letra b, aceitaria ou não? Justifique sua resposta.
 
@@ -64,20 +64,22 @@ Aqui é uma resposta pessoal, e toda resposta é válida.
 3. Jogo do ditador. Considere o seguinte jogo, uma variação do jogo do ultimato. A jogadora 1 recebe 10 reais e deve decidir quanto dividir entre ela e a jogadora 2. Uma vez feita a decisão de divisão, o jogo acaba, com a divisão proposta pela jogadora 1 (ditadora).
 
 a) Quais as estratégias da jogadora 1 e 2?
-Seja $x$ o valor para a jogadora 1, e $10 - x$ para a jogadora 2. Então, 
+
+R. Seja $x$ o valor para a jogadora 1, e $10 - x$ para a jogadora 2. Então, 
 
 $S_1 = (x, 1-x), x \in \{10, 9, 8, 7, 6, 6, 4, 3, 2 , 1, 0\}$
 
 Como 2 não faz nada, não possui estratégia. O que pode ser representado pelo conjunto vazio.
-$S_2 = \{\phi\}$
+
+R. $S_2 = \{\phi\}$
 
 b) Como você escreveria a função de utilidade das jogadoras?
 
-$u_1(s_1) = x$ e $u_2(s_1) = 1-x$
+R. $u_1(s_1) = x$ e $u_2(s_1) = 1-x$
 
 c) Qual o equilíbrio de Nash desse jogo?
 
-(10, 0).
+R. (10, 0).
 
 d) Se você fosse a jogadora 1, faria uma oferta diferente da oferta de equilíbrio de Nash? Se sim, qual? Justifique sua resposta.
 

@@ -25,7 +25,7 @@ library(knitr)
 pair <- function(x,y) sprintf("(%d,%d)", x,y)
 all_pairs <- c(pair(-2,-2), pair(-10,0), pair(0,-10), pair(-5,-5))
 payoff.mat <- matrix(all_pairs, nrow=2)
-dimnames(payoff.mat) <- c(rep(list(c("C","NC")), 2))
+dimnames(payoff.mat) <- c(rep(list(c("NC","C")), 2))
 results = "asis"
 
 # Plot 
@@ -115,14 +115,14 @@ kable(payoff.mat)
 a) Existe alguma estratégia estritamente dominada para algum (ou ambos) jogador(es)? Se sim, qual.
 
 Resposta:
-No DP, (C) é estritamente dominada, pois é sempre melhor não confessar do que confessar para ambos jogadores.
+No DP, (NC) é estritamente dominada, pois é sempre melhor  confessar do que não confessar para ambos jogadores.
 Nos demais jogos, não existe estratégia estritamente dominada.
 
 b) existe um equilírio de estratégia estritamente dominante? Se sim, qual?
-Para o DP, pois após eliminar C, temos apenas (NC, NC) como equilíbrio de estratégia dominante
+Para o DP, pois após eliminar NC, temos apenas (C, C) como equilíbrio de estratégia dominante
  
 c) Existe algum equilíbrio de Eliminação Iterativa de Estratégias Estritamente Dominadas? Se sim, qual? Ele é ótimo de Pareto?
-No DP, como mostrado acima. Nos demais, não existe EIEED, pois não há estratégias estritamente dominadas a serem eliminadas.
+No DP, como mostrado acima. E não é ótimo de Pareto, pois (NC,NC) rende payoff melhor para ambosos jogadores. Nos demais, não existe EIEED, pois não há estratégias estritamente dominadas a serem eliminadas.
 
 
 3. Considere o seguinte jogo representado na forma normal:
@@ -175,7 +175,8 @@ kable(payoff.mat)
 ```
 
 a) Identifique, para a jogadora 2, a estratégia fracamente dominada.
-Centro é fracamente dominada por Esquerda e direita é fracamente dominada por esquerda.
+
+R. Centro é fracamente dominada por Esquerda e direita é fracamente dominada por esquerda.
 
 5. Nesta questão, iremos considerar a Eliminação Iterativa de Estratégias Fracamente Dominadas (EIEFD), definida de maneira similar à EIEED em classe (em vez de eliminar apenas estratégias estritamente dominadas, eliminamos as estratégias fracamente dominadas). Considere o seguinte jogo representado na forma normal:
 
@@ -204,7 +205,7 @@ Se, porém, no passo 2 eu eliminar Baixo em vez de alto para a jogadora 1, terem
 
 b) A apicação de EIEED em diferentes ordens, diferentemente de EIEFD, gera sempre o mesmo resultado. Como você interpreta essa diferença em termos das previsões de cada tipo de solução de um jogo? 
 
-A EIEED tem previsões de equilíbrio mais robustas, pois não há critério óbvio na teoria para distinguir entre possíveis equilíbrios por EIEFD.
+R. A EIEED tem previsões de equilíbrio mais robustas, pois não há critério óbvio na teoria para distinguir entre possíveis equilíbrios por EIEFD.
 
 6. Em um pênalti no jogo de futebol, suponha que os jogadores podem chutar na esquerda, no centro ou no canto direito (desconsidere a altura da bola). Similarmente, o goleiro pode escolher umas das três opções para tentar agarrar a bola. Suponha também que batedores e goleiros devem escolher simultaneamente aonde a bola irá. Se o goleiro pular na mesma direção da bola, o goleiro ganha e o batedor perde. Se pular em uma direção diferente, o batedor ganha. Modele esse jogo como um jogo na forma normal (isto é, escreva o número de jogadores, estratégias e funções de utilidade dos jogadores) e a matriz de payoff.
 
