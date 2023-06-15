@@ -1,5 +1,5 @@
 ---
-title: "Aula 2"
+title: "Aula 11"
 author: "Manoel Galdino"
 date: "2023-06-16"
 output: pdf_document
@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Aula 2
+# Aula 11
 Marxismo analítico
 
 G. A. Cohen
