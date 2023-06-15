@@ -1,0 +1,79 @@
+---
+title: "Aula 2"
+author: "Manoel Galdino"
+date: "2023-06-16"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aula 2
+Marxismo analítico
+
+G. A. Cohen
+John Elster
+Johm Roemer
+
+Cohen, Elster, and Roemer, all participated in an annual workshop usually known as the September Group. That Group initially also referred to itself as the “Non-Bullshit Marxism Group”
+
+French Marxism, especially work by Louis Althusser (Cohen)
+
+Outros nomes
+Adam Przeworski
+Erikj Olin Wright
+
+Olin:
+ First, “obfuscation”, understood as offering arguments and analyses which sound profound, but which are resistant to clarification. The objection here is not to the use of technical, or quasi-technical, vocabulary as such, but rather to its use to obscure. Second, “intellectual dishonesty”, understood as the refusal variously: to clarify arguments in ways that are open to challenge; to acknowledge gaps in one’s understanding or knowledge; or to concede that there exist reasonable grounds for disagreement
+ The third is an “ideological style of argumentation” in which “a correct understanding of a subject” is conflated with “Marx’s understanding of that subject”; that Marx endorsed such and such a claim being treated as a conclusive argument in its favour
+ 
+ 
+
+- Renovar o Marxismo
+- Inspirados por questões marxistas, mas tentam responder com ferramentas da época (lógica, matemática e construção de modelos).
+Produtos da tradição marxista e não-marxista.
+
+Diferenças do marxismo tradicional
+1. Compromisso com a necessidade de abstração. Marxismo não quer ir muito longe, gosta de ficar perto da "história"
+2.Busca por fundações. O que isso quer dizer? Que questões que marxistas tipicamente não se perguntavam eram considerdas prioritários de se verem respondidas: Por que classes emergem como atores colertivos importantes (Elster, Threee challenges to Class)? Por que a exploração, isto é, a transferência sitemática de excedente do trabalho, errada (é mesmo)? Em outras palavbras, qual o fundamento desse erro? Ético? Injustiça? Roemer. É o socialismo no interesse da classe trabalhadora no capitalismo moderno (Przeworski)? É a igualdade um objetivo da ética Marixsmo (Allen Wood).
+
+Quais são os elementos primitivos ou básicos que fundamental o marxismo. E a busca pelos princípios leva à abstração, simplificação, e modelagem matemática.
+
+Politicalemtne, moitivados pelos insucessos do socialismo real e falha dúbia do capitalismo.
+Deve haver um núcleo básico do marxismo que vale a pena ser elucidado e clarificado, e utilizado de ponto de partida para construção de uma teoria mais atualizada.
+
+Por que marxismo? Referências a insights fundamentais de Marx: materialismo histórico, classe e exploração, por exemplo, são caegorias centrais.
+
+Discordância entre eles:
+Por exemplo, sobre o papel do funcionalismo. Cohen é adepto de explicações funcionalistas.
+
+Vamos definir funcionalismo:
+Pássaros têm asas porque elas facilitam o vôo. Fábrias de sapato operam em larga escala por causa dos benefícios que economias de escala trazem.
+Em ambos os casos, algo tem um efeito é explicado por ter esse efeito.
+
+Suponha que e -> f.
+Notem que a explicação não é: e ocorreu porque f ocorreu. Isso é vedado pela lógica da causalidade. O que acontece depois não pode explicar o que veio antes. Nem podemos dizer: "e ocorreu porque causou f". Só resta dizer algo como:
+"e ocorreu porque causaria f".
+
+Daí porque Cohen irá dizer que o materialismo histórico possui explicação funcionalista.
+Quando se diz que a ideologia é uma superestrutura que tem a função de manter a ordem capitalista (infraestrutura), essa é uma explicação funcionalista.
+
+Eslter: Explicações funcionalistas quererem algum mecanismo de feedback no tempo. De forma que algo benéfico acontece, e isso faz perpetuar esse mecanismo que gera o benefício.
+
+Falar de psicologia evolucionária "folk"
+São explicações funcionalistas
+
+Elster defende individualismo metodológico. Em busca de mecanismos a partir dos indivíduos.
+Não quer dizer que coletividades não existem e não agem, mas que precisam ser explicadas em termos dos indivíduos que a compõem.
+
+Defende aplicar teoria dos jogos para entender fenômenos sociais (como classe).
+Objeções furadas:
+1. Promove egopísmo
+2. Estrutura mais importante que agência
+3.  Subjetiva, em vez de materialista
+
+Mais ´serias
+preferências são dadas, exógenas. São elementos primitivos, fundamentos. Marxismo quer explicá-las.
+Há múltiplos equilíbrios
+Pessoas não são sempre racionais.
