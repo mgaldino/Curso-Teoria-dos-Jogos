@@ -1,0 +1,26 @@
+---
+title: "Lista de exercícios 6"
+author: "Manoel Galdino"
+date: "2023-06-01"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Considere o jogo da Câmara e do Senado do exercício anterior. Quantos subjogos há no jogo?
+
+2. Considere o jogo do Stag Hunt. Modele o jogo na forma extensiva sequencial (item a) e simultânea (item b) e indique quantos subjogos há na forma sequencial e na simultânea. Qual (ou quais) o(s) equilíbrio(s) de Nash perfeito em subjogos das duas formas?
+
+
+3. Destruição Mutuamente assegurada
+A crise dos mísseis de Cuba pode ser modelada como um jogo dinâmico com informação imperfeita. A crise dos mísseis se iniciou quando os EUA descobriram que a URSS havia instalado mísseis nucelares em Cuba. Os EUA então escalaram a crise, bloqueando o acesso a Cuba. A URSS então recuou, concordando em retirar os mísseis de Cuba. O que sugere que a ameaça dos EUA era crível. Modele esse jogo como um jogo extensivo de informação imperfeita. Suponha que os EUA são o jogador que joga primeiro e pode Ignorar (I) o incidente, mantendo o status quo, com payoffs (0,0), ou pode Escalar (E) a situação. Nesse caso, a URSS pode Recuar (R), sendo "humilhada" e gera um payoff (10, -10), ou pode ir para um confronto nuclear. Nesse ponto, os jogadores jogam um jogo simultâneo em que podem Apaziguar (A para 1, a para 2) ou optar pelo fim do mindo (F para 1, f para 2) em que ambos jogam bombas atômicas uns nos outros e o mundo acaba. Se ambos apaziguam o payoff é -5, -5, e se um (ou ambos) optam pelo fim do mundo, o mundo acaba e o payoff é -100, -100.
+
+a) modele o jogo na forma extensiva.
+b) quantos subjogos existem neste jogo?
+c) modele o subjogo de informação perfeita na forma estratégica (dica, as ações são iguas às estratégias nesse caso)
+d) ache o equilíbrio de Nash do jogo do item c.
+c) Quais os equilíbrios de Nash perfeito em subjogos?
+d) Qual a diferença qualitativa entre os equilíbrios? Isto é, como você interpreta esses equilíbrios em termos da crise de mísseis?
+
