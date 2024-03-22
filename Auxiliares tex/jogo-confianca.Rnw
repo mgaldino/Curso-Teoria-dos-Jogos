@@ -1,0 +1,36 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\begin{tikzpicture}[>=stealth, every node/.style={circle}]
+\tikzstyle{level 1}=[sibling distance=50mm, level distance=25mm]
+\tikzstyle{level 2}=[sibling distance=25mm]
+
+% Estilos dos nós
+\tikzstyle{solid node}=[draw, circle, fill=black, inner sep=1.5, minimum size=2mm]
+
+% Definindo os estilos para as linhas dos jogadores
+\tikzstyle{player 1}=[solid node, label=above:{1}]
+\tikzstyle{player 2}=[solid node, label=above:{2}]
+
+% Jogo da Confiança
+\node[player 1] (x_0) {}
+  child {node[label=center:{$(0,0)$}](x_1) {} edge from parent node[left] {Não}}
+  child {node[player 2] (x_2) {}
+    child {node[label=center:{$(1,1)$}] (x_3) {} edge from parent node[left] {Cooperar}}
+    child {node[label=center:{$(-1,2)$}] (x_4) {} edge from parent node[right] {Não cooperar}}
+    edge from parent node[right] {Confiar}
+  };
+  
+% Adicionando rótulo de numeração manualmente para x_0
+\node at (x_0) [yshift=-4mm] {$x_{0}$};
+\node at (x_2) [yshift=-4mm] {$x_{2}$};
+% Adicionando rótulos de numeração para o restante usando foreach
+\foreach \x in {1,3,4} 
+  \node at (x_\x) [yshift=4mm] {$x_{\x}$};
+\end{tikzpicture}
+\end{document}

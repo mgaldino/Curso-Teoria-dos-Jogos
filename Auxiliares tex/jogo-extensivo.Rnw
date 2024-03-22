@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, shapes.geometric}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{Sweave}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\input{jogo-bofsex-nature1-concordance}
+
+\begin{tikzpicture}[>=stealth, every node/.style={circle}]
+\tikzstyle{solid node}=[draw, circle, fill=black, inner sep=1.5, minimum size=2mm]
+\tikzstyle{decision}=[draw, rectangle, fill=gray!30]
+\tikzstyle{level 1}=[sibling distance=50mm, level distance=25mm]
+\tikzstyle{level 2}=[sibling distance=25mm, level distance=25mm]
+
+\node[solid node, label=above:{Serena}] (serena) {}
+  child{node[solid node, label=above:{Nina}] (nina1){}
+    child{node[solid node,label=below:{$2,1$}]{} edge from parent node[left]{B}}
+    child{node[solid node,label=below:{$0,0$}]{} edge from parent node[right]{S}}
+  edge from parent node[left,xshift=-3]{Bach}
+  }
+  child{node[solid node, label=above:{Nina}] (nina2) {}
+    child{node[solid node,label=below:{$0,0$}]{} edge from parent node[left]{B}}
+    child{node[solid node,label=below:{$1,2$}]{} edge from parent node[right]{S}}
+  edge from parent node[right,xshift=3]{Stravinski}
+  };
+
+\end{tikzpicture}
+
+\end{document}
