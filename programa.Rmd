@@ -22,14 +22,14 @@ Site do curso: https://github.com/mgaldino/Curso-Teoria-dos-Jogos
 
 Sala do professor: 2081
 
-Horários para receber estudantes: Quartas, 14h-15h. Quintas, 13h-14h.
+Horários para receber estudantes: Quintas, 19h.
 
 
 # Objetivos
 
-Teoria dos jogos oferece uma abordagem para analisar comportamentos racionais em situações de interdependência entre agentes. O que siginfica que quase todo fenômeno social pode ser modelado como um jogo. O objetivo do curso é fornecer uma introdução crítica à teoria dos jogos com aplicações em ciência política e relações internacionais, de forma que o curso difere nesse aspecto de outros oferecidos em departamentos de economia, por exemplo.
+Teoria dos jogos oferece uma abordagem para analisar comportamentos racionais em situações de interdependência entre agentes. O que siginfica que quase todo fenômeno social pode ser modelado como um jogo. O objetivo do curso é fornecer uma introdução crítica à teoria dos jogos com aplicações em ciência política e relações internacionais, de forma que o curso difere nesse aspecto de outros vursos similares oferecidos em departamentos de economia, por exemplo.
 
-O curso está organizado em torno de alguns grandes temas. Em primeiro lugar, queremos que estudantes aprendam os principais conceitos de equilíbrio (Nash, etc.). Em segundo lugar, que se familiarizem com as principais aplicações de modelos formais na  ciência política e relações internacionais. Alguns exemplos de aplicações incluem o modelo de barganha em legislatura de Baron & Ferejohn, modelos de agregação de informação com eleitores desinformados, e modelos formais de cooperação internacional.  E por último, que se familiarizem com a literatura experimental que testa as previsões e suposições da teoria dos jogos, com ênfase para os modelos de ciência política, mas cobrindo também alguns exemplos da ciência comportamental, como estudos sobre o jogo do ultimato.
+O curso está organizado em torno de alguns grandes temas. Em primeiro lugar, queremos que estudantes aprendam os principais conceitos de equilíbrio (Nash, etc.). Em segundo lugar, que se familiarizem com as principais aplicações de modelos formais na  ciência política e relações internacionais. Alguns exemplos de aplicações incluem o modelo de barganha em legislatura de Baron & Ferejohn, modelos de agregação de informação com eleitores desinformados, e modelos formais sobre causas de guerras. Ao final do curso, se der tempo, apresentamos alguns modelos formais sobre racismo e discriminação, para mostrar como a literatura formal têm tratado desses fenômenos.
 
 
 # Justificativa
@@ -38,71 +38,82 @@ A teoria dos jogos introduz uma forma de pensar em termos de incentivos, raciona
 
 O curso também se justifica por apresentar como a matemática aplicada pode ser utilizada de maneira produtiva em ciências sociais e treinar alunos e alunas a estudarem matemática, que é um pouco diferente de como se estuda outros temas em ciências sociais.
 
-Por fim, ao abordar experimentos de laboratório, o curso apresentará a técnica experimental como ferramenta para testar teorias e hipóteses.
-
 # Agenda preliminar
 
-### Aulas 1 e 2 - (16/03) Introdução à Teoria dos Jogos. Racionalidade, escolha racional e individualismo metodológico.
+### Aulas 1 - (27/02/2025) Apresentação do curso e dinâmica das aulas.
+O que é teoria dos jogos? Aplicações práticas. Jogos em forma normal: definições e exemplos simples.
 
 
-### Aula 2 e 3 - (23/03 e 30/03) Jogos na forma estatégica e conceitos de equilíbrio (Estratégia dominante, Nash)
+### Aula 2 (06/03) Preferências e Racionalidade. 
+Preferências, utilidade e funções de utilidade. Racionalidade dos agentes. Representação de jogos e análise de exemplos.
+
+### Aula 3 - (13/06) Incerteza e Utilidade esperada
+Definição e conceitos fundamentais.
 
 
-### Aula 4 e 5 - (13/04 e 20/04) Jogos na forma extensiva e Equilíbrio Perfeito de Subjogo
+### Aula 4 e 5 - (20/06 e 27/06) Jogos na Forma Normal
+Solução de um jogo. Equilíbrio de estrtégia dominante e iterada. Rationazibility.
 
 
-### Aula 6 - (27/04) Aplicações em Ciência Política e Relações Internacionais
+### Aula 6 - (20/03) Jogos em Forma Extensa e Estratégias
+Representação em forma extensa.
+Conceito de estratégias.
+Árvores de decisão e backward induction.
 
 
-### Aula 7 e 8 - (04/05 e 11/05) Jogos de soma zero com preferência espacial
+### Aula 7 e 8 - (03/04 e 10/04) Equilíbrio de Nash
+Aplicações de equilíbrio de Nash. Modelo de competição eleitoral. P-beauty.
+
+### Aula 9 - (24/04) Jogos na Forma extensiva
+Árovre de decisão. Indução reversa. Racionalidade sequencial.
+
+### Aula 10 - (08/05) Equilíbrio perfeito de subjogo
+Equilíbiro perfeito de subjogo. Jogos sequenciais. Aplicações.
 
 
-### Aula 9 e 10 - (18/05 e 25/05) Aplicações e testes experimentais 
+### Aula 11 - (15/05) Modelos de Barganha
+Modelo de Ruibinstein. Jogo do Ultimato.
 
 
-### Aula 11 - (01/06) Tópicos especiais I (Jogos Dinâmicos)  
+### Aula 12 -(21/05) Modelos de Barganha - Aplicação 
+Modelo de Baron-Ferehohn de Barganhas em Legislatura
 
+### Aula 13 -(28/05) Jogos Bayesianos
+Introdução aos jogos com assimetria de informação. Tipos.
 
-### Aula 12 - (15/06) Tópicos especiais II (jogos de informação incompleta) 
+### Aula 14 - (05/06) Jogos Bayesianos
+Modelos de sinalização.
 
+### Aula 15 - (12/06) Revisão
 
-### Aula 13 -(22/06) Tópicos especiais III - marxismo analítico  
+### Aula 16 - (26/06) Prova
 
-
-### Aula 14 - (29/06) Prova Final
-
-
-### Substitutiva (06/07)
-
-
-### Recuperação (13/07)
+### Recuperação - (03/06) Recuperação
 
 
 # Avaliação
 
-### Exercícios - 30% da nota
+### Exercícios - 40% da nota
 
 Quase semanalmente haverá uma lista de exercício, a ser entregue na semana seguinte. Os exercícios não precisam estar corretos, mas deverão ser entregues demonstrando esforço em tentar resolver as questões. 
 
 A nota dos exercícios será computada contabilizando quantas listas cada aluno entregou -- demonstrando esforço. Se todas as listas foram entregues, a nota é 10. Se 90%, a nota é 9 e assim por diante.
 
-### Prova - 70% da nota
+### Prova - 60% da nota
 
 Ao final do curso, haerá uma prova final, que será integralmente composta de uma selação dos exercícios feitos em casa. Isso significa que se todos os exercícios forem feitos, não haverá surpresa na prova.
 
-Caso alguém não possa comparecer, haverá uma prova substitutiva na semana seguinte. Contudo, essa prova  poderá ter questões que não estavam nas listas de exercício, de forma que é recomendável que todo esforço seja feito para que ela não seja necessária.
-
-A nota final do curso é o resultado de uma média aritimética simples entre os exercícios e a prova, com pesos 30% e 70%, respectivamente.
+A nota final do curso é o resultado de uma média aritimética simples entre os exercícios e a prova, com pesos 40% e 60%, respectivamente.
 
 # Biliografia
 
-Os textos indicados aqui são os livros de bibliografia básica. Como não há bons livros de teoria dos jogos para ciências sociais ou ciência política em português, iremos consultar também material em inglês. Sempre que possível, disponibilizarei também minhas notas de aulas no repositório do curso na internet (github), disponível em: https://github.com/mgaldino/Curso-Teoria-dos-Jogos
+O texto principal é o livro que estou escrevendo, que tem por base as nota de aula dos cursos passados. Ele encontra-se diposnível gratuitamente na web em: https://mgaldino.github.io/Teoria-dos-Jogos/
+
+A bibliografia abaixo contém material suplementar que pode ser útil para acompanhar o curso.
 
 Amâncio, J. O. Onuki, Janina. (2015). Capacitação em Negociações Internacionais. Global South Press.
 
 Amâncio, J. O. (2021). Negociações Internacionais: Conceitos, Técnicas e Casos. Edusp.
-
-Elster, J. (2003). Marxism, functionalism, and game theory. Debates in contemporary political philosophy, 22.
 
 Fiani, R. (2015). Teoria dos jogos: para cursos de administração e economia. Elsevier Brasil.
 
