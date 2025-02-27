@@ -1,6 +1,7 @@
 ---
 author: "Manoel Galdino"
 title: "Teoria dos Jogos - FLP0464"
+date: "`r Sys.setlocale('LC_TIME', 'pt_BR.UTF-8'); format(Sys.time(), '%d de %B de %Y')`"
 
 fontfamily: mathpazo
 fontsize: 12pt
@@ -74,9 +75,8 @@ Equilíbiro perfeito de subjogo. Jogos sequenciais. Aplicações.
 ### Aula 11 - (15/05) Modelos de Barganha
 Modelo de Ruibinstein. Jogo do Ultimato.
 
-
 ### Aula 12 -(21/05) Modelos de Barganha - Aplicação 
-Modelo de Baron-Ferehohn de Barganhas em Legislatura
+Modelo de Baron-Ferehohn de Barganhas em Legislatura.
 
 ### Aula 13 -(28/05) Jogos Bayesianos
 Introdução aos jogos com assimetria de informação. Tipos.
